@@ -1,0 +1,229 @@
+import type { FormFieldConfig } from '~/components/form/types';
+import { PropertyStatus, type Property } from '~/types/property';
+import { BRAZILIAN_STATES } from '~/utils/constants/location';
+
+export const createPropertyFormFields = (isEdit = false): FormFieldConfig[] => [
+  {
+    name: 'name',
+    type: 'input',
+    label: 'Nome da Propriedade',
+    required: true,
+    gridColumn: 3,
+
+    inputConfig: {
+      type: 'text',
+      placeholder: 'Ex: Fazenda São José',
+      maxLength: 100,
+    },
+
+    validation: {
+      required: true,
+      minLength: 3,
+      maxLength: 100,
+    },
+
+    helperText: 'Nome descritivo da propriedade',
+  },
+
+  {
+    name: 'code',
+    type: 'input',
+    label: 'Código da Propriedade',
+    required: true,
+    gridColumn: 2,
+
+    inputConfig: {
+      type: 'text',
+      placeholder: 'Ex: PROP001',
+      maxLength: 20,
+    },
+
+    validation: {
+      required: true,
+      minLength: 2,
+      maxLength: 20,
+    },
+
+    helperText: 'Código único para identificar a propriedade',
+  },
+  {
+    name: 'status',
+    type: 'select',
+    label: 'Status',
+    required: true,
+    gridColumn: 1,
+    options: [
+      { value: PropertyStatus.ACTIVE, label: 'Ativo' },
+      { value: PropertyStatus.INACTIVE, label: 'Inativo' },
+    ],
+    selectConfig: {
+      placeholder: 'Selecione um status',
+      ...(isEdit ? {} : { defaultValue: PropertyStatus.ACTIVE }),
+    },
+    validation: {
+      required: true,
+    },
+    helperText: 'Status da propriedade no sistema',
+  },
+
+  {
+    name: 'description',
+    type: 'textarea',
+    label: 'Descrição',
+    required: false,
+    gridColumn: 3,
+
+    textareaConfig: {
+      placeholder: 'Descrição detalhada da propriedade',
+      maxLength: 500,
+      rows: 4,
+    },
+
+    validation: {
+      maxLength: 500,
+    },
+
+    helperText: 'Informações adicionais sobre a propriedade',
+  },
+
+  {
+    name: 'street',
+    type: 'input',
+    label: 'Rua',
+    required: false,
+
+    inputConfig: {
+      type: 'text',
+      placeholder: 'Nome da rua ou estrada',
+      maxLength: 100,
+    },
+
+    validation: {
+      maxLength: 100,
+    },
+  },
+  {
+    name: 'number',
+    type: 'input',
+    label: 'Número',
+    required: false,
+    inputConfig: {
+      type: 'text',
+      placeholder: 'Número ou S/N',
+      maxLength: 10,
+    },
+    validation: {
+      maxLength: 10,
+    },
+  },
+  {
+    name: 'neighborhood',
+    type: 'input',
+    label: 'Bairro/Distrito',
+    required: false,
+    inputConfig: {
+      type: 'text',
+      placeholder: 'Nome do bairro ou distrito',
+      maxLength: 50,
+    },
+    validation: {
+      maxLength: 50,
+    },
+  },
+  {
+    name: 'city',
+    type: 'input',
+    label: 'Cidade',
+    required: false,
+    inputConfig: {
+      type: 'text',
+      placeholder: 'Nome da cidade',
+      maxLength: 50,
+    },
+    validation: {
+      maxLength: 50,
+    },
+  },
+  {
+    name: 'state',
+    type: 'select',
+    label: 'Estado',
+    required: false,
+    options: BRAZILIAN_STATES,
+    selectConfig: {
+      placeholder: 'Selecione um estado',
+    },
+  },
+  {
+    name: 'country',
+    type: 'input',
+    label: 'País',
+    required: false,
+    inputConfig: {
+      type: 'text',
+      placeholder: 'País',
+      maxLength: 50,
+      ...(isEdit ? {} : { defaultValue: 'Brasil' }),
+    },
+    validation: {
+      maxLength: 50,
+    },
+  },
+
+  {
+    name: 'latitude',
+    type: 'input',
+    label: 'Latitude',
+    required: false,
+
+    inputConfig: {
+      type: 'number',
+      placeholder: 'Ex: -23.5505',
+      step: 'any',
+      min: -90,
+      max: 90,
+    },
+
+    validation: {
+      min: -90,
+      max: 90,
+    },
+
+    helperText: 'Coordenada de latitude (opcional)',
+  },
+  {
+    name: 'longitude',
+    type: 'input',
+    label: 'Longitude',
+    required: false,
+    inputConfig: {
+      type: 'number',
+      placeholder: 'Ex: -46.6333',
+      step: 'any',
+      min: -180,
+      max: 180,
+    },
+    validation: {
+      min: -180,
+      max: 180,
+    },
+    helperText: 'Coordenada de longitude (opcional)',
+  },
+];
+
+export const createPropertyFormConfig = (isEdit = false) => ({
+  title: '',
+  description: '',
+  layout: 'grid' as const,
+  gridColumns: 3,
+  submitButtonText: isEdit ? 'Salvar Alterações' : 'Cadastrar Propriedade',
+  resetButtonText: isEdit ? 'Restaurar Valores' : 'Limpar Formulário',
+  showResetButton: true,
+});
+
+export const getInitialValues = (): Omit<Property, 'id'> => ({
+  code: '',
+  name: '',
+  status: PropertyStatus.ACTIVE,
+  country: 'Brasil',
+});
