@@ -47,12 +47,10 @@ export default function Pricing() {
     };
   }, []);
   const handlePlanSelect = (planId: string) => {
-    // Aqui você pode implementar a lógica de redirecionamento
-    // Por exemplo, redirecionar para o cadastro com o plano selecionado
-    console.log('Plano selecionado:', planId);
-
-    // Redirecionar para o cadastro para todos os planos
-    window.location.href = '/sistema/cadastros/propriedades/novo';
+    // Redirecionar para o cadastro de usuário
+    // Todos os usuários começam com trial do plano Enterprise
+    console.log('Iniciando cadastro com trial do plano Enterprise');
+    window.location.href = '/cadastro';
   };
 
   return (
@@ -123,16 +121,16 @@ export default function Pricing() {
               </div>
 
               <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white lg:text-5xl mb-4 leading-tight">
-                Escolha o Plano{' '}
+                Conheça nossos{' '}
                 <span className="bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 bg-clip-text text-transparent animate-gradient">
-                  Ideal
+                  Planos
                 </span>{' '}
-                para sua Propriedade
+                e comece grátis
               </h1>
 
               <p className="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed max-w-3xl mx-auto">
-                Comece gratuitamente e evolua conforme sua fazenda cresce.
-                <span className="font-semibold text-green-600 dark:text-green-400"> Sem compromisso</span>, cancele quando quiser.
+                Todos os novos usuários recebem 14 dias grátis do plano Enterprise.
+                <span className="font-semibold text-green-600 dark:text-green-400"> Sem compromisso</span>, sem cartão de crédito.
               </p>
             </div>
           </div>
@@ -174,7 +172,7 @@ export default function Pricing() {
               },
               {
                 question: 'Há período de teste gratuito?',
-                answer: 'Oferecemos 14 dias de teste gratuito para todos os planos. Você terá acesso completo a todas as funcionalidades sem necessidade de cartão de crédito. Após o período de teste, você pode escolher o plano que melhor se adequa às suas necessidades.'
+                answer: 'Sim! Todos os novos usuários recebem automaticamente 14 dias grátis do plano Enterprise. Você terá acesso completo a todas as funcionalidades sem necessidade de cartão de crédito. Após o período de teste, você pode escolher o plano que melhor se adequa às suas necessidades.'
               },
               {
                 question: 'Posso alterar meu plano depois?',

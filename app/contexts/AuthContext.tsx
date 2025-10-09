@@ -1,12 +1,13 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { authService } from '../services/authService';
-import type { User, LoginCredentials, ForgotPasswordResponse, ResetPasswordData, ResetPasswordResponse } from '../services/authService';
+import type { User, LoginCredentials, ForgotPasswordResponse, ResetPasswordData, ResetPasswordResponse, RegisterData, RegisterResponse } from '../services/authService';
 
 interface AuthContextType {
     user: User | null;
     isAuthenticated: boolean;
     isLoading: boolean;
     login: (credentials: LoginCredentials) => Promise<{ success: boolean; message?: string }>;
+    register: (data: RegisterData) => Promise<RegisterResponse>;
     logout: () => void;
     forgotPassword: (email: string) => Promise<ForgotPasswordResponse>;
     resetPassword: (data: ResetPasswordData) => Promise<ResetPasswordResponse>;
@@ -90,6 +91,18 @@ export function AuthProvider({ children }: AuthProviderProps) {
         }
     };
 
+    const register = async (data: RegisterData) => {
+        try {
+            return await authService.register(data);
+        } catch (error) {
+            console.error('Erro ao registrar usuário:', error);
+            return {
+                success: false,
+                message: 'Erro interno do servidor',
+            };
+        }
+    };
+
     const refreshUser = () => {
         const currentUser = authService.getCurrentUser();
         setUser(currentUser);
@@ -100,6 +113,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         isAuthenticated: !!user,
         isLoading,
         login,
+        register,
         logout,
         forgotPassword,
         resetPassword,

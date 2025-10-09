@@ -7,7 +7,7 @@ const MOCK_USERS = [
         name: 'Administrador',
         role: 'admin',
         avatar: '/assets/angus.png',
-        lastLogin: null,
+        lastLogin: undefined,
         isActive: true,
     },
     {
@@ -17,7 +17,7 @@ const MOCK_USERS = [
         name: 'João Fazendeiro',
         role: 'user',
         avatar: null,
-        lastLogin: null,
+        lastLogin: undefined,
         isActive: true,
     },
     {
@@ -27,7 +27,7 @@ const MOCK_USERS = [
         name: 'Maria Gerente',
         role: 'manager',
         avatar: null,
-        lastLogin: null,
+        lastLogin: undefined,
         isActive: true,
     },
 ];
@@ -44,8 +44,20 @@ export interface User {
     name: string;
     role: string;
     avatar?: string;
-    lastLogin?: Date | null;
+    lastLogin?: Date;
     isActive: boolean;
+    phone?: string;
+    document?: string;
+    street?: string;
+    number?: string;
+    complement?: string;
+    neighborhood?: string;
+    city?: string;
+    state?: string;
+    country?: string;
+    zipCode?: string;
+    plan?: string;
+    trialEndsAt?: Date;
 }
 
 export interface LoginCredentials {
@@ -75,6 +87,30 @@ export interface ResetPasswordData {
 export interface ResetPasswordResponse {
     success: boolean;
     message: string;
+}
+
+export interface RegisterData {
+    name: string;
+    email: string;
+    password: string;
+    phone: string;
+    document: string;
+    street: string;
+    number?: string;
+    complement?: string;
+    neighborhood?: string;
+    city: string;
+    state: string;
+    country: string;
+    zipCode: string;
+    plan?: string;
+    trialDays?: number;
+}
+
+export interface RegisterResponse {
+    success: boolean;
+    message?: string;
+    user?: User;
 }
 
 class AuthService {
@@ -126,10 +162,7 @@ class AuthService {
         }
 
         // Atualizar último login
-        user.lastLogin = new Date();
-
-        // Gerar token
-        const token = this.generateToken(user);
+        (user as any).lastLogin = new Date();
 
         // Salvar dados no localStorage
         const userData = {
@@ -137,10 +170,13 @@ class AuthService {
             email: user.email,
             name: user.name,
             role: user.role,
-            avatar: user.avatar,
-            lastLogin: user.lastLogin,
+            avatar: user.avatar || undefined,
+            lastLogin: user.lastLogin || undefined,
             isActive: user.isActive,
         };
+
+        // Gerar token
+        const token = this.generateToken(userData);
 
         if (rememberMe) {
             localStorage.setItem(this.REMEMBER_KEY, 'true');
@@ -291,6 +327,228 @@ class AuthService {
     getEmailFromResetToken(token: string): string | null {
         const tokenData = RESET_TOKENS.get(token);
         return tokenData ? tokenData.email : null;
+    }
+
+    // Registrar novo usuário
+    async register(data: RegisterData): Promise<RegisterResponse> {
+        const {
+            name,
+            email,
+            password,
+            phone,
+            document,
+            street,
+            number,
+            complement,
+            neighborhood,
+            city,
+            state,
+            country,
+            zipCode,
+            plan = 'enterprise-trial',
+            trialDays = 14
+        } = data;
+
+        // Validações do servidor
+        if (!name.trim()) {
+            return {
+                success: false,
+                message: 'Nome é obrigatório',
+            };
+        }
+
+        if (!email.trim()) {
+            return {
+                success: false,
+                message: 'Email é obrigatório',
+            };
+        }
+
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            return {
+                success: false,
+                message: 'Email inválido',
+            };
+        }
+
+        if (!phone.trim()) {
+            return {
+                success: false,
+                message: 'Telefone é obrigatório',
+            };
+        }
+
+        if (!document.trim()) {
+            return {
+                success: false,
+                message: 'CPF/CNPJ é obrigatório',
+            };
+        }
+
+        if (!street.trim()) {
+            return {
+                success: false,
+                message: 'Rua é obrigatória',
+            };
+        }
+
+        if (!city.trim()) {
+            return {
+                success: false,
+                message: 'Cidade é obrigatória',
+            };
+        }
+
+        if (!state.trim()) {
+            return {
+                success: false,
+                message: 'Estado é obrigatório',
+            };
+        }
+
+        if (!country.trim()) {
+            return {
+                success: false,
+                message: 'País é obrigatório',
+            };
+        }
+
+        if (!zipCode.trim()) {
+            return {
+                success: false,
+                message: 'CEP é obrigatório',
+            };
+        }
+
+        if (!password || password.length < 8) {
+            return {
+                success: false,
+                message: 'Senha deve ter pelo menos 8 caracteres',
+            };
+        }
+
+        if (!/(?=.*[a-z])/.test(password)) {
+            return {
+                success: false,
+                message: 'Senha deve ter pelo menos 1 letra minúscula',
+            };
+        }
+
+        if (!/(?=.*[A-Z])/.test(password)) {
+            return {
+                success: false,
+                message: 'Senha deve ter pelo menos 1 letra maiúscula',
+            };
+        }
+
+        try {
+            // Preparar dados para envio à API
+            const requestData = {
+                name,
+                email,
+                phone,
+                document,
+                street,
+                number,
+                complement,
+                neighborhood,
+                city,
+                state,
+                country,
+                zipCode,
+                password
+            };
+
+            // Fazer requisição para a API real
+            const response = await fetch('/user/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(requestData),
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                return {
+                    success: false,
+                    message: result.message || 'Erro ao criar conta',
+                };
+            }
+
+            // Processar resposta da API
+            if (result.success) {
+                const apiData = result.data;
+
+                // Criar usuário local para compatibilidade
+                const newUser = {
+                    id: apiData.userId,
+                    email: apiData.email,
+                    password,
+                    name: apiData.name,
+                    role: 'user',
+                    avatar: null,
+                    lastLogin: undefined,
+                    isActive: true,
+                    phone,
+                    document,
+                    street,
+                    number: number || '',
+                    complement: complement || '',
+                    neighborhood: neighborhood || '',
+                    city,
+                    state,
+                    country,
+                    zipCode,
+                    plan: apiData.planName.toLowerCase(),
+                    trialEndsAt: new Date(apiData.createdAt), // Será ajustado baseado no tipo de subscription
+                };
+
+                // Adicionar ao mock para compatibilidade
+                MOCK_USERS.push(newUser);
+
+                // Retornar dados formatados
+                const userData = {
+                    id: newUser.id,
+                    email: newUser.email,
+                    name: newUser.name,
+                    role: newUser.role,
+                    avatar: newUser.avatar || undefined,
+                    lastLogin: newUser.lastLogin || undefined,
+                    isActive: newUser.isActive,
+                    phone: newUser.phone,
+                    document: newUser.document,
+                    street: newUser.street,
+                    number: newUser.number,
+                    complement: newUser.complement,
+                    neighborhood: newUser.neighborhood,
+                    city: newUser.city,
+                    state: newUser.state,
+                    country: newUser.country,
+                    zipCode: newUser.zipCode,
+                    plan: newUser.plan,
+                    trialEndsAt: newUser.trialEndsAt,
+                };
+
+                return {
+                    success: true,
+                    message: result.message || 'Usuário criado com sucesso',
+                    user: userData,
+                };
+            } else {
+                return {
+                    success: false,
+                    message: result.message || 'Erro ao criar conta',
+                };
+            }
+        } catch (error) {
+            console.error('Erro na requisição de registro:', error);
+            return {
+                success: false,
+                message: 'Erro de conexão. Tente novamente.',
+            };
+        }
     }
 }
 

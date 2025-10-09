@@ -132,19 +132,40 @@ export function PricingPlans({ plans, onPlanSelect, className = '' }: PricingPla
                                 ))}
                             </div>
 
-                            <Button
-                                config={{
-                                    variant: 'primary',
-                                    size: 'lg',
-                                    fullWidth: true
-                                }}
-                                onClick={() => handlePlanSelect(plan.id)}
-                                className="mt-10"
-                            >
-                                Escolher Plano
-                            </Button>
+                            <div className="mt-10 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg text-center">
+                                <p className="text-sm text-gray-600 dark:text-gray-300">
+                                    {plan.isPopular ? 'Plano recomendado' : 'Disponível após o trial'}
+                                </p>
+                            </div>
                         </div>
                     ))}
+                </div>
+
+                {/* Call to Action */}
+                <div className="mt-16 text-center">
+                    <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-8 border border-green-200 dark:border-green-700">
+                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                            Comece seu teste gratuito hoje!
+                        </h3>
+                        <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
+                            Experimente o plano Enterprise por 14 dias grátis. Sem compromisso, sem cartão de crédito.
+                        </p>
+                        <Button
+                            config={{
+                                variant: 'primary',
+                                size: 'xl',
+                            }}
+                            onClick={() => handlePlanSelect('enterprise-trial')}
+                            className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
+                        >
+                            <span className="flex items-center">
+                                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                                Começar Teste Gratuito - 14 dias
+                            </span>
+                        </Button>
+                    </div>
                 </div>
             </div>
         </section>
