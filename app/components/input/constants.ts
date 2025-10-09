@@ -16,7 +16,7 @@ export const styles = {
   variants: {
     default: {
       input:
-        'border-gray-300 bg-white text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:placeholder-gray-500 dark:focus:border-blue-400',
+        'border-gray-300 bg-white text-gray-900 placeholder-gray-400 focus:border-sky-500 focus:ring-sky-300 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:placeholder-gray-500 dark:focus:border-sky-400',
       disabled:
         'border-gray-200 bg-gray-50 text-gray-500 cursor-not-allowed dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400',
     },
@@ -28,9 +28,9 @@ export const styles = {
     },
     warning: {
       input:
-        'border-yellow-300 bg-white text-gray-900 placeholder-gray-400 focus:border-yellow-500 focus:ring-yellow-300 dark:border-yellow-600 dark:bg-gray-900 dark:text-gray-300 dark:placeholder-gray-500 dark:focus:border-yellow-400',
+        'border-orange-300 bg-white text-gray-900 placeholder-gray-400 focus:border-orange-500 focus:ring-orange-300 dark:border-orange-600 dark:bg-gray-900 dark:text-gray-300 dark:placeholder-gray-500 dark:focus:border-orange-400',
       disabled:
-        'border-yellow-200 bg-yellow-50 text-gray-500 cursor-not-allowed dark:border-yellow-700 dark:bg-yellow-900/20 dark:text-gray-400',
+        'border-orange-200 bg-orange-50 text-gray-500 cursor-not-allowed dark:border-orange-700 dark:bg-orange-900/20 dark:text-gray-400',
     },
     error: {
       input:
@@ -40,9 +40,9 @@ export const styles = {
     },
     info: {
       input:
-        'border-blue-300 bg-white text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:ring-blue-300 dark:border-blue-600 dark:bg-gray-900 dark:text-gray-300 dark:placeholder-gray-500 dark:focus:border-blue-400',
+        'border-sky-300 bg-white text-gray-900 placeholder-gray-400 focus:border-sky-500 focus:ring-sky-300 dark:border-sky-600 dark:bg-gray-900 dark:text-gray-300 dark:placeholder-gray-500 dark:focus:border-sky-400',
       disabled:
-        'border-blue-200 bg-blue-50 text-gray-500 cursor-not-allowed dark:border-blue-700 dark:bg-blue-900/20 dark:text-gray-400',
+        'border-sky-200 bg-sky-50 text-gray-500 cursor-not-allowed dark:border-sky-700 dark:bg-sky-900/20 dark:text-gray-400',
     },
   },
 
@@ -88,8 +88,8 @@ export const styles = {
   dark: {
     default: 'dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300',
     success: 'dark:border-green-600 dark:bg-gray-900 dark:text-gray-300',
-    warning: 'dark:border-yellow-600 dark:bg-gray-900 dark:text-gray-300',
+    warning: 'dark:border-orange-600 dark:bg-gray-900 dark:text-gray-300',
     error: 'dark:border-red-600 dark:bg-gray-900 dark:text-gray-300',
-    info: 'dark:border-blue-600 dark:bg-gray-900 dark:text-gray-300',
+    info: 'dark:border-sky-600 dark:bg-gray-900 dark:text-gray-300',
   },
 };

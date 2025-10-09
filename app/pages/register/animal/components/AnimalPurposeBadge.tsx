@@ -12,9 +12,9 @@ const getPurposeBadgeColors = (purpose: AnimalPurpose) => {
     case AnimalPurpose.MATRIZ:
       return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
     case AnimalPurpose.REPRODUTOR:
-      return 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200';
+      return 'bg-sky-100 text-sky-800 dark:bg-sky-900 dark:text-sky-200';
     default:
-      return 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200';
+      return 'bg-stone-100 text-stone-800 dark:bg-stone-900 dark:text-stone-200';
   }
 };
 

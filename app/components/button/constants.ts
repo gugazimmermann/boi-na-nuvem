@@ -11,28 +11,28 @@ export const styles = {
 
   variants: {
     primary: {
-      base: 'bg-blue-600 text-white hover:bg-blue-500 focus:ring-blue-300',
-      disabled: 'bg-blue-300 text-white cursor-not-allowed hover:bg-blue-300',
+      base: 'bg-sky-600 text-white hover:bg-sky-500 focus:ring-sky-300',
+      disabled: 'bg-sky-300 text-white cursor-not-allowed hover:bg-sky-300',
     },
     secondary: {
-      base: 'bg-gray-600 text-white hover:bg-gray-500 focus:ring-gray-300',
-      disabled: 'bg-gray-300 text-white cursor-not-allowed hover:bg-gray-300',
+      base: 'bg-stone-800 text-white hover:bg-stone-700 focus:ring-stone-300',
+      disabled: 'bg-stone-300 text-white cursor-not-allowed hover:bg-stone-300',
     },
     success: {
       base: 'bg-green-600 text-white hover:bg-green-500 focus:ring-green-300',
       disabled: 'bg-green-300 text-white cursor-not-allowed hover:bg-green-300',
     },
     warning: {
-      base: 'bg-yellow-600 text-white hover:bg-yellow-500 focus:ring-yellow-300',
-      disabled: 'bg-yellow-300 text-white cursor-not-allowed hover:bg-yellow-300',
+      base: 'bg-orange-600 text-white hover:bg-orange-500 focus:ring-orange-300',
+      disabled: 'bg-orange-300 text-white cursor-not-allowed hover:bg-orange-300',
     },
     error: {
       base: 'bg-red-600 text-white hover:bg-red-500 focus:ring-red-300',
       disabled: 'bg-red-300 text-white cursor-not-allowed hover:bg-red-300',
     },
     info: {
-      base: 'bg-cyan-600 text-white hover:bg-cyan-500 focus:ring-cyan-300',
-      disabled: 'bg-cyan-300 text-white cursor-not-allowed hover:bg-cyan-300',
+      base: 'bg-sky-600 text-white hover:bg-sky-500 focus:ring-sky-300',
+      disabled: 'bg-sky-300 text-white cursor-not-allowed hover:bg-sky-300',
     },
     ghost: {
       base: 'bg-transparent text-gray-700 hover:bg-gray-100 focus:ring-gray-300 dark:text-gray-200 dark:hover:bg-gray-800',

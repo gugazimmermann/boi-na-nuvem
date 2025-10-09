@@ -16,8 +16,8 @@ const TYPE_LABELS = {
 
 const TYPE_VARIANTS = {
   [LocationType.LIVESTOCK]: 'green' as const, // Verde - representa pastagem/natureza
-  [LocationType.CULTIVATION]: 'blue' as const, // Azul - representa água/cultivo
-  [LocationType.STORAGE]: 'gray' as const, // Cinza - representa armazenamento/estrutura
+  [LocationType.CULTIVATION]: 'blue' as const, // Sky - representa água/cultivo
+  [LocationType.STORAGE]: 'gray' as const, // Stone - representa armazenamento/estrutura
   [LocationType.CONFINEMENT]: 'red' as const, // Vermelho - representa confinamento intensivo
   [LocationType.SEMI_CONFINEMENT]: 'purple' as const, // Roxo - representa semi-confinamento
 };

@@ -1,8 +1,8 @@
 export const INFO_CARD_CONSTANTS = {
   GRADIENTS: {
     BLUE: {
-      from: 'from-indigo-600',
-      to: 'to-blue-500',
+      from: 'from-sky-600',
+      to: 'to-sky-500',
     },
     EMERALD: {
       from: 'from-teal-600',
@@ -14,7 +14,7 @@ export const INFO_CARD_CONSTANTS = {
     },
     AMBER: {
       from: 'from-orange-600',
-      to: 'to-amber-500',
+      to: 'to-orange-500',
     },
     GREEN: {
       from: 'from-emerald-600',
@@ -53,12 +53,12 @@ export const INFO_CARD_CONSTANTS = {
       to: 'to-pink-500',
     },
     SKY: {
-      from: 'from-blue-600',
+      from: 'from-sky-600',
       to: 'to-sky-500',
     },
     SLATE: {
-      from: 'from-gray-600',
-      to: 'to-slate-500',
+      from: 'from-stone-800',
+      to: 'to-stone-600',
     },
   },
 } as const;

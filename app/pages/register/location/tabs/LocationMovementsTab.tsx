@@ -178,12 +178,12 @@ export function LocationMovementsTab({
       case LocationMovimentType.SUPPLEMENTATION:
         return {
           label: 'Suplementação',
-          color: 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400',
+          color: 'bg-sky-100 text-sky-800 dark:bg-sky-900/30 dark:text-sky-400',
         };
       case LocationMovimentType.MAINTENANCE:
         return {
           label: 'Manutenção',
-          color: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400',
+          color: 'bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-400',
         };
       case LocationMovimentType.CLEANING:
         return {
@@ -203,7 +203,7 @@ export function LocationMovementsTab({
       default:
         return {
           label: type,
-          color: 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300',
+          color: 'bg-stone-100 text-stone-800 dark:bg-stone-700 dark:text-stone-300',
         };
     }
   }, []);
@@ -412,11 +412,10 @@ export function LocationMovementsTab({
           return (
             <div className="text-sm">
               <div
-                className={`font-medium mb-1 ${
-                  isClickable
+                className={`font-medium mb-1 ${isClickable
                     ? 'text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 cursor-pointer transition-colors'
                     : 'text-gray-900 dark:text-gray-100'
-                }`}
+                  }`}
                 onClick={isClickable ? () => handleResponsibleClick(movement) : undefined}
               >
                 {responsibleInfo.name}
@@ -454,14 +453,14 @@ export function LocationMovementsTab({
     },
     ...(hasPagination
       ? {
-          pagination: {
-            currentPage,
-            totalPages,
-            itemsPerPage,
-            totalItems: sortedLocationMovements.length,
-            onPageChange: handlePageChange,
-          },
-        }
+        pagination: {
+          currentPage,
+          totalPages,
+          itemsPerPage,
+          totalItems: sortedLocationMovements.length,
+          onPageChange: handlePageChange,
+        },
+      }
       : {}),
   };
 

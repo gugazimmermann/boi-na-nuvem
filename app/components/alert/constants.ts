@@ -18,13 +18,13 @@ export const styles = {
     icon: 'text-white fill-current',
   },
   warning: {
-    iconContainer: 'bg-yellow-500',
-    title: 'text-yellow-500 dark:text-yellow-400',
+    iconContainer: 'bg-orange-500',
+    title: 'text-orange-500 dark:text-orange-400',
     icon: 'text-white fill-current',
   },
   info: {
-    iconContainer: 'bg-blue-500',
-    title: 'text-blue-500 dark:text-blue-400',
+    iconContainer: 'bg-sky-500',
+    title: 'text-sky-500 dark:text-sky-400',
     icon: 'text-white fill-current',
   },
 

@@ -54,9 +54,9 @@ export default function Pricing() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-sky-50 to-green-50 dark:from-stone-900 dark:via-stone-800 dark:to-stone-900">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-700/50 shadow-sm">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-stone-900/90 backdrop-blur-md border-b border-stone-200/50 dark:border-stone-700/50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <Link to="/" className="flex items-center space-x-3">
@@ -68,7 +68,7 @@ export default function Pricing() {
                 />
                 <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full animate-pulse"></div>
               </div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent">
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-sky-600 bg-clip-text text-transparent">
                 Boi na Nuvem
               </h1>
             </Link>
@@ -79,7 +79,7 @@ export default function Pricing() {
                     variant: 'secondary',
                     size: 'lg',
                   }}
-                  className="bg-gradient-to-r from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
+                  className="bg-gradient-to-r from-stone-500 to-stone-600 hover:from-stone-600 hover:to-stone-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
                 >
                   Voltar ao Início
                 </Button>
@@ -90,7 +90,7 @@ export default function Pricing() {
                     variant: 'primary',
                     size: 'lg',
                   }}
-                  className="bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
+                  className="bg-gradient-to-r from-sky-600 to-sky-600 hover:from-sky-700 hover:to-sky-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
                 >
                   Acessar Sistema
                 </Button>
@@ -104,15 +104,15 @@ export default function Pricing() {
       <section className="relative overflow-hidden pt-24">
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-green-400/20 to-emerald-500/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-blue-400/20 to-cyan-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-teal-400/10 to-green-400/10 rounded-full blur-3xl animate-pulse delay-500"></div>
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-green-400/20 to-green-500/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-sky-400/20 to-sky-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-sky-400/10 to-green-400/10 rounded-full blur-3xl animate-pulse delay-500"></div>
         </div>
 
         <div className="container relative z-10 flex flex-col px-6 py-12 mx-auto space-y-4 lg:py-16">
           <div className="w-full">
             <div className="text-center">
-              <div className="inline-flex items-center px-3 py-1.5 mb-4 bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-900/50 dark:to-emerald-900/50 rounded-full text-green-800 dark:text-green-200 text-sm font-medium shadow-lg backdrop-blur-sm border border-green-200/50 dark:border-green-700/50">
+              <div className="inline-flex items-center px-3 py-1.5 mb-4 bg-gradient-to-r from-green-100 to-green-100 dark:from-green-900/50 dark:to-green-900/50 rounded-full text-green-800 dark:text-green-200 text-sm font-medium shadow-lg backdrop-blur-sm border border-green-200/50 dark:border-green-700/50">
                 <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
                 <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -122,7 +122,7 @@ export default function Pricing() {
 
               <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white lg:text-5xl mb-4 leading-tight">
                 Conheça nossos{' '}
-                <span className="bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 bg-clip-text text-transparent animate-gradient">
+                <span className="bg-gradient-to-r from-green-600 via-green-600 to-sky-600 bg-clip-text text-transparent animate-gradient">
                   Planos
                 </span>{' '}
                 e comece grátis
@@ -144,18 +144,18 @@ export default function Pricing() {
       <PricingPlans plans={plans} onPlanSelect={handlePlanSelect} />
 
       {/* FAQ Section */}
-      <section className="py-16 bg-gradient-to-br from-gray-50 via-white to-emerald-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 relative overflow-hidden">
+      <section className="py-16 bg-gradient-to-br from-stone-50 via-white to-green-50 dark:from-stone-800 dark:via-stone-900 dark:to-stone-800 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-r from-green-400/10 to-emerald-400/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 left-20 w-64 h-64 bg-gradient-to-r from-blue-400/10 to-cyan-400/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-r from-green-400/10 to-green-400/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 left-20 w-64 h-64 bg-gradient-to-r from-sky-400/10 to-sky-400/10 rounded-full blur-3xl"></div>
         </div>
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               Perguntas{' '}
-              <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-green-600 to-green-600 bg-clip-text text-transparent">
                 Frequentes
               </span>
             </h2>
@@ -199,7 +199,7 @@ export default function Pricing() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-br from-green-500 via-emerald-600 to-teal-600 relative overflow-hidden">
+      <section className="py-16 bg-gradient-to-br from-green-600 via-green-600 to-sky-600 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-10 left-10 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
@@ -210,11 +210,11 @@ export default function Pricing() {
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10">
           <h3 className="text-4xl font-bold text-white mb-4 leading-tight">
             Ainda tem{' '}
-            <span className="bg-gradient-to-r from-white to-emerald-100 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-white to-green-100 bg-clip-text text-transparent">
               Dúvidas
             </span>?
           </h3>
-          <p className="text-lg text-emerald-100 mb-8 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-green-100 mb-8 max-w-2xl mx-auto leading-relaxed">
             Nossa equipe está pronta para ajudar você a escolher o plano ideal para sua propriedade.
             Fale conosco e tire todas as suas dúvidas.
           </p>
@@ -222,10 +222,10 @@ export default function Pricing() {
             <a href="mailto:contato@boinanuvem.com.br">
               <Button
                 config={{
-                  variant: 'success',
+                  variant: 'ghost',
                   size: 'xl',
                 }}
-                className="bg-white text-green-600 border-2 border-white hover:bg-emerald-50 hover:border-emerald-100 font-bold py-3 px-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-105"
+                className="bg-gradient-to-r from-green-500 to-green-600 text-white border-2 border-green-500 hover:from-green-600 hover:to-green-700 hover:border-green-600 font-bold py-3 px-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-105"
               >
                 <span className="flex items-center">
                   <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -237,7 +237,7 @@ export default function Pricing() {
             </a>
           </div>
 
-          <div className="mt-8 flex items-center justify-center space-x-6 text-emerald-100">
+          <div className="mt-8 flex items-center justify-center space-x-6 text-green-100">
             <div className="flex items-center">
               <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />

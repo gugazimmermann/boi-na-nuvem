@@ -16,32 +16,32 @@ export const styles = {
 
   variants: {
     primary: {
-      base: 'bg-blue-100 text-blue-800',
-      outline: 'border border-blue-200 bg-transparent text-blue-700',
+      base: 'bg-sky-100 text-sky-800',
+      outline: 'border border-sky-200 bg-transparent text-sky-700',
     },
     secondary: {
-      base: 'bg-gray-100 text-gray-800',
-      outline: 'border border-gray-200 bg-transparent text-gray-700',
+      base: 'bg-stone-100 text-stone-800',
+      outline: 'border border-stone-200 bg-transparent text-stone-700',
     },
     success: {
       base: 'bg-green-100 text-green-800',
       outline: 'border border-green-200 bg-transparent text-green-700',
     },
     warning: {
-      base: 'bg-yellow-100 text-yellow-800',
-      outline: 'border border-yellow-200 bg-transparent text-yellow-700',
+      base: 'bg-orange-100 text-orange-800',
+      outline: 'border border-orange-200 bg-transparent text-orange-700',
     },
     error: {
       base: 'bg-red-100 text-red-800',
       outline: 'border border-red-200 bg-transparent text-red-700',
     },
     info: {
-      base: 'bg-cyan-100 text-cyan-800',
-      outline: 'border border-cyan-200 bg-transparent text-cyan-700',
+      base: 'bg-sky-100 text-sky-800',
+      outline: 'border border-sky-200 bg-transparent text-sky-700',
     },
     neutral: {
-      base: 'bg-gray-50 text-gray-600',
-      outline: 'border border-gray-200 bg-transparent text-gray-600',
+      base: 'bg-stone-50 text-stone-600',
+      outline: 'border border-stone-200 bg-transparent text-stone-600',
     },
   },
 

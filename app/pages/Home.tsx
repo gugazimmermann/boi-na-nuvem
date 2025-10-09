@@ -119,7 +119,7 @@ export default function Home() {
         return (
             <div className="p-6">
                 <div className="flex items-center justify-center h-64">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-sky-600"></div>
                 </div>
             </div>
         );
@@ -175,11 +175,11 @@ export default function Home() {
                     value={totalProperties}
                     description={`${activeProperties} ativas`}
                     progressPercentage={(activeProperties / Math.max(totalProperties, 1)) * 100}
-                    gradientFrom="from-blue-500"
-                    gradientTo="to-blue-600"
-                    iconBgFrom="from-blue-100"
-                    iconBgTo="to-blue-200"
-                    iconTextColor="text-blue-600"
+                    gradientFrom="from-sky-600"
+                    gradientTo="to-sky-600"
+                    iconBgFrom="from-sky-100"
+                    iconBgTo="to-sky-200"
+                    iconTextColor="text-sky-600"
                 />
 
                 <StatsCard
@@ -188,11 +188,11 @@ export default function Home() {
                     value={totalEmployees}
                     description={`${activeEmployees} ativos`}
                     progressPercentage={(activeEmployees / Math.max(totalEmployees, 1)) * 100}
-                    gradientFrom="from-purple-500"
-                    gradientTo="to-purple-600"
-                    iconBgFrom="from-purple-100"
-                    iconBgTo="to-purple-200"
-                    iconTextColor="text-purple-600"
+                    gradientFrom="from-sky-600"
+                    gradientTo="to-sky-600"
+                    iconBgFrom="from-sky-100"
+                    iconBgTo="to-sky-200"
+                    iconTextColor="text-sky-600"
                 />
 
                 <StatsCard
@@ -253,8 +253,8 @@ export default function Home() {
                 <InfoCard
                     title="Resumo Geral"
                     icon={<AnimalIcon />}
-                    gradientFrom="from-gray-500"
-                    gradientTo="to-gray-600"
+                    gradientFrom="from-stone-800"
+                    gradientTo="to-stone-600"
                 >
                     <div className="space-y-3">
                         <div className="flex justify-between items-center">
@@ -283,7 +283,7 @@ export default function Home() {
                         </div>
                         <div className="flex justify-between items-center">
                             <span className="text-sm text-gray-600 dark:text-gray-400">Taxa de Atividade:</span>
-                            <span className="font-semibold text-blue-600">
+                            <span className="font-semibold text-sky-600">
                                 {Math.round(
                                     ((activeAnimals +
                                         activeProperties +
@@ -313,8 +313,8 @@ export default function Home() {
                 <InfoCard
                     title="Sistema"
                     icon={<PropertyIcon />}
-                    gradientFrom="from-blue-500"
-                    gradientTo="to-blue-600"
+                    gradientFrom="from-sky-600"
+                    gradientTo="to-sky-600"
                 >
                     <div className="space-y-3">
                         <div className="flex justify-between items-center">

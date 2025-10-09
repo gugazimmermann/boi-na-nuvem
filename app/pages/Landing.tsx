@@ -31,9 +31,9 @@ export default function Landing() {
   console.log('import.meta.env', import.meta.env);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-sky-50 to-green-50 dark:from-stone-900 dark:via-stone-800 dark:to-stone-900">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-700/50 shadow-sm">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-stone-900/90 backdrop-blur-md border-b border-stone-200/50 dark:border-stone-700/50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-3">
@@ -45,7 +45,7 @@ export default function Landing() {
                 />
                 <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full animate-pulse"></div>
               </div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent">
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-sky-600 bg-clip-text text-transparent">
                 Boi na Nuvem
               </h1>
             </div>
@@ -56,7 +56,7 @@ export default function Landing() {
                     variant: 'success',
                     size: 'lg',
                   }}
-                  className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
+                  className="bg-gradient-to-r from-green-600 to-green-600 hover:from-green-700 hover:to-green-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
                 >
                   Cadastrar-se
                 </Button>
@@ -67,7 +67,7 @@ export default function Landing() {
                     variant: 'primary',
                     size: 'lg',
                   }}
-                  className="bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
+                  className="bg-gradient-to-r from-sky-600 to-sky-600 hover:from-sky-700 hover:to-sky-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
                 >
                   Acessar Sistema
                 </Button>
@@ -81,15 +81,15 @@ export default function Landing() {
       <section className="relative overflow-hidden pt-24">
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-green-400/20 to-emerald-500/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-blue-400/20 to-cyan-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-teal-400/10 to-green-400/10 rounded-full blur-3xl animate-pulse delay-500"></div>
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-green-400/20 to-green-500/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-sky-400/20 to-sky-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-sky-400/10 to-green-400/10 rounded-full blur-3xl animate-pulse delay-500"></div>
         </div>
 
         <div className="container relative z-10 flex flex-col px-6 py-12 mx-auto space-y-4 lg:h-[35rem] lg:py-16 lg:flex-row lg:items-center">
           <div className="w-full lg:w-1/2">
             <div className="lg:max-w-lg">
-              <div className="inline-flex items-center px-3 py-1.5 mb-4 bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-900/50 dark:to-emerald-900/50 rounded-full text-green-800 dark:text-green-200 text-sm font-medium shadow-lg backdrop-blur-sm border border-green-200/50 dark:border-green-700/50">
+              <div className="inline-flex items-center px-3 py-1.5 mb-4 bg-gradient-to-r from-green-100 to-green-100 dark:from-green-900/50 dark:to-green-900/50 rounded-full text-green-800 dark:text-green-200 text-sm font-medium shadow-lg backdrop-blur-sm border border-green-200/50 dark:border-green-700/50">
                 <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
                 <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -99,7 +99,7 @@ export default function Landing() {
 
               <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white lg:text-5xl mb-4 leading-tight">
                 Modernize sua{' '}
-                <span className="bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 bg-clip-text text-transparent animate-gradient">
+                <span className="bg-gradient-to-r from-green-600 via-green-600 to-sky-600 bg-clip-text text-transparent animate-gradient">
                   Fazenda
                 </span>{' '}
                 com Tecnologia de Ponta
@@ -118,7 +118,7 @@ export default function Landing() {
                       variant: 'success',
                       size: 'lg',
                     }}
-                    className="w-full sm:w-auto bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-105"
+                    className="w-full sm:w-auto bg-gradient-to-r from-green-600 to-green-600 hover:from-green-700 hover:to-green-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-105"
                   >
                     <span className="flex items-center">
                       <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -134,7 +134,7 @@ export default function Landing() {
                       variant: 'primary',
                       size: 'lg',
                     }}
-                    className="w-full sm:w-auto bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-105"
+                    className="w-full sm:w-auto bg-gradient-to-r from-sky-600 to-sky-600 hover:from-sky-700 hover:to-sky-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-105"
                   >
                     <span className="flex items-center">
                       <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -154,7 +154,7 @@ export default function Landing() {
                   { icon: 'M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z', text: 'Acesso Mobile 24/7' }
                 ].map((item, index) => (
                   <div key={index} className="flex items-center text-gray-800 px-2 py-1.5 rounded-lg hover:bg-white/50 dark:text-gray-200 dark:hover:bg-gray-800/50 transition-all duration-300 group">
-                    <div className="w-6 h-6 bg-gradient-to-r from-green-500 to-emerald-500 rounded-md flex items-center justify-center mr-2 group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-6 h-6 bg-gradient-to-r from-green-600 to-green-600 rounded-md flex items-center justify-center mr-2 group-hover:scale-110 transition-transform duration-300">
                       <svg className="w-3 h-3 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={item.icon} />
                       </svg>
@@ -167,22 +167,22 @@ export default function Landing() {
           </div>
           <div className="flex items-center justify-center w-full h-80 lg:w-1/2">
             <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-500 rounded-xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-green-500 rounded-xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
               <img
                 className="relative object-cover w-full h-full max-w-xl rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-500"
                 src="https://assets.corteva.com/is/image/Corteva/IMG-ArtigoBlog-Topo-CustosdeProducao-BR?$articleHeader_desktop$"
                 alt="Gestão rural moderna com tecnologia"
               />
-              <div className="absolute -bottom-4 -left-4 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-4 rounded-xl shadow-xl border border-gray-200/50 dark:border-gray-700/50">
+              <div className="absolute -bottom-4 -left-4 bg-white/90 dark:bg-stone-800/90 backdrop-blur-sm p-4 rounded-xl shadow-xl border border-stone-200/50 dark:border-stone-700/50">
                 <div className="flex items-center">
-                  <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg flex items-center justify-center shadow-lg">
+                  <div className="w-10 h-10 bg-gradient-to-r from-green-600 to-green-600 rounded-lg flex items-center justify-center shadow-lg">
                     <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                     </svg>
                   </div>
                   <div className="ml-3">
                     <div className="text-xs font-medium text-gray-900 dark:text-white">Produtividade</div>
-                    <div className="text-lg font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">+100%</div>
+                    <div className="text-lg font-bold bg-gradient-to-r from-green-600 to-green-600 bg-clip-text text-transparent">+100%</div>
                   </div>
                 </div>
               </div>
@@ -192,7 +192,7 @@ export default function Landing() {
       </section>
 
       {/* Statistics Section */}
-      <section className="py-12 bg-gradient-to-br from-emerald-600 via-green-600 to-teal-600 relative overflow-hidden">
+      <section className="py-12 bg-gradient-to-br from-green-600 via-green-600 to-sky-600 relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -205,7 +205,7 @@ export default function Landing() {
             <h2 className="text-3xl font-bold text-white mb-4">
               Resultados que Falam por Si
             </h2>
-            <p className="text-lg text-emerald-100 max-w-2xl mx-auto">
+            <p className="text-lg text-green-100 max-w-2xl mx-auto">
               Junte-se a centenas de produtores que já transformaram suas fazendas com tecnologia de ponta
             </p>
           </div>
@@ -224,10 +224,10 @@ export default function Landing() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={stat.icon} />
                     </svg>
                   </div>
-                  <div className="text-3xl font-bold text-white mb-1 bg-gradient-to-r from-white to-emerald-100 bg-clip-text text-transparent">
+                  <div className="text-3xl font-bold text-white mb-1 bg-gradient-to-r from-white to-green-100 bg-clip-text text-transparent">
                     {stat.number}
                   </div>
-                  <div className="text-emerald-100 text-sm font-medium">{stat.label}</div>
+                  <div className="text-green-100 text-sm font-medium">{stat.label}</div>
                 </div>
               </div>
             ))}
@@ -236,18 +236,19 @@ export default function Landing() {
       </section>
 
       {/* Features Section */}
-      <section className="py-12 bg-gradient-to-br from-gray-50 via-white to-emerald-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden">
+      <section className="py-12 bg-gradient-to-r from-green-100 via-white to-sky-100 dark:from-green-900/30 dark:via-gray-900 dark:to-sky-900/30 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-green-400/10 to-emerald-400/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-10 w-72 h-72 bg-gradient-to-r from-blue-400/10 to-cyan-400/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-green-400/15 to-green-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-72 h-72 bg-gradient-to-r from-sky-400/15 to-sky-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-green-300/5 to-sky-300/5 rounded-full blur-3xl"></div>
         </div>
 
         <div className="container px-6 py-8 mx-auto relative z-10">
           <div className="text-center mb-12">
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               Explore nossos{' '}
-              <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-green-600 to-green-600 bg-clip-text text-transparent">
                 Recursos
               </span>{' '}
               Incríveis
@@ -264,37 +265,37 @@ export default function Landing() {
                 icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4',
                 title: 'Gestão de Propriedades',
                 description: 'Controle completo de suas propriedades rurais, com informações detalhadas sobre área, localização, infraestrutura e muito mais',
-                gradient: 'from-green-500 to-emerald-500'
+                gradient: 'from-green-600 to-green-600'
               },
               {
                 icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
                 title: 'Controle de Rebanho',
                 description: 'Cadastro completo de animais com histórico de vacinas, tratamentos, reprodução e rastreabilidade total do rebanho',
-                gradient: 'from-blue-500 to-cyan-500'
+                gradient: 'from-sky-600 to-sky-600'
               },
               {
                 icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z',
                 title: 'Gestão de Colaboradores',
                 description: 'Organize sua equipe rural com controle de funcionários, prestadores de serviço e fornecedores em um só lugar',
-                gradient: 'from-purple-500 to-pink-500'
+                gradient: 'from-sky-600 to-sky-600'
               },
               {
                 icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z',
                 title: 'Relatórios Inteligentes',
                 description: 'Dashboards e relatórios detalhados para análise de produtividade, custos e tomada de decisões estratégicas',
-                gradient: 'from-orange-500 to-red-500'
+                gradient: 'from-orange-600 to-orange-600'
               },
               {
                 icon: 'M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z',
                 title: 'Acesso Mobile',
                 description: 'Acesse todas as funcionalidades do seu smartphone ou tablet, ideal para uso no campo e gestão remota',
-                gradient: 'from-teal-500 to-green-500'
+                gradient: 'from-sky-600 to-green-600'
               },
               {
                 icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
                 title: 'Dados Seguros',
                 description: 'Backup automático na nuvem com criptografia de ponta a ponta, garantindo a segurança total dos seus dados',
-                gradient: 'from-indigo-500 to-purple-500'
+                gradient: 'from-sky-600 to-sky-600'
               }
             ].map((feature, index) => (
               <div key={index} className="group">
@@ -323,18 +324,19 @@ export default function Landing() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-16 bg-gradient-to-br from-gray-50 via-white to-blue-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 relative overflow-hidden">
+      <section className="py-16 bg-gradient-to-t from-sky-50 to-white dark:from-sky-900/20 dark:to-gray-900 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-10 right-10 w-64 h-64 bg-gradient-to-r from-blue-400/10 to-cyan-400/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-10 left-10 w-64 h-64 bg-gradient-to-r from-green-400/10 to-emerald-400/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-10 right-10 w-64 h-64 bg-gradient-to-r from-sky-400/20 to-sky-500/15 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 left-10 w-64 h-64 bg-gradient-to-r from-green-400/20 to-green-500/15 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/3 left-1/4 w-48 h-48 bg-gradient-to-r from-sky-300/10 to-green-300/10 rounded-full blur-2xl"></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               O que Nossos{' '}
-              <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-sky-600 to-sky-600 bg-clip-text text-transparent">
                 Clientes
               </span>{' '}
               Dizem
@@ -350,21 +352,21 @@ export default function Landing() {
                 name: 'João Mendes',
                 farm: 'Fazenda São José - MG',
                 initials: 'JM',
-                gradient: 'from-green-500 to-emerald-500',
+                gradient: 'from-green-600 to-green-600',
                 quote: 'O Boi na Nuvem revolucionou a gestão da nossa fazenda. Agora temos controle total do rebanho e conseguimos tomar decisões muito mais assertivas.'
               },
               {
                 name: 'Ana Silva',
                 farm: 'Fazenda Boa Vista - SP',
                 initials: 'AS',
-                gradient: 'from-blue-500 to-cyan-500',
+                gradient: 'from-sky-600 to-sky-600',
                 quote: 'A facilidade de uso é impressionante. Em poucos dias já estávamos com todos os dados organizados e os relatórios nos ajudam muito na gestão.'
               },
               {
                 name: 'Roberto Costa',
                 farm: 'Fazenda Esperança - GO',
                 initials: 'RC',
-                gradient: 'from-purple-500 to-pink-500',
+                gradient: 'from-sky-600 to-sky-600',
                 quote: 'O suporte é excepcional e o sistema é muito confiável. Recomendo para qualquer produtor que queira modernizar sua gestão rural.'
               }
             ].map((testimonial, index) => (
@@ -407,18 +409,19 @@ export default function Landing() {
       </section>
 
       {/* Benefits/ROI Section */}
-      <section className="py-16 bg-gradient-to-br from-white via-gray-50 to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden">
+      <section className="py-16 bg-gradient-to-l from-orange-100 via-green-100 to-sky-100 dark:from-orange-900/40 dark:via-green-900/40 dark:to-sky-900/40 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-r from-green-400/5 to-emerald-400/5 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-r from-blue-400/5 to-cyan-400/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-r from-orange-400/10 to-orange-500/5 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-r from-green-400/10 to-green-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/3 w-80 h-80 bg-gradient-to-r from-sky-400/8 to-sky-500/5 rounded-full blur-3xl animate-pulse delay-500"></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               Por que Escolher o{' '}
-              <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-green-600 to-green-600 bg-clip-text text-transparent">
                 Boi na Nuvem
               </span>
               ?
@@ -434,28 +437,28 @@ export default function Landing() {
                 icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1',
                 title: 'Redução de Custos',
                 description: 'Até 25% de redução nos custos operacionais com melhor controle e planejamento',
-                gradient: 'from-green-500 to-emerald-500',
+                gradient: 'from-green-600 to-green-600',
                 percentage: '25%'
               },
               {
                 icon: 'M13 10V3L4 14h7v7l9-11h-7z',
                 title: 'Aumento de Produtividade',
                 description: '35% mais produtividade com gestão otimizada e processos automatizados',
-                gradient: 'from-blue-500 to-cyan-500',
+                gradient: 'from-sky-600 to-sky-600',
                 percentage: '35%'
               },
               {
                 icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
                 title: 'Controle Total',
                 description: 'Visão completa da fazenda com dados em tempo real e relatórios detalhados',
-                gradient: 'from-purple-500 to-pink-500',
+                gradient: 'from-sky-600 to-sky-600',
                 percentage: '100%'
               },
               {
                 icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z',
                 title: 'Economia de Tempo',
                 description: 'Até 40% menos tempo gasto com tarefas administrativas e burocráticas',
-                gradient: 'from-orange-500 to-red-500',
+                gradient: 'from-orange-600 to-orange-600',
                 percentage: '40%'
               }
             ].map((benefit, index) => (
@@ -488,101 +491,16 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Technology & Integrations Section */}
-      <section className="py-16 bg-gradient-to-br from-gray-50 via-white to-blue-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 relative overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-10 left-10 w-80 h-80 bg-gradient-to-r from-blue-400/10 to-cyan-400/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-10 right-10 w-80 h-80 bg-gradient-to-r from-purple-400/10 to-pink-400/10 rounded-full blur-3xl"></div>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-              Tecnologia de{' '}
-              <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
-                Ponta
-              </span>{' '}
-              e Integrações
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Construído com as melhores tecnologias e integrado com as principais ferramentas do mercado
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {[
-              {
-                icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
-                title: 'Cloud Computing',
-                description: 'Infraestrutura em nuvem escalável e confiável, garantindo alta disponibilidade e performance',
-                gradient: 'from-blue-500 to-cyan-500'
-              },
-              {
-                icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
-                title: 'Segurança Avançada',
-                description: 'Criptografia de ponta a ponta e conformidade com LGPD para máxima proteção dos dados',
-                gradient: 'from-green-500 to-emerald-500'
-              },
-              {
-                icon: 'M13 10V3L4 14h7v7l9-11h-7z',
-                title: 'API Integrada',
-                description: 'APIs robustas para integração com sistemas de terceiros e automação de processos',
-                gradient: 'from-purple-500 to-pink-500'
-              }
-            ].map((tech, index) => (
-              <div key={index} className="group">
-                <div className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-gray-200/50 dark:border-gray-700/50 hover:bg-white/90 dark:hover:bg-gray-800/90 transition-all duration-300 hover:scale-105 hover:shadow-xl">
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-transparent dark:from-gray-800/50 rounded-xl"></div>
-                  <div className="relative z-10">
-                    <div className="flex items-center mb-4">
-                      <div className={`w-12 h-12 bg-gradient-to-r ${tech.gradient} rounded-xl flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={tech.icon} />
-                        </svg>
-                      </div>
-                      <h3 className="text-lg font-bold text-gray-900 dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">
-                        {tech.title}
-                      </h3>
-                    </div>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-                      {tech.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Technology Stack */}
-          <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-xl p-6 border border-gray-200/50 dark:border-gray-700/50">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white text-center mb-6">
-              Stack Tecnológico
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-              {[
-                { name: 'React', color: 'from-blue-400 to-blue-600' },
-                { name: 'TypeScript', color: 'from-blue-500 to-blue-700' },
-                { name: 'Tailwind CSS', color: 'from-cyan-400 to-cyan-600' },
-                { name: 'Node.js', color: 'from-green-500 to-green-700' },
-                { name: 'PostgreSQL', color: 'from-indigo-500 to-indigo-700' },
-                { name: 'AWS', color: 'from-orange-500 to-orange-700' }
-              ].map((tech, index) => (
-                <div key={index} className="text-center group">
-                  <div className={`w-12 h-12 bg-gradient-to-r ${tech.color} rounded-lg flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                    <span className="text-white font-bold text-xs">{tech.name}</span>
-                  </div>
-                  <div className="text-xs font-medium text-gray-600 dark:text-gray-300">{tech.name}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Success Stories Section */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 bg-gradient-to-b from-stone-100 to-white dark:from-stone-800 dark:to-gray-900 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-10 left-10 w-64 h-64 bg-gradient-to-r from-stone-400/15 to-stone-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 right-10 w-64 h-64 bg-gradient-to-r from-green-400/15 to-green-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 right-1/4 w-48 h-48 bg-gradient-to-r from-stone-300/8 to-green-300/8 rounded-full blur-2xl"></div>
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               Casos de Sucesso
@@ -686,8 +604,102 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* Technology & Integrations Section */}
+      <section className="py-16 bg-gradient-to-tr from-sky-100 via-white to-green-100 dark:from-sky-900/30 dark:via-gray-900 dark:to-green-900/30 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-10 left-10 w-80 h-80 bg-gradient-to-r from-sky-400/20 to-sky-500/15 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 right-10 w-80 h-80 bg-gradient-to-r from-green-400/20 to-green-500/15 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/3 right-1/3 w-60 h-60 bg-gradient-to-r from-sky-300/12 to-green-300/12 rounded-full blur-2xl"></div>
+          <div className="absolute bottom-1/3 left-1/3 w-40 h-40 bg-gradient-to-r from-sky-200/10 to-green-200/10 rounded-full blur-xl"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+              Tecnologia de{' '}
+              <span className="bg-gradient-to-r from-sky-600 to-sky-600 bg-clip-text text-transparent">
+                Ponta
+              </span>{' '}
+              e Integrações
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Construído com as melhores tecnologias e integrado com as principais ferramentas do mercado
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {[
+              {
+                icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
+                title: 'Cloud Computing',
+                description: 'Infraestrutura em nuvem escalável e confiável, garantindo alta disponibilidade e performance',
+                gradient: 'from-sky-600 to-sky-600'
+              },
+              {
+                icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+                title: 'Segurança Avançada',
+                description: 'Criptografia de ponta a ponta e conformidade com LGPD para máxima proteção dos dados',
+                gradient: 'from-green-600 to-green-600'
+              },
+              {
+                icon: 'M13 10V3L4 14h7v7l9-11h-7z',
+                title: 'API Integrada',
+                description: 'APIs robustas para integração com sistemas de terceiros e automação de processos',
+                gradient: 'from-sky-600 to-sky-600'
+              }
+            ].map((tech, index) => (
+              <div key={index} className="group">
+                <div className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-gray-200/50 dark:border-gray-700/50 hover:bg-white/90 dark:hover:bg-gray-800/90 transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-transparent dark:from-gray-800/50 rounded-xl"></div>
+                  <div className="relative z-10">
+                    <div className="flex items-center mb-4">
+                      <div className={`w-12 h-12 bg-gradient-to-r ${tech.gradient} rounded-xl flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={tech.icon} />
+                        </svg>
+                      </div>
+                      <h3 className="text-lg font-bold text-gray-900 dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">
+                        {tech.title}
+                      </h3>
+                    </div>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+                      {tech.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Technology Stack */}
+          <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-xl p-6 border border-gray-200/50 dark:border-gray-700/50">
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white text-center mb-6">
+              Stack Tecnológico
+            </h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+              {[
+                { name: 'React', color: 'from-sky-400 to-sky-600' },
+                { name: 'TypeScript', color: 'from-sky-500 to-sky-700' },
+                { name: 'Tailwind CSS', color: 'from-sky-400 to-sky-600' },
+                { name: 'Node.js', color: 'from-green-500 to-green-700' },
+                { name: 'PostgreSQL', color: 'from-sky-500 to-sky-700' },
+                { name: 'AWS', color: 'from-orange-500 to-orange-700' }
+              ].map((tech, index) => (
+                <div key={index} className="text-center group">
+                  <div className={`w-12 h-12 bg-gradient-to-r ${tech.color} rounded-lg flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                    <span className="text-white font-bold text-xs">{tech.name}</span>
+                  </div>
+                  <div className="text-xs font-medium text-gray-600 dark:text-gray-300">{tech.name}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-br from-green-500 via-emerald-600 to-teal-600 relative overflow-hidden">
+      <section className="py-16 bg-gradient-to-br from-green-600 via-green-600 to-sky-600 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-10 left-10 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
@@ -698,12 +710,12 @@ export default function Landing() {
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10">
           <h3 className="text-4xl font-bold text-white mb-4 leading-tight">
             Pronto para{' '}
-            <span className="bg-gradient-to-r from-white to-emerald-100 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-white to-green-100 bg-clip-text text-transparent">
               Modernizar
             </span>{' '}
             sua Fazenda?
           </h3>
-          <p className="text-lg text-emerald-100 mb-8 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-green-100 mb-8 max-w-2xl mx-auto leading-relaxed">
             Junte-se a centenas de produtores rurais que já utilizam o Boi na Nuvem para
             otimizar a gestão de suas propriedades e aumentar sua produtividade.
           </p>
@@ -711,10 +723,10 @@ export default function Landing() {
             <Link to="/planos">
               <Button
                 config={{
-                  variant: 'success',
+                  variant: 'ghost',
                   size: 'xl',
                 }}
-                className="bg-white text-green-600 border-2 border-white hover:bg-emerald-50 hover:border-emerald-100 font-bold py-3 px-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-105"
+                className="bg-white text-green-600 border-2 border-white hover:bg-green-50 hover:border-green-100 font-bold py-3 px-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-105 backdrop-blur-sm"
               >
                 <span className="flex items-center">
                   <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -730,7 +742,7 @@ export default function Landing() {
                   variant: 'primary',
                   size: 'xl',
                 }}
-                className="bg-emerald-600 text-white border-2 border-emerald-500 hover:bg-emerald-700 hover:border-emerald-600 font-bold py-3 px-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-105"
+                className="bg-green-600 text-white border-2 border-green-500 hover:bg-green-700 hover:border-green-600 font-bold py-3 px-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-105"
               >
                 <span className="flex items-center">
                   <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -742,7 +754,7 @@ export default function Landing() {
             </Link>
           </div>
 
-          <div className="mt-8 flex items-center justify-center space-x-6 text-emerald-100">
+          <div className="mt-8 flex items-center justify-center space-x-6 text-green-100">
             <div className="flex items-center">
               <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -766,18 +778,18 @@ export default function Landing() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 bg-gradient-to-br from-gray-50 via-white to-emerald-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 relative overflow-hidden">
+      <section className="py-16 bg-gradient-to-br from-stone-50 via-white to-green-50 dark:from-stone-800 dark:via-stone-900 dark:to-stone-800 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-r from-green-400/10 to-emerald-400/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 left-20 w-64 h-64 bg-gradient-to-r from-blue-400/10 to-cyan-400/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-r from-green-400/10 to-green-400/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 left-20 w-64 h-64 bg-gradient-to-r from-sky-400/10 to-sky-400/10 rounded-full blur-3xl"></div>
         </div>
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               Perguntas{' '}
-              <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-green-600 to-green-600 bg-clip-text text-transparent">
                 Frequentes
               </span>
             </h2>
@@ -829,11 +841,11 @@ export default function Landing() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 relative overflow-hidden">
+      <footer className="bg-gradient-to-br from-stone-900 via-stone-800 to-stone-900 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-10 left-10 w-64 h-64 bg-gradient-to-r from-green-400/10 to-emerald-400/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-10 right-10 w-64 h-64 bg-gradient-to-r from-blue-400/10 to-cyan-400/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-10 left-10 w-64 h-64 bg-gradient-to-r from-green-400/10 to-green-400/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 right-10 w-64 h-64 bg-gradient-to-r from-sky-400/10 to-sky-400/10 rounded-full blur-3xl"></div>
         </div>
 
         <div className="container p-6 mx-auto relative z-10">
@@ -849,7 +861,7 @@ export default function Landing() {
                     />
                     <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full animate-pulse"></div>
                   </div>
-                  <h4 className="text-2xl font-bold bg-gradient-to-r from-white to-emerald-100 bg-clip-text text-transparent">
+                  <h4 className="text-2xl font-bold bg-gradient-to-r from-white to-green-100 bg-clip-text text-transparent">
                     Boi na Nuvem
                   </h4>
                 </div>
@@ -919,7 +931,7 @@ export default function Landing() {
             </div>
           </div>
 
-          <hr className="h-px my-6 bg-gradient-to-r from-transparent via-gray-600 to-transparent border-none" />
+          <hr className="h-px my-6 bg-gradient-to-r from-transparent via-stone-600 to-transparent border-none" />
 
           <div className="text-center">
             <p className="text-gray-400">
