@@ -32,7 +32,7 @@ export const links: Route.LinksFunction = () => [
 export function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
   const isSystemRoute = location.pathname.startsWith('/sistema');
-  const isAuthRoute = ['/login', '/forgot-password', '/reset-password'].includes(location.pathname);
+  const isAuthRoute = ['/login', '/esqueci-senha', '/redefinir-senha'].includes(location.pathname);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {

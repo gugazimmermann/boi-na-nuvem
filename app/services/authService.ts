@@ -1,42 +1,4 @@
-// Mock de usuários para demonstração
-const MOCK_USERS = [
-    {
-        id: '1',
-        email: 'admin@boinanuvem.com.br',
-        password: 'admin123',
-        name: 'Administrador',
-        role: 'admin',
-        avatar: '/assets/logo.png',
-        lastLogin: undefined,
-        isActive: true,
-    },
-    {
-        id: '2',
-        email: 'fazendeiro@boinanuvem.com.br',
-        password: 'fazenda123',
-        name: 'João Fazendeiro',
-        role: 'user',
-        avatar: null,
-        lastLogin: undefined,
-        isActive: true,
-    },
-    {
-        id: '3',
-        email: 'gerente@boinanuvem.com.br',
-        password: 'gerente123',
-        name: 'Maria Gerente',
-        role: 'manager',
-        avatar: null,
-        lastLogin: undefined,
-        isActive: true,
-    },
-];
 
-// Mock de tokens de reset de senha
-const RESET_TOKENS = new Map<string, { email: string; expiresAt: Date }>();
-
-// Simular delay de rede
-const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 export interface User {
     id: string;
@@ -57,6 +19,11 @@ export interface User {
     country?: string;
     zipCode?: string;
     plan?: string;
+    subscription?: {
+        type: string;
+        status: string;
+        createdAt: string;
+    };
     trialEndsAt?: Date;
 }
 
@@ -68,18 +35,27 @@ export interface LoginCredentials {
 
 export interface LoginResponse {
     success: boolean;
-    user?: User;
-    token?: string;
+    data?: {
+        token: string;
+        refreshToken: string;
+        expiresAt: string;
+        refreshExpiresAt: string;
+        rememberMe: boolean;
+    };
     message?: string;
 }
 
 export interface ForgotPasswordResponse {
     success: boolean;
+    data?: {
+        message: string;
+        email: string;
+    };
     message: string;
 }
 
 export interface ResetPasswordData {
-    token: string;
+    code: string;
     newPassword: string;
     confirmPassword: string;
 }
@@ -123,91 +99,195 @@ export interface RegisterResponse {
 
 class AuthService {
     private readonly TOKEN_KEY = 'boi_na_nuvem_token';
+    private readonly REFRESH_TOKEN_KEY = 'boi_na_nuvem_refresh_token';
     private readonly USER_KEY = 'boi_na_nuvem_user';
     private readonly REMEMBER_KEY = 'boi_na_nuvem_remember';
 
-    // Gerar token JWT mock
-    private generateToken(user: User): string {
-        const payload = {
-            userId: user.id,
-            email: user.email,
-            role: user.role,
-            iat: Date.now(),
-            exp: Date.now() + (24 * 60 * 60 * 1000), // 24 horas
-        };
-        return btoa(JSON.stringify(payload));
-    }
 
-    // Validar token JWT mock
+    // Validar token JWT
     private validateToken(token: string): { valid: boolean; payload?: any } {
         try {
-            const payload = JSON.parse(atob(token));
-            if (payload.exp < Date.now()) {
+            // Para tokens JWT reais, precisaríamos decodificar o payload (sem verificar assinatura)
+            // Por enquanto, assumimos que se o token existe e não está vazio, é válido
+            // Em produção, você deveria verificar a assinatura e expiração adequadamente
+            if (!token || token.trim() === '') {
                 return { valid: false };
             }
-            return { valid: true, payload };
+
+            // Tentar decodificar o payload (assumindo que é um JWT simples)
+            const parts = token.split('.');
+            if (parts.length === 3) {
+                // JWT real - decodificar payload
+                const payload = JSON.parse(atob(parts[1]));
+                if (payload.exp && payload.exp < Math.floor(Date.now() / 1000)) {
+                    return { valid: false };
+                }
+                return { valid: true, payload };
+            } else {
+                // Token simples (fallback para compatibilidade)
+                const payload = JSON.parse(atob(token));
+                if (payload.exp && payload.exp < Math.floor(Date.now() / 1000)) {
+                    return { valid: false };
+                }
+                return { valid: true, payload };
+            }
         } catch {
             return { valid: false };
         }
     }
 
+    // Decodificar token JWT
+    private decodeToken(token: string): any | null {
+        try {
+            // Tentar decodificar como JWT real primeiro
+            const parts = token.split('.');
+            if (parts.length === 3) {
+                // JWT real - decodificar payload
+                return JSON.parse(atob(parts[1]));
+            } else {
+                // Token simples (fallback para compatibilidade)
+                return JSON.parse(atob(token));
+            }
+        } catch {
+            return null;
+        }
+    }
+
+
     // Login
     async login(credentials: LoginCredentials): Promise<LoginResponse> {
-        await delay(1000); // Simular delay de rede
-
         const { email, password, rememberMe = false } = credentials;
 
-        // Validar credenciais
-        const user = MOCK_USERS.find(
-            u => u.email === email && u.password === password && u.isActive
-        );
+        try {
+            // Usar a URL base da API
+            const API_BASE_URL = import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'http://localhost:3000';
 
-        if (!user) {
+            const response = await fetch(`${API_BASE_URL}/user/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password, rememberMe }),
+            });
+
+            const result = await response.json();
+
+            // Tratar diferentes códigos de status HTTP
+            if (response.status === 200) {
+                // Sucesso - login realizado
+                if (result.success && result.data && result.data.token) {
+                    const { token, refreshToken, expiresAt, refreshExpiresAt, rememberMe: apiRememberMe } = result.data;
+
+                    // Decodificar token para obter dados do usuário
+                    const tokenPayload = this.decodeToken(token);
+
+                    if (tokenPayload) {
+                        // Salvar dados no localStorage/sessionStorage
+                        const userData = {
+                            id: tokenPayload.sub,
+                            email: tokenPayload.email,
+                            name: tokenPayload.name,
+                            role: 'user', // Default role, pode ser ajustado conforme necessário
+                            avatar: undefined,
+                            lastLogin: new Date(),
+                            isActive: true,
+                            plan: tokenPayload.planName,
+                            subscription: {
+                                type: tokenPayload.subscriptionType,
+                                status: tokenPayload.subscriptionStatus,
+                                createdAt: tokenPayload.subscriptionCreatedAt
+                            }
+                        };
+
+                        // Usar o rememberMe da API ou do cliente
+                        const shouldRemember = apiRememberMe !== undefined ? apiRememberMe : rememberMe;
+
+                        if (shouldRemember) {
+                            localStorage.setItem(this.REMEMBER_KEY, 'true');
+                            localStorage.setItem(this.TOKEN_KEY, token);
+                            localStorage.setItem(this.REFRESH_TOKEN_KEY, refreshToken);
+                            localStorage.setItem(this.USER_KEY, JSON.stringify(userData));
+                        } else {
+                            sessionStorage.setItem(this.TOKEN_KEY, token);
+                            sessionStorage.setItem(this.REFRESH_TOKEN_KEY, refreshToken);
+                            sessionStorage.setItem(this.USER_KEY, JSON.stringify(userData));
+                        }
+
+                        return {
+                            success: true,
+                            data: {
+                                token,
+                                refreshToken,
+                                expiresAt,
+                                refreshExpiresAt,
+                                rememberMe: shouldRemember
+                            },
+                            message: result.message || 'Login successful'
+                        };
+                    } else {
+                        return {
+                            success: false,
+                            message: 'Token inválido recebido do servidor'
+                        };
+                    }
+                } else {
+                    return {
+                        success: false,
+                        message: result.message || 'Erro no login'
+                    };
+                }
+            } else if (response.status === 400) {
+                // Dados inválidos
+                return {
+                    success: false,
+                    message: result.message || 'Invalid data provided'
+                };
+            } else if (response.status === 401) {
+                // Email ou senha incorretos
+                return {
+                    success: false,
+                    message: result.message || result.error || 'Invalid email or password'
+                };
+            } else if (response.status === 500) {
+                // Erro interno do servidor
+                return {
+                    success: false,
+                    message: result.message || 'Internal server error'
+                };
+            } else {
+                // Outros erros
+                return {
+                    success: false,
+                    message: result.message || 'Erro ao fazer login'
+                };
+            }
+        } catch (error) {
+            console.error('Erro na requisição de login:', error);
+
+            // Verificar se é erro de rede
+            if (error instanceof TypeError && error.message.includes('fetch')) {
+                return {
+                    success: false,
+                    message: 'Erro de conexão. Verifique sua internet e tente novamente.'
+                };
+            }
+
             return {
                 success: false,
-                message: 'Email ou senha incorretos',
+                message: 'Erro de conexão. Tente novamente.'
             };
         }
-
-        // Atualizar último login
-        (user as any).lastLogin = new Date();
-
-        // Salvar dados no localStorage
-        const userData = {
-            id: user.id,
-            email: user.email,
-            name: user.name,
-            role: user.role,
-            avatar: user.avatar || undefined,
-            lastLogin: user.lastLogin || undefined,
-            isActive: user.isActive,
-        };
-
-        // Gerar token
-        const token = this.generateToken(userData);
-
-        if (rememberMe) {
-            localStorage.setItem(this.REMEMBER_KEY, 'true');
-            localStorage.setItem(this.TOKEN_KEY, token);
-            localStorage.setItem(this.USER_KEY, JSON.stringify(userData));
-        } else {
-            sessionStorage.setItem(this.TOKEN_KEY, token);
-            sessionStorage.setItem(this.USER_KEY, JSON.stringify(userData));
-        }
-
-        return {
-            success: true,
-            user: userData,
-            token,
-        };
     }
+
 
     // Logout
     logout(): void {
         localStorage.removeItem(this.TOKEN_KEY);
+        localStorage.removeItem(this.REFRESH_TOKEN_KEY);
         localStorage.removeItem(this.USER_KEY);
         localStorage.removeItem(this.REMEMBER_KEY);
         sessionStorage.removeItem(this.TOKEN_KEY);
+        sessionStorage.removeItem(this.REFRESH_TOKEN_KEY);
         sessionStorage.removeItem(this.USER_KEY);
     }
 
@@ -237,6 +317,11 @@ class AuthService {
         return localStorage.getItem(this.TOKEN_KEY) || sessionStorage.getItem(this.TOKEN_KEY);
     }
 
+    // Obter refresh token atual
+    getCurrentRefreshToken(): string | null {
+        return localStorage.getItem(this.REFRESH_TOKEN_KEY) || sessionStorage.getItem(this.REFRESH_TOKEN_KEY);
+    }
+
     // Verificar se deve lembrar do usuário
     shouldRemember(): boolean {
         return localStorage.getItem(this.REMEMBER_KEY) === 'true';
@@ -244,40 +329,60 @@ class AuthService {
 
     // Esqueci minha senha
     async forgotPassword(email: string): Promise<ForgotPasswordResponse> {
-        await delay(1500); // Simular delay de rede
+        try {
+            // Usar a URL base da API
+            const API_BASE_URL = import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'http://localhost:3000';
 
-        const user = MOCK_USERS.find(u => u.email === email && u.isActive);
+            const response = await fetch(`${API_BASE_URL}/user/forgot-password`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email }),
+            });
 
-        if (!user) {
+            const result = await response.json();
+
+            // Tratar diferentes códigos de status HTTP
+            if (response.status === 200) {
+                return {
+                    success: true,
+                    data: result.data || {
+                        message: 'Password reset instructions have been sent to your email',
+                        email: email
+                    },
+                    message: result.message || 'Password reset instructions sent',
+                };
+            } else if (response.status === 400) {
+                return {
+                    success: false,
+                    message: result.message || 'Invalid email format',
+                };
+            } else if (response.status === 500) {
+                return {
+                    success: false,
+                    message: result.message || 'Internal server error',
+                };
+            } else {
+                return {
+                    success: false,
+                    message: result.message || 'Erro ao processar solicitação',
+                };
+            }
+        } catch (error) {
+            console.error('Erro na requisição de forgot password:', error);
             return {
                 success: false,
-                message: 'Email não encontrado em nossa base de dados',
+                message: 'Erro de conexão. Tente novamente.',
             };
         }
-
-        // Gerar token de reset (válido por 1 hora)
-        const resetToken = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-        const expiresAt = new Date(Date.now() + 60 * 60 * 1000); // 1 hora
-
-        RESET_TOKENS.set(resetToken, { email, expiresAt });
-
-        // Em um sistema real, aqui seria enviado um email
-        console.log(`Token de reset para ${email}: ${resetToken}`);
-        console.log(`Link de reset: http://localhost:5177/reset-password?token=${resetToken}`);
-
-        return {
-            success: true,
-            message: 'Instruções para redefinir sua senha foram enviadas para seu email',
-        };
     }
 
     // Redefinir senha
     async resetPassword(data: ResetPasswordData): Promise<ResetPasswordResponse> {
-        await delay(1000); // Simular delay de rede
+        const { code, newPassword, confirmPassword } = data;
 
-        const { token, newPassword, confirmPassword } = data;
-
-        // Validar senhas
+        // Validar senhas no frontend (a API também validará)
         if (newPassword !== confirmPassword) {
             return {
                 success: false,
@@ -285,56 +390,108 @@ class AuthService {
             };
         }
 
-        if (newPassword.length < 6) {
+        if (newPassword.length < 8) {
             return {
                 success: false,
-                message: 'A senha deve ter pelo menos 6 caracteres',
+                message: 'A senha deve ter pelo menos 8 caracteres',
             };
         }
 
-        // Verificar token
-        const tokenData = RESET_TOKENS.get(token);
-        if (!tokenData) {
+        if (!/(?=.*[a-z])/.test(newPassword)) {
             return {
                 success: false,
-                message: 'Token inválido ou expirado',
+                message: 'A senha deve ter pelo menos 1 letra minúscula',
             };
         }
 
-        if (tokenData.expiresAt < new Date()) {
-            RESET_TOKENS.delete(token);
+        if (!/(?=.*[A-Z])/.test(newPassword)) {
             return {
                 success: false,
-                message: 'Token expirado. Solicite um novo link de redefinição',
+                message: 'A senha deve ter pelo menos 1 letra maiúscula',
             };
         }
 
-        // Atualizar senha do usuário
-        const user = MOCK_USERS.find(u => u.email === tokenData.email);
-        if (user) {
-            user.password = newPassword;
+        try {
+            // Usar a URL base da API
+            const API_BASE_URL = import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'http://localhost:3000';
+
+            const response = await fetch(`${API_BASE_URL}/user/reset-password`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ code, newPassword }),
+            });
+
+            const result = await response.json();
+
+            // Tratar diferentes códigos de status HTTP conforme especificação da API
+            if (response.status === 200) {
+                return {
+                    success: true,
+                    message: result.message || 'Password reset successfully',
+                };
+            } else if (response.status === 400) {
+                return {
+                    success: false,
+                    message: result.message || 'Invalid or expired reset code, or invalid password format',
+                };
+            } else if (response.status === 500) {
+                return {
+                    success: false,
+                    message: result.message || 'Internal server error',
+                };
+            } else {
+                return {
+                    success: false,
+                    message: result.message || 'Erro ao redefinir senha',
+                };
+            }
+        } catch (error) {
+            console.error('Erro na requisição de reset password:', error);
+            return {
+                success: false,
+                message: 'Erro de conexão. Tente novamente.',
+            };
         }
-
-        // Remover token usado
-        RESET_TOKENS.delete(token);
-
-        return {
-            success: true,
-            message: 'Senha redefinida com sucesso! Você já pode fazer login com sua nova senha',
-        };
     }
 
     // Verificar se token de reset é válido
-    isResetTokenValid(token: string): boolean {
-        const tokenData = RESET_TOKENS.get(token);
-        if (!tokenData) return false;
-        return tokenData.expiresAt > new Date();
+    async isResetTokenValid(token: string): Promise<boolean> {
+        try {
+            const API_BASE_URL = import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'http://localhost:3000';
+            const response = await fetch(`${API_BASE_URL}/user/validate-reset-token`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ token }),
+            });
+            return response.status === 200;
+        } catch {
+            return false;
+        }
     }
 
     // Obter email do token de reset
-    getEmailFromResetToken(token: string): string | null {
-        const tokenData = RESET_TOKENS.get(token);
-        return tokenData ? tokenData.email : null;
+    async getEmailFromResetToken(token: string): Promise<string | null> {
+        try {
+            const API_BASE_URL = import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'http://localhost:3000';
+            const response = await fetch(`${API_BASE_URL}/user/reset-token-info`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ token }),
+            });
+            if (response.status === 200) {
+                const result = await response.json();
+                return result.email || null;
+            }
+            return null;
+        } catch {
+            return null;
+        }
     }
 
     // Registrar novo usuário
@@ -504,11 +661,15 @@ class AuthService {
                         country,
                         zipCode,
                         plan: apiData.planName.toLowerCase(),
+                        subscription: {
+                            type: apiData.subscriptionType,
+                            status: apiData.subscriptionStatus,
+                            createdAt: apiData.createdAt
+                        },
                         trialEndsAt: new Date(apiData.createdAt), // Será ajustado baseado no tipo de subscription
                     };
 
-                    // Adicionar ao mock para compatibilidade
-                    MOCK_USERS.push(newUser);
+                    // Usuário criado com sucesso na API
 
                     return {
                         success: true,

@@ -33,14 +33,14 @@ describe('Badge Component', () => {
       render(<Badge>Badge Primário</Badge>);
 
       const badge = screen.getByText('Badge Primário').closest('span');
-      expect(badge).toHaveClass('bg-blue-100', 'text-blue-800');
+      expect(badge).toHaveClass('bg-sky-100', 'text-sky-800');
     });
 
     it('renders secondary variant', () => {
       render(<Badge config={{ variant: 'secondary' }}>Badge Secundário</Badge>);
 
       const badge = screen.getByText('Badge Secundário').closest('span');
-      expect(badge).toHaveClass('bg-gray-100', 'text-gray-800');
+      expect(badge).toHaveClass('bg-stone-100', 'text-stone-800');
     });
 
     it('renders success variant', () => {
@@ -54,7 +54,7 @@ describe('Badge Component', () => {
       render(<Badge config={{ variant: 'warning' }}>Badge de Aviso</Badge>);
 
       const badge = screen.getByText('Badge de Aviso').closest('span');
-      expect(badge).toHaveClass('bg-yellow-100', 'text-yellow-800');
+      expect(badge).toHaveClass('bg-orange-100', 'text-orange-800');
     });
 
     it('renders error variant', () => {
@@ -68,14 +68,14 @@ describe('Badge Component', () => {
       render(<Badge config={{ variant: 'info' }}>Badge de Informação</Badge>);
 
       const badge = screen.getByText('Badge de Informação').closest('span');
-      expect(badge).toHaveClass('bg-cyan-100', 'text-cyan-800');
+      expect(badge).toHaveClass('bg-sky-100', 'text-sky-800');
     });
 
     it('renders neutral variant', () => {
       render(<Badge config={{ variant: 'neutral' }}>Badge Neutro</Badge>);
 
       const badge = screen.getByText('Badge Neutro').closest('span');
-      expect(badge).toHaveClass('bg-gray-50', 'text-gray-600');
+      expect(badge).toHaveClass('bg-stone-50', 'text-stone-600');
     });
   });
 

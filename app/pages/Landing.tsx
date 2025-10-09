@@ -28,8 +28,6 @@ export function meta({ }: Route.MetaArgs) {
 
 export default function Landing() {
 
-  console.log('import.meta.env', import.meta.env);
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-sky-50 to-green-50 dark:from-stone-900 dark:via-stone-800 dark:to-stone-900">
       {/* Header */}

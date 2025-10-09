@@ -30,7 +30,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
             try {
                 const isAuth = authService.isAuthenticated();
                 const currentUser = authService.getCurrentUser();
-
                 setUser(isAuth ? currentUser : null);
             } catch (error) {
                 console.error('Erro ao verificar autenticação:', error);
@@ -45,20 +44,22 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
     const login = async (credentials: LoginCredentials) => {
         try {
-            setIsLoading(true);
             const response = await authService.login(credentials);
 
-            if (response.success && response.user) {
-                setUser(response.user);
+            if (response.success && response.data) {
+                // Obter dados do usuário do localStorage/sessionStorage após login bem-sucedido
+                const currentUser = authService.getCurrentUser();
+                if (currentUser) {
+                    setUser(currentUser);
+                }
                 return { success: true };
             } else {
+                console.log('AuthContext: Login failed, message:', response.message);
                 return { success: false, message: response.message };
             }
         } catch (error) {
             console.error('Erro no login:', error);
             return { success: false, message: 'Erro interno do servidor' };
-        } finally {
-            setIsLoading(false);
         }
     };
 

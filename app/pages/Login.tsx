@@ -1,5 +1,5 @@
 import type { Route } from '../routes/+types/login';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { Button } from '../components/button';
 import { Input } from '../components/input';
@@ -32,20 +32,22 @@ export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
-    const [error, setError] = useState('');
+    const [apiError, setApiError] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
     const navigate = useNavigate();
     const { login, isAuthenticated, isLoading } = useAuth();
 
-    // Redirecionar se já estiver autenticado
     useEffect(() => {
-        if (isAuthenticated) {
+        if (isAuthenticated && !isLoading) {
             navigate('/sistema');
         }
-    }, [isAuthenticated, navigate]);
+    }, [isAuthenticated, isLoading, navigate]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setError('');
+        setApiError('');
+        setIsSubmitting(true);
 
         try {
             const result = await login({
@@ -57,12 +59,17 @@ export default function Login() {
             if (result.success) {
                 navigate('/sistema');
             } else {
-                setError(result.message || 'Erro ao fazer login');
+                const errorMessage = result.message || 'Erro ao fazer login. Tente novamente.';
+                setApiError(errorMessage);
             }
         } catch (err) {
-            setError('Erro ao fazer login. Tente novamente.');
+            const errorMessage = 'Erro de conexão. Verifique sua internet e tente novamente.';
+            setApiError(errorMessage);
+        } finally {
+            setIsSubmitting(false);
         }
     };
+
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
@@ -100,18 +107,27 @@ export default function Login() {
                 {/* Login Form */}
                 <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm py-8 px-6 shadow-xl rounded-xl border border-gray-200/50 dark:border-gray-700/50">
                     <form className="space-y-6" onSubmit={handleSubmit}>
-                        {error && (
-                            <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 px-4 py-3 rounded-lg text-sm">
-                                {error}
+                        {/* API Error Message */}
+                        {apiError && (
+                            <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 px-4 py-3 rounded-lg text-sm flex items-start space-x-2">
+                                <svg className="w-5 h-5 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                                </svg>
+                                <div className="flex-1">
+                                    <span className="font-medium block">{apiError}</span>
+                                </div>
                             </div>
                         )}
 
+                        {/* Email Field */}
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                 Email
                             </label>
                             <Input
-                                onChange={(e) => setEmail(e.target.value)}
+                                onChange={(e) => {
+                                    setEmail(e.target.value);
+                                }}
                                 config={{
                                     type: 'email',
                                     variant: 'default',
@@ -124,12 +140,15 @@ export default function Login() {
                             />
                         </div>
 
+                        {/* Password Field */}
                         <div>
                             <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                 Senha
                             </label>
                             <Input
-                                onChange={(e) => setPassword(e.target.value)}
+                                onChange={(e) => {
+                                    setPassword(e.target.value);
+                                }}
                                 config={{
                                     type: 'password',
                                     variant: 'default',
@@ -142,6 +161,7 @@ export default function Login() {
                             />
                         </div>
 
+                        {/* Remember Me & Forgot Password */}
                         <div className="flex items-center justify-between">
                             <div className="flex items-center">
                                 <input
@@ -159,7 +179,7 @@ export default function Login() {
 
                             <div className="text-sm">
                                 <Link
-                                    to="/forgot-password"
+                                    to="/esqueci-senha"
                                     className="font-medium text-green-600 hover:text-green-500 dark:text-green-400 dark:hover:text-green-300"
                                 >
                                     Esqueceu sua senha?
@@ -167,17 +187,18 @@ export default function Login() {
                             </div>
                         </div>
 
+                        {/* Submit Button */}
                         <div>
                             <Button
                                 config={{
                                     type: 'submit',
                                     variant: 'primary',
                                     size: 'lg',
-                                    disabled: isLoading,
+                                    disabled: isSubmitting,
                                 }}
                                 className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
                             >
-                                {isLoading ? (
+                                {isSubmitting ? (
                                     <div className="flex items-center justify-center">
                                         <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
                                         Entrando...
@@ -194,20 +215,6 @@ export default function Login() {
                         </div>
                     </form>
 
-                    {/* Demo Credentials */}
-                    <div className="mt-6 p-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg border border-green-200/50 dark:border-green-700/50">
-                        <h3 className="text-sm font-medium text-green-800 dark:text-green-200 mb-2 flex items-center">
-                            <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                            </svg>
-                            Credenciais de demonstração:
-                        </h3>
-                        <div className="space-y-1 text-xs text-green-700 dark:text-green-300">
-                            <p><span className="font-mono bg-white/50 dark:bg-gray-800/50 px-2 py-1 rounded">admin@boinanuvem.com.br</span> / <span className="font-mono bg-white/50 dark:bg-gray-800/50 px-2 py-1 rounded">admin123</span></p>
-                            <p><span className="font-mono bg-white/50 dark:bg-gray-800/50 px-2 py-1 rounded">fazendeiro@boinanuvem.com.br</span> / <span className="font-mono bg-white/50 dark:bg-gray-800/50 px-2 py-1 rounded">fazenda123</span></p>
-                            <p><span className="font-mono bg-white/50 dark:bg-gray-800/50 px-2 py-1 rounded">gerente@boinanuvem.com.br</span> / <span className="font-mono bg-white/50 dark:bg-gray-800/50 px-2 py-1 rounded">gerente123</span></p>
-                        </div>
-                    </div>
                 </div>
 
                 {/* Footer */}
@@ -215,7 +222,7 @@ export default function Login() {
                     <p className="text-sm text-gray-600 dark:text-gray-400">
                         Não tem uma conta?{' '}
                         <Link
-                            to="/planos"
+                            to="/cadastro"
                             className="font-medium text-green-600 hover:text-green-500 dark:text-green-400 dark:hover:text-green-300 transition-colors duration-300"
                         >
                             Cadastre-se aqui

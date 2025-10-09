@@ -508,7 +508,7 @@ describe('Table Styling', () => {
     const addButton = screen.getByText('Add Animal');
 
     const buttonElement = addButton.closest('button');
-    expect(buttonElement).toHaveClass('hover:bg-blue-500');
+    expect(buttonElement).toHaveClass('hover:bg-sky-500');
   });
 
   it('applies responsive classes', () => {

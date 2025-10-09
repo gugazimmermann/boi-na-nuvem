@@ -1,10 +1,9 @@
 import type { Route } from '../routes/+types/reset-password';
-import { useState, useEffect } from 'react';
-import { Link, useSearchParams, useNavigate } from 'react-router';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router';
 import { Button } from '../components/button';
 import { Input } from '../components/input';
 import { useAuth } from '../contexts/AuthContext';
-import { authService } from '../services/authService';
 
 export function meta({ }: Route.MetaArgs) {
     return [
@@ -30,41 +29,49 @@ export function meta({ }: Route.MetaArgs) {
 }
 
 export default function ResetPassword() {
-    const [searchParams] = useSearchParams();
     const navigate = useNavigate();
+    const [code, setCode] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState('');
     const [isSuccess, setIsSuccess] = useState(false);
-    const [isValidToken, setIsValidToken] = useState(false);
-    const [userEmail, setUserEmail] = useState('');
     const { resetPassword } = useAuth();
 
-    const token = searchParams.get('token');
-
-    useEffect(() => {
-        if (!token) {
-            setMessage('Token de redefinição não encontrado');
-            return;
+    // Função para validar senha seguindo o padrão do registro
+    const validatePassword = (password: string): string | null => {
+        if (!password) {
+            return 'Senha é obrigatória';
         }
-
-        const valid = authService.isResetTokenValid(token);
-        const email = authService.getEmailFromResetToken(token);
-
-        setIsValidToken(valid);
-        setUserEmail(email || '');
-
-        if (!valid) {
-            setMessage('Token inválido ou expirado');
+        if (password.length < 8) {
+            return 'Senha deve ter pelo menos 8 caracteres';
         }
-    }, [token]);
+        if (!/(?=.*[a-z])/.test(password)) {
+            return 'Senha deve ter pelo menos 1 letra minúscula';
+        }
+        if (!/(?=.*[A-Z])/.test(password)) {
+            return 'Senha deve ter pelo menos 1 letra maiúscula';
+        }
+        return null;
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        if (!token) {
-            setMessage('Token de redefinição não encontrado');
+        if (!code.trim()) {
+            setMessage('Código de verificação é obrigatório');
+            return;
+        }
+
+        // Validar senha
+        const passwordError = validatePassword(newPassword);
+        if (passwordError) {
+            setMessage(passwordError);
+            return;
+        }
+
+        if (newPassword !== confirmPassword) {
+            setMessage('As senhas não coincidem');
             return;
         }
 
@@ -73,7 +80,7 @@ export default function ResetPassword() {
 
         try {
             const response = await resetPassword({
-                token,
+                code,
                 newPassword,
                 confirmPassword,
             });
@@ -82,6 +89,7 @@ export default function ResetPassword() {
             setIsSuccess(response.success);
 
             if (response.success) {
+                setCode('');
                 setNewPassword('');
                 setConfirmPassword('');
                 // Redirecionar para login após 3 segundos
@@ -96,84 +104,6 @@ export default function ResetPassword() {
             setIsLoading(false);
         }
     };
-
-    if (!token) {
-        return (
-            <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-                {/* Background Elements */}
-                <div className="absolute inset-0 overflow-hidden">
-                    <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-green-400/20 to-emerald-500/20 rounded-full blur-3xl animate-pulse"></div>
-                    <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-blue-400/20 to-cyan-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-teal-400/10 to-green-400/10 rounded-full blur-3xl animate-pulse delay-500"></div>
-                </div>
-
-                <div className="max-w-md w-full space-y-8 relative z-10">
-                    <div className="text-center">
-                        <div className="flex justify-center items-center space-x-3 mb-6">
-                            <div className="relative">
-                                <img
-                                    src="/assets/logo.png"
-                                    alt="Boi na Nuvem Logo"
-                                    className="w-16 h-16 rounded-xl object-contain shadow-lg"
-                                />
-                            </div>
-                            <h1 className="text-3xl font-bold bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent">Boi na Nuvem</h1>
-                        </div>
-                        <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 px-4 py-3 rounded-lg text-sm">
-                            Token de redefinição não encontrado
-                        </div>
-                        <div className="mt-6">
-                            <Link
-                                to="/forgot-password"
-                                className="font-medium text-green-600 hover:text-green-500 dark:text-green-400 dark:hover:text-green-300 transition-colors duration-300"
-                            >
-                                Solicitar novo link de redefinição
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        );
-    }
-
-    if (!isValidToken) {
-        return (
-            <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-                {/* Background Elements */}
-                <div className="absolute inset-0 overflow-hidden">
-                    <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-green-400/20 to-emerald-500/20 rounded-full blur-3xl animate-pulse"></div>
-                    <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-blue-400/20 to-cyan-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-teal-400/10 to-green-400/10 rounded-full blur-3xl animate-pulse delay-500"></div>
-                </div>
-
-                <div className="max-w-md w-full space-y-8 relative z-10">
-                    <div className="text-center">
-                        <div className="flex justify-center items-center space-x-3 mb-6">
-                            <div className="relative">
-                                <img
-                                    src="/assets/logo.png"
-                                    alt="Boi na Nuvem Logo"
-                                    className="w-16 h-16 rounded-xl object-contain shadow-lg"
-                                />
-                            </div>
-                            <h1 className="text-3xl font-bold bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent">Boi na Nuvem</h1>
-                        </div>
-                        <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 px-4 py-3 rounded-lg text-sm">
-                            {message}
-                        </div>
-                        <div className="mt-6">
-                            <Link
-                                to="/forgot-password"
-                                className="font-medium text-green-600 hover:text-green-500 dark:text-green-400 dark:hover:text-green-300 transition-colors duration-300"
-                            >
-                                Solicitar novo link de redefinição
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        );
-    }
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
@@ -204,7 +134,7 @@ export default function ResetPassword() {
                         </span>
                     </h2>
                     <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                        Digite sua nova senha para {userEmail}
+                        Digite o código de verificação recebido por email e sua nova senha
                     </p>
                 </div>
 
@@ -222,25 +152,44 @@ export default function ResetPassword() {
                             )}
 
                             <div>
+                                <label htmlFor="code" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                    Código de verificação
+                                </label>
+                                <Input
+                                    config={{
+                                        type: 'text',
+                                        variant: 'default',
+                                        size: 'lg',
+                                        required: true,
+                                        value: code,
+                                        placeholder: 'Digite o código de verificação',
+                                        autoComplete: 'one-time-code',
+                                    }}
+                                    onChange={(e) => setCode(e.target.value)}
+                                />
+                                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                                    Código enviado para seu email
+                                </p>
+                            </div>
+
+                            <div>
                                 <label htmlFor="newPassword" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                     Nova senha
                                 </label>
                                 <Input
-                                    id="newPassword"
-                                    name="newPassword"
-                                    type="password"
-                                    autoComplete="new-password"
-                                    required
-                                    value={newPassword}
-                                    onChange={(e) => setNewPassword(e.target.value)}
-                                    placeholder="Digite sua nova senha"
                                     config={{
+                                        type: 'password',
                                         variant: 'default',
                                         size: 'lg',
+                                        required: true,
+                                        value: newPassword,
+                                        placeholder: 'Digite sua nova senha',
+                                        autoComplete: 'new-password',
                                     }}
+                                    onChange={(e) => setNewPassword(e.target.value)}
                                 />
                                 <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-                                    Mínimo de 6 caracteres
+                                    Mínimo de 8 caracteres, incluindo 1 letra maiúscula e 1 minúscula
                                 </p>
                             </div>
 
@@ -249,28 +198,26 @@ export default function ResetPassword() {
                                     Confirmar nova senha
                                 </label>
                                 <Input
-                                    id="confirmPassword"
-                                    name="confirmPassword"
-                                    type="password"
-                                    autoComplete="new-password"
-                                    required
-                                    value={confirmPassword}
-                                    onChange={(e) => setConfirmPassword(e.target.value)}
-                                    placeholder="Confirme sua nova senha"
                                     config={{
+                                        type: 'password',
                                         variant: 'default',
                                         size: 'lg',
+                                        required: true,
+                                        value: confirmPassword,
+                                        placeholder: 'Confirme sua nova senha',
+                                        autoComplete: 'new-password',
                                     }}
+                                    onChange={(e) => setConfirmPassword(e.target.value)}
                                 />
                             </div>
 
                             <div>
                                 <Button
-                                    type="submit"
-                                    disabled={isLoading || newPassword.length < 6 || newPassword !== confirmPassword}
                                     config={{
+                                        type: 'submit',
                                         variant: 'primary',
                                         size: 'lg',
+                                        disabled: isLoading || !code.trim() || newPassword.length < 8 || newPassword !== confirmPassword || validatePassword(newPassword) !== null,
                                     }}
                                     className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
                                 >

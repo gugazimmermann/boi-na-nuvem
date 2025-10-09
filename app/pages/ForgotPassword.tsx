@@ -1,6 +1,6 @@
 import type { Route } from '../routes/+types/forgot-password';
 import { useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { Button } from '../components/button';
 import { Input } from '../components/input';
 import { useAuth } from '../contexts/AuthContext';
@@ -34,6 +34,7 @@ export default function ForgotPassword() {
     const [message, setMessage] = useState('');
     const [isSuccess, setIsSuccess] = useState(false);
     const { forgotPassword } = useAuth();
+    const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -47,6 +48,10 @@ export default function ForgotPassword() {
 
             if (response.success) {
                 setEmail('');
+                // Redirecionar para a página de redefinir senha após 2 segundos
+                setTimeout(() => {
+                    navigate('/redefinir-senha');
+                }, 2000);
             }
         } catch (error) {
             setMessage('Erro ao processar solicitação. Tente novamente.');
@@ -103,32 +108,28 @@ export default function ForgotPassword() {
                             )}
 
                             <div>
-                                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                    Email
-                                </label>
                                 <Input
-                                    id="email"
-                                    name="email"
-                                    type="email"
-                                    autoComplete="email"
-                                    required
-                                    value={email}
+                                    label="E-mail"
                                     onChange={(e) => setEmail(e.target.value)}
-                                    placeholder="seu@email.com"
                                     config={{
+                                        type: 'email',
                                         variant: 'default',
                                         size: 'lg',
+                                        placeholder: 'Digite seu email',
+                                        autoComplete: 'email',
+                                        required: true,
+                                        value: email,
                                     }}
                                 />
                             </div>
 
                             <div>
                                 <Button
-                                    type="submit"
-                                    disabled={isLoading}
                                     config={{
+                                        type: 'submit',
                                         variant: 'primary',
                                         size: 'lg',
+                                        disabled: isLoading,
                                     }}
                                     className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
                                 >
@@ -162,6 +163,9 @@ export default function ForgotPassword() {
                                 </h3>
                                 <p className="text-sm text-gray-600 dark:text-gray-400">
                                     {message}
+                                </p>
+                                <p className="text-xs text-gray-500 dark:text-gray-500 mt-2">
+                                    Você será redirecionado para a página de redefinição de senha em alguns segundos...
                                 </p>
                             </div>
 
@@ -213,23 +217,6 @@ export default function ForgotPassword() {
                     </p>
                 </div>
 
-                {/* Demo Info */}
-                {!isSuccess && (
-                    <div className="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 border border-blue-200/50 dark:border-blue-700/50 rounded-lg p-4">
-                        <h4 className="text-sm font-medium text-blue-800 dark:text-blue-200 mb-2 flex items-center">
-                            <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                            </svg>
-                            Dica para demonstração:
-                        </h4>
-                        <p className="text-xs text-blue-700 dark:text-blue-300">
-                            Use qualquer um destes emails: <br />
-                            <span className="font-mono bg-white/50 dark:bg-gray-800/50 px-2 py-1 rounded">admin@boinanuvem.com.br</span> <br />
-                            <span className="font-mono bg-white/50 dark:bg-gray-800/50 px-2 py-1 rounded">fazendeiro@boinanuvem.com.br</span> <br />
-                            <span className="font-mono bg-white/50 dark:bg-gray-800/50 px-2 py-1 rounded">gerente@boinanuvem.com.br</span>
-                        </p>
-                    </div>
-                )}
             </div>
         </div>
     );

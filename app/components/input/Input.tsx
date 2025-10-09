@@ -164,12 +164,12 @@ export function Input({
         />
 
         {(icon && iconPosition === 'right') || type === 'password' ? (
-          <div className={`${styles.iconContainer} ${styles.iconContainerRight}`}>
+          <div className={`${type === 'password' ? 'absolute inset-y-0 right-0 flex items-center pr-3' : styles.iconContainer} ${styles.iconContainerRight}`}>
             {type === 'password' ? (
               <button
                 type="button"
                 onClick={handlePasswordToggle}
-                className={`${styles.icon[size]} text-gray-400 hover:text-gray-600 focus:outline-none focus:text-gray-600`}
+                className={`${styles.icon[size]} text-gray-400 hover:text-gray-600 focus:outline-none focus:text-gray-600 cursor-pointer`}
                 tabIndex={-1}
                 aria-label={showPassword ? 'Ocultar senha' : 'Mostrar senha'}
               >
