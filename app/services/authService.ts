@@ -103,14 +103,22 @@ export interface RegisterData {
     state: string;
     country: string;
     zipCode: string;
-    plan?: string;
-    trialDays?: number;
 }
 
 export interface RegisterResponse {
     success: boolean;
-    message?: string;
-    user?: User;
+    data?: {
+        userId: string;
+        subscriptionId: string;
+        name: string;
+        email: string;
+        planName: string;
+        subscriptionType: string;
+        subscriptionValue: number;
+        subscriptionStatus: string;
+        createdAt: string;
+    };
+    message: string;
 }
 
 class AuthService {
@@ -344,12 +352,10 @@ class AuthService {
             city,
             state,
             country,
-            zipCode,
-            plan = 'enterprise-trial',
-            trialDays = 14
+            zipCode
         } = data;
 
-        // Validações do servidor
+        // Validações do cliente (opcional, pois o servidor também validará)
         if (!name.trim()) {
             return {
                 success: false,
@@ -459,8 +465,9 @@ class AuthService {
                 password
             };
 
-            // Fazer requisição para a API real
-            const response = await fetch('/user/register', {
+            // Usar a URL base da API
+            const API_BASE_URL = import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'http://localhost:3000';
+            const response = await fetch(`${API_BASE_URL}/user/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -470,73 +477,70 @@ class AuthService {
 
             const result = await response.json();
 
-            if (!response.ok) {
+            // Tratar diferentes códigos de status HTTP
+            if (response.status === 201) {
+                // Sucesso - usuário criado
+                if (result.success && result.data) {
+                    const apiData = result.data;
+
+                    // Criar usuário local para compatibilidade
+                    const newUser = {
+                        id: apiData.userId,
+                        email: apiData.email,
+                        password,
+                        name: apiData.name,
+                        role: 'user',
+                        avatar: null,
+                        lastLogin: undefined,
+                        isActive: true,
+                        phone,
+                        document,
+                        street,
+                        number: number || '',
+                        complement: complement || '',
+                        neighborhood: neighborhood || '',
+                        city,
+                        state,
+                        country,
+                        zipCode,
+                        plan: apiData.planName.toLowerCase(),
+                        trialEndsAt: new Date(apiData.createdAt), // Será ajustado baseado no tipo de subscription
+                    };
+
+                    // Adicionar ao mock para compatibilidade
+                    MOCK_USERS.push(newUser);
+
+                    return {
+                        success: true,
+                        data: apiData,
+                        message: result.message || 'Usuário criado com sucesso',
+                    };
+                } else {
+                    return {
+                        success: false,
+                        message: result.message || 'Erro ao criar conta',
+                    };
+                }
+            } else if (response.status === 400) {
+                // Dados inválidos
                 return {
                     success: false,
-                    message: result.message || 'Erro ao criar conta',
+                    message: result.message || 'Dados inválidos fornecidos',
                 };
-            }
-
-            // Processar resposta da API
-            if (result.success) {
-                const apiData = result.data;
-
-                // Criar usuário local para compatibilidade
-                const newUser = {
-                    id: apiData.userId,
-                    email: apiData.email,
-                    password,
-                    name: apiData.name,
-                    role: 'user',
-                    avatar: null,
-                    lastLogin: undefined,
-                    isActive: true,
-                    phone,
-                    document,
-                    street,
-                    number: number || '',
-                    complement: complement || '',
-                    neighborhood: neighborhood || '',
-                    city,
-                    state,
-                    country,
-                    zipCode,
-                    plan: apiData.planName.toLowerCase(),
-                    trialEndsAt: new Date(apiData.createdAt), // Será ajustado baseado no tipo de subscription
-                };
-
-                // Adicionar ao mock para compatibilidade
-                MOCK_USERS.push(newUser);
-
-                // Retornar dados formatados
-                const userData = {
-                    id: newUser.id,
-                    email: newUser.email,
-                    name: newUser.name,
-                    role: newUser.role,
-                    avatar: newUser.avatar || undefined,
-                    lastLogin: newUser.lastLogin || undefined,
-                    isActive: newUser.isActive,
-                    phone: newUser.phone,
-                    document: newUser.document,
-                    street: newUser.street,
-                    number: newUser.number,
-                    complement: newUser.complement,
-                    neighborhood: newUser.neighborhood,
-                    city: newUser.city,
-                    state: newUser.state,
-                    country: newUser.country,
-                    zipCode: newUser.zipCode,
-                    plan: newUser.plan,
-                    trialEndsAt: newUser.trialEndsAt,
-                };
-
+            } else if (response.status === 409) {
+                // Email ou documento já em uso
                 return {
-                    success: true,
-                    message: result.message || 'Usuário criado com sucesso',
-                    user: userData,
+                    success: false,
+                    message: result.message || 'Email ou documento já está em uso',
+                };
+            } else if (response.status === 500) {
+                // Erro interno do servidor
+                return {
+                    success: false,
+                    message: result.message || 'Erro interno do servidor',
                 };
             } else {
+                // Outros erros
                 return {
                     success: false,
                     message: result.message || 'Erro ao criar conta',

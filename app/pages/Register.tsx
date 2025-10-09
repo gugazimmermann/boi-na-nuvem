@@ -334,8 +334,6 @@ export default function Register() {
                 state: formData.state,
                 country: formData.country,
                 zipCode: formData.zipCode,
-                plan: 'enterprise-trial', // Trial automático do plano Enterprise
-                trialDays: 14, // 14 dias de trial
             });
 
             if (result.success) {
