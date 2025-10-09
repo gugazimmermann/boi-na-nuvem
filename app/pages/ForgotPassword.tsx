@@ -71,11 +71,10 @@ export default function ForgotPassword() {
                     <div className="flex justify-center items-center space-x-3 mb-6">
                         <div className="relative">
                             <img
-                                src="/assets/angus.png"
+                                src="/assets/logo.png"
                                 alt="Boi na Nuvem Logo"
-                                className="w-12 h-12 rounded-xl object-cover shadow-lg"
+                                className="w-16 h-16 rounded-xl object-contain shadow-lg"
                             />
-                            <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full animate-pulse"></div>
                         </div>
                         <h1 className="text-3xl font-bold bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent">Boi na Nuvem</h1>
                     </div>

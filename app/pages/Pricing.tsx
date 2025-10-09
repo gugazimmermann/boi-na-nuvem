@@ -62,11 +62,10 @@ export default function Pricing() {
             <Link to="/" className="flex items-center space-x-3">
               <div className="relative">
                 <img
-                  src="/assets/angus.png"
+                  src="/assets/logo.png"
                   alt="Boi na Nuvem Logo"
-                  className="w-10 h-10 rounded-xl object-cover shadow-lg"
+                  className="w-14 h-14 rounded-xl object-contain shadow-lg"
                 />
-                <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full animate-pulse"></div>
               </div>
               <h1 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-sky-600 bg-clip-text text-transparent">
                 Boi na Nuvem

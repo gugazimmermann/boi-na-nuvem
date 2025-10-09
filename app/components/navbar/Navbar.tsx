@@ -16,7 +16,7 @@ export default function Navbar({ onToggleSidebar }: NavbarProps) {
   };
 
   const appTitle = import.meta.env.VITE_TITLE || 'Boi na Nuvem';
-  const appLogo = import.meta.env.VITE_LOGO || '/assets/angus.png';
+  const appLogo = import.meta.env.VITE_LOGO || '/assets/logo.png';
 
   return (
     <nav className="relative bg-white shadow dark:bg-gray-800 w-full z-50">

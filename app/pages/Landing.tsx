@@ -39,11 +39,10 @@ export default function Landing() {
             <div className="flex items-center space-x-3">
               <div className="relative">
                 <img
-                  src="/assets/angus.png"
+                  src="/assets/logo.png"
                   alt="Boi na Nuvem Logo"
-                  className="w-10 h-10 rounded-xl object-cover shadow-lg"
+                  className="w-14 h-14 rounded-xl object-contain shadow-lg"
                 />
-                <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full animate-pulse"></div>
               </div>
               <h1 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-sky-600 bg-clip-text text-transparent">
                 Boi na Nuvem
@@ -105,11 +104,21 @@ export default function Landing() {
                 com Tecnologia de Ponta
               </h1>
 
-              <p className="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                Sistema completo de gestão rural que aumenta sua produtividade em até{' '}
-                <span className="font-semibold text-green-600 dark:text-green-400">35%</span>.
-                Controle total do rebanho, propriedades e colaboradores em uma única plataforma.
-              </p>
+              {/* Featured Logo Section */}
+              <div className="flex justify-center items-center mb-6">
+                <div className="relative group">
+                  <div className="absolute -inset-4 bg-gradient-to-r from-green-400/20 to-sky-400/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+                  <div className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-6 shadow-2xl border border-white/20 dark:border-gray-700/20">
+                    <img
+                      src="/assets/logo.png"
+                      alt="Boi na Nuvem Logo"
+                      className="w-24 h-24 lg:w-32 lg:h-32 rounded-2xl object-contain shadow-lg group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-green-500 to-sky-500 rounded-full animate-pulse shadow-lg"></div>
+                  </div>
+                </div>
+              </div>
+
 
               <div className="flex flex-col sm:flex-row gap-3 mb-6">
                 <Link to="/planos">
@@ -146,23 +155,6 @@ export default function Landing() {
                 </Link>
               </div>
 
-              <div className="grid gap-3 mt-6 sm:grid-cols-2">
-                {[
-                  { icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', text: 'Gestão Completa' },
-                  { icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z', text: 'Controle de Rebanho' },
-                  { icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z', text: 'Relatórios Inteligentes' },
-                  { icon: 'M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z', text: 'Acesso Mobile 24/7' }
-                ].map((item, index) => (
-                  <div key={index} className="flex items-center text-gray-800 px-2 py-1.5 rounded-lg hover:bg-white/50 dark:text-gray-200 dark:hover:bg-gray-800/50 transition-all duration-300 group">
-                    <div className="w-6 h-6 bg-gradient-to-r from-green-600 to-green-600 rounded-md flex items-center justify-center mr-2 group-hover:scale-110 transition-transform duration-300">
-                      <svg className="w-3 h-3 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={item.icon} />
-                      </svg>
-                    </div>
-                    <span className="text-sm font-medium">{item.text}</span>
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
           <div className="flex items-center justify-center w-full h-80 lg:w-1/2">
@@ -231,6 +223,77 @@ export default function Landing() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Logo Showcase Section */}
+      <section className="py-16 bg-gradient-to-br from-white via-green-50/50 to-sky-50/50 dark:from-gray-900 dark:via-green-900/20 dark:to-sky-900/20 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-r from-orange-400/10 to-orange-500/5 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-r from-green-400/10 to-green-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/3 w-80 h-80 bg-gradient-to-r from-sky-400/8 to-sky-500/5 rounded-full blur-3xl animate-pulse delay-500"></div>
+        </div>
+
+        <div className="container relative z-10 px-6 mx-auto text-center">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Conheça o{' '}
+              <span className="bg-gradient-to-r from-green-600 via-green-600 to-sky-600 bg-clip-text text-transparent">
+                Boi na Nuvem
+              </span>
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
+              Nossa marca representa inovação, confiança e excelência em gestão rural.
+              Descubra como estamos transformando o agronegócio brasileiro.
+            </p>
+
+            {/* Large Logo Display */}
+            <div className="flex justify-center items-center mb-8">
+              <div className="relative group">
+                <div className="absolute -inset-8 bg-gradient-to-r from-green-400/30 to-sky-400/30 rounded-full blur-2xl group-hover:blur-xl transition-all duration-700"></div>
+                <div className="relative bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-white/30 dark:border-gray-700/30">
+                  <img
+                    src="/assets/logo.png"
+                    alt="Boi na Nuvem Logo"
+                    className="w-40 h-40 lg:w-48 lg:h-48 rounded-3xl object-contain shadow-xl group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute -top-3 -right-3 w-8 h-8 bg-gradient-to-r from-green-500 to-sky-500 rounded-full animate-pulse shadow-lg"></div>
+                </div>
+              </div>
+            </div>
+
+            {/* Logo Description */}
+            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Inovação</h3>
+                <p className="text-gray-600 dark:text-gray-300">Tecnologia de ponta para modernizar sua fazenda</p>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-r from-sky-500 to-sky-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Confiança</h3>
+                <p className="text-gray-600 dark:text-gray-300">Mais de 500 propriedades confiam em nossa solução</p>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Excelência</h3>
+                <p className="text-gray-600 dark:text-gray-300">Resultados comprovados em produtividade</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -855,11 +918,10 @@ export default function Landing() {
                 <div className="flex items-center space-x-3 mb-4">
                   <div className="relative">
                     <img
-                      src="/assets/angus.png"
+                      src="/assets/logo.png"
                       alt="Boi na Nuvem Logo"
-                      className="w-10 h-10 rounded-xl object-cover shadow-lg"
+                      className="w-14 h-14 rounded-xl object-contain shadow-lg"
                     />
-                    <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full animate-pulse"></div>
                   </div>
                   <h4 className="text-2xl font-bold bg-gradient-to-r from-white to-green-100 bg-clip-text text-transparent">
                     Boi na Nuvem

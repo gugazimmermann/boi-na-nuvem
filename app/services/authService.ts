@@ -6,7 +6,7 @@ const MOCK_USERS = [
         password: 'admin123',
         name: 'Administrador',
         role: 'admin',
-        avatar: '/assets/angus.png',
+        avatar: '/assets/logo.png',
         lastLogin: undefined,
         isActive: true,
     },

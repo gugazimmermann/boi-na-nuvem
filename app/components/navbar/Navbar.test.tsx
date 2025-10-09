@@ -64,7 +64,7 @@ describe('Navbar', () => {
       meta: {
         env: {
           VITE_TITLE: 'Boi na Nuvem',
-          VITE_LOGO: '/assets/angus.png',
+          VITE_LOGO: '/assets/logo.png',
         },
       },
     });
