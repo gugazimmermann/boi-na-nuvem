@@ -35,13 +35,13 @@ export function PricingPlans({ plans, onPlanSelect, className = '' }: PricingPla
 
     return (
         <section className={`bg-white dark:bg-gray-900 ${className}`}>
-            <div className="container px-6 py-8 mx-auto">
+            <div className="container px-6 py-6 mx-auto">
                 <div className="sm:flex sm:items-center sm:justify-between">
                     <div>
-                        <h2 className="text-2xl font-bold text-gray-800 lg:text-3xl dark:text-gray-100">
+                        <h2 className="text-xl font-bold text-gray-800 lg:text-2xl dark:text-gray-100">
                             Preços simples e transparentes
                         </h2>
-                        <p className="mt-4 text-gray-500 dark:text-gray-400">
+                        <p className="mt-2 text-gray-500 dark:text-gray-400">
                             Sem contratos. Sem taxas surpresa.
                         </p>
                     </div>
@@ -70,23 +70,23 @@ export function PricingPlans({ plans, onPlanSelect, className = '' }: PricingPla
                     </div>
                 </div>
 
-                <div className="grid gap-6 mt-16 -mx-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                <div className="grid gap-4 mt-10 -mx-6 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     {plans.map((plan) => (
                         <div
                             key={plan.id}
-                            className={`px-6 py-4 transition-colors duration-300 transform rounded-lg ${plan.isPopular
+                            className={`px-4 py-3 transition-colors duration-300 transform rounded-lg ${plan.isPopular
                                 ? 'bg-gray-700 dark:bg-gray-800'
                                 : 'hover:bg-gray-200 dark:hover:bg-gray-800'
                                 }`}
                         >
-                            <p className={`text-lg font-medium ${plan.isPopular
+                            <p className={`text-base font-medium ${plan.isPopular
                                 ? 'text-gray-100'
                                 : 'text-gray-800 dark:text-gray-100'
                                 }`}>
                                 {plan.name}
                             </p>
 
-                            <h4 className={`mt-2 text-3xl font-semibold ${plan.isPopular
+                            <h4 className={`mt-1 text-2xl font-semibold ${plan.isPopular
                                 ? 'text-gray-100'
                                 : 'text-gray-800 dark:text-gray-100'
                                 }`}>
@@ -99,19 +99,19 @@ export function PricingPlans({ plans, onPlanSelect, className = '' }: PricingPla
                                 </span>
                             </h4>
 
-                            <p className={`mt-4 ${plan.isPopular
+                            <p className={`mt-2 text-sm ${plan.isPopular
                                 ? 'text-gray-300'
                                 : 'text-gray-500 dark:text-gray-300'
                                 }`}>
                                 {plan.description}
                             </p>
 
-                            <div className="mt-8 space-y-8">
+                            <div className="mt-4 space-y-3">
                                 {plan.features.map((feature, index) => (
                                     <div key={index} className="flex items-center">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
-                                            className="w-5 h-5 text-blue-500"
+                                            className="w-4 h-4 text-blue-500 flex-shrink-0"
                                             viewBox="0 0 20 20"
                                             fill="currentColor"
                                         >
@@ -122,7 +122,7 @@ export function PricingPlans({ plans, onPlanSelect, className = '' }: PricingPla
                                             />
                                         </svg>
 
-                                        <span className={`mx-4 ${plan.isPopular
+                                        <span className={`ml-2 text-sm ${plan.isPopular
                                             ? 'text-gray-300'
                                             : 'text-gray-700 dark:text-gray-300'
                                             }`}>
@@ -132,8 +132,8 @@ export function PricingPlans({ plans, onPlanSelect, className = '' }: PricingPla
                                 ))}
                             </div>
 
-                            <div className="mt-10 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg text-center">
-                                <p className="text-sm text-gray-600 dark:text-gray-300">
+                            <div className="mt-6 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg text-center">
+                                <p className="text-xs text-gray-600 dark:text-gray-300">
                                     {plan.isPopular ? 'Plano recomendado' : 'Disponível após o trial'}
                                 </p>
                             </div>
@@ -141,32 +141,6 @@ export function PricingPlans({ plans, onPlanSelect, className = '' }: PricingPla
                     ))}
                 </div>
 
-                {/* Call to Action */}
-                <div className="mt-16 text-center">
-                    <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-8 border border-green-200 dark:border-green-700">
-                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                            Comece seu teste gratuito hoje!
-                        </h3>
-                        <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
-                            Experimente o plano Enterprise por 14 dias grátis. Sem compromisso, sem cartão de crédito.
-                        </p>
-                        <Button
-                            config={{
-                                variant: 'primary',
-                                size: 'xl',
-                            }}
-                            onClick={() => handlePlanSelect('enterprise-trial')}
-                            className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
-                        >
-                            <span className="flex items-center">
-                                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                                </svg>
-                                Começar Teste Gratuito - 14 dias
-                            </span>
-                        </Button>
-                    </div>
-                </div>
             </div>
         </section>
     );

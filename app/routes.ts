@@ -42,6 +42,8 @@ export default [
   route('sistema/cadastros/animais/novo', 'routes/register/animal/NewAnimal.tsx'),
   route('sistema/cadastros/animais/:id', 'routes/register/animal/$id.tsx'),
   route('sistema/cadastros/animais/:id/editar', 'routes/register/animal/editar.$id.tsx'),
+  route('termos-de-uso', 'routes/terms-of-use.tsx'),
+  route('politica-de-privacidade', 'routes/privacy-policy.tsx'),
   // Catch-all route must be last
   route('*', 'routes/catch-all.tsx'),
 ] satisfies RouteConfig;

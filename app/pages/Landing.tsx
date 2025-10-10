@@ -33,13 +33,13 @@ export default function Landing() {
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-stone-900/90 backdrop-blur-md border-b border-stone-200/50 dark:border-stone-700/50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
+          <div className="flex justify-between items-center py-0">
             <div className="flex items-center space-x-3">
               <div className="relative">
                 <img
                   src="/assets/logo.png"
                   alt="Boi na Nuvem Logo"
-                  className="w-14 h-14 rounded-xl object-contain shadow-lg"
+                  className="w-14 h-14 rounded-xl object-contain "
                 />
               </div>
               <h1 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-sky-600 bg-clip-text text-transparent">
@@ -53,7 +53,7 @@ export default function Landing() {
                     variant: 'success',
                     size: 'lg',
                   }}
-                  className="bg-gradient-to-r from-green-600 to-green-600 hover:from-green-700 hover:to-green-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
+                  className="bg-gradient-to-r from-green-600 to-green-600 hover:from-green-700 hover:to-green-700  hover: transition-all duration-300 transform hover:-translate-y-0.5"
                 >
                   Cadastrar-se
                 </Button>
@@ -64,7 +64,7 @@ export default function Landing() {
                     variant: 'primary',
                     size: 'lg',
                   }}
-                  className="bg-gradient-to-r from-sky-600 to-sky-600 hover:from-sky-700 hover:to-sky-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
+                  className="bg-gradient-to-r from-sky-600 to-sky-600 hover:from-sky-700 hover:to-sky-700  hover: transition-all duration-300 transform hover:-translate-y-0.5"
                 >
                   Acessar Sistema
                 </Button>
@@ -83,10 +83,10 @@ export default function Landing() {
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-sky-400/10 to-green-400/10 rounded-full blur-3xl animate-pulse delay-500"></div>
         </div>
 
-        <div className="container relative z-10 flex flex-col px-6 py-12 mx-auto space-y-4 lg:h-[35rem] lg:py-16 lg:flex-row lg:items-center">
+        <div className="container relative z-10 flex flex-col px-6 py-8 mx-auto space-y-4 lg:h-[30rem] lg:py-10 lg:flex-row lg:items-center">
           <div className="w-full lg:w-1/2">
             <div className="lg:max-w-lg">
-              <div className="inline-flex items-center px-3 py-1.5 mb-4 bg-gradient-to-r from-green-100 to-green-100 dark:from-green-900/50 dark:to-green-900/50 rounded-full text-green-800 dark:text-green-200 text-sm font-medium shadow-lg backdrop-blur-sm border border-green-200/50 dark:border-green-700/50">
+              <div className="inline-flex items-center px-3 py-1.5 mb-4 bg-gradient-to-r from-green-100 to-green-100 dark:from-green-900/50 dark:to-green-900/50 rounded-full text-green-800 dark:text-green-200 text-sm font-medium  backdrop-blur-sm border border-green-200/50 dark:border-green-700/50">
                 <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
                 <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -110,9 +110,9 @@ export default function Landing() {
                     <img
                       src="/assets/logo.png"
                       alt="Boi na Nuvem Logo"
-                      className="w-24 h-24 lg:w-32 lg:h-32 rounded-2xl object-contain shadow-lg group-hover:scale-110 transition-transform duration-500"
+                      className="w-24 h-24 lg:w-32 lg:h-32 rounded-2xl object-contain  group-hover:scale-110 transition-transform duration-500"
                     />
-                    <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-green-500 to-sky-500 rounded-full animate-pulse shadow-lg"></div>
+                    <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-green-500 to-sky-500 rounded-full animate-pulse "></div>
                   </div>
                 </div>
               </div>
@@ -125,7 +125,7 @@ export default function Landing() {
                       variant: 'success',
                       size: 'lg',
                     }}
-                    className="w-full sm:w-auto bg-gradient-to-r from-green-600 to-green-600 hover:from-green-700 hover:to-green-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-105"
+                    className="w-full sm:w-auto bg-gradient-to-r from-green-600 to-green-600 hover:from-green-700 hover:to-green-700 text-white font-semibold py-2 px-4 rounded-lg  hover: transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-105"
                   >
                     <span className="flex items-center">
                       <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -141,7 +141,7 @@ export default function Landing() {
                       variant: 'primary',
                       size: 'lg',
                     }}
-                    className="w-full sm:w-auto bg-gradient-to-r from-sky-600 to-sky-600 hover:from-sky-700 hover:to-sky-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-105"
+                    className="w-full sm:w-auto bg-gradient-to-r from-sky-600 to-sky-600 hover:from-sky-700 hover:to-sky-700 text-white font-semibold py-2 px-4 rounded-lg  hover: transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-105"
                   >
                     <span className="flex items-center">
                       <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -159,13 +159,13 @@ export default function Landing() {
             <div className="relative group">
               <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-green-500 rounded-xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
               <img
-                className="relative object-cover w-full h-full max-w-xl rounded-xl shadow-xl group-hover:scale-105 transition-transform duration-500"
+                className="relative object-cover w-full h-full max-w-xl rounded-xl  group-hover:scale-105 transition-transform duration-500"
                 src="https://assets.corteva.com/is/image/Corteva/IMG-ArtigoBlog-Topo-CustosdeProducao-BR?$articleHeader_desktop$"
                 alt="Gestão rural moderna com tecnologia"
               />
-              <div className="absolute -bottom-4 -left-4 bg-white/90 dark:bg-stone-800/90 backdrop-blur-sm p-4 rounded-xl shadow-xl border border-stone-200/50 dark:border-stone-700/50">
+              <div className="absolute -bottom-4 -left-4 bg-white/90 dark:bg-stone-800/90 backdrop-blur-sm p-4 rounded-xl  border border-stone-200/50 dark:border-stone-700/50">
                 <div className="flex items-center">
-                  <div className="w-10 h-10 bg-gradient-to-r from-green-600 to-green-600 rounded-lg flex items-center justify-center shadow-lg">
+                  <div className="w-10 h-10 bg-gradient-to-r from-green-600 to-green-600 rounded-lg flex items-center justify-center ">
                     <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                     </svg>
@@ -182,7 +182,7 @@ export default function Landing() {
       </section>
 
       {/* Statistics Section */}
-      <section className="py-12 bg-gradient-to-br from-green-600 via-green-600 to-sky-600 relative overflow-hidden">
+      <section className="py-8 bg-gradient-to-br from-green-600 via-green-600 to-sky-600 relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -191,7 +191,7 @@ export default function Landing() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-white mb-4">
               Resultados que Falam por Si
             </h2>
@@ -208,7 +208,7 @@ export default function Landing() {
               { number: '24/7', label: 'Suporte Disponível', icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z' }
             ].map((stat, index) => (
               <div key={index} className="text-center group">
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105 hover:">
                   <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:bg-white/30 transition-colors duration-300">
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={stat.icon} />
@@ -226,7 +226,7 @@ export default function Landing() {
       </section>
 
       {/* Logo Showcase Section */}
-      <section className="py-16 bg-gradient-to-br from-white via-green-50/50 to-sky-50/50 dark:from-gray-900 dark:via-green-900/20 dark:to-sky-900/20 relative overflow-hidden">
+      <section className="py-10 bg-gradient-to-br from-white via-green-50/50 to-sky-50/50 dark:from-gray-900 dark:via-green-900/20 dark:to-sky-900/20 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-r from-orange-400/10 to-orange-500/5 rounded-full blur-3xl animate-pulse"></div>
@@ -242,7 +242,7 @@ export default function Landing() {
                 Boi na Nuvem
               </span>
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
               Nossa marca representa inovação, confiança e excelência em gestão rural.
               Descubra como estamos transformando o agronegócio brasileiro.
             </p>
@@ -255,9 +255,9 @@ export default function Landing() {
                   <img
                     src="/assets/logo.png"
                     alt="Boi na Nuvem Logo"
-                    className="w-40 h-40 lg:w-48 lg:h-48 rounded-3xl object-contain shadow-xl group-hover:scale-105 transition-transform duration-700"
+                    className="w-40 h-40 lg:w-48 lg:h-48 rounded-3xl object-contain  group-hover:scale-105 transition-transform duration-700"
                   />
-                  <div className="absolute -top-3 -right-3 w-8 h-8 bg-gradient-to-r from-green-500 to-sky-500 rounded-full animate-pulse shadow-lg"></div>
+                  <div className="absolute -top-3 -right-3 w-8 h-8 bg-gradient-to-r from-green-500 to-sky-500 rounded-full animate-pulse "></div>
                 </div>
               </div>
             </div>
@@ -265,7 +265,7 @@ export default function Landing() {
             {/* Logo Description */}
             <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4 ">
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
@@ -274,7 +274,7 @@ export default function Landing() {
                 <p className="text-gray-600 dark:text-gray-300">Tecnologia de ponta para modernizar sua fazenda</p>
               </div>
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-r from-sky-500 to-sky-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <div className="w-16 h-16 bg-gradient-to-r from-sky-500 to-sky-600 rounded-2xl flex items-center justify-center mx-auto mb-4 ">
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
@@ -283,7 +283,7 @@ export default function Landing() {
                 <p className="text-gray-600 dark:text-gray-300">Mais de 500 propriedades confiam em nossa solução</p>
               </div>
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <div className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-4 ">
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
                   </svg>
@@ -297,7 +297,7 @@ export default function Landing() {
       </section>
 
       {/* Features Section */}
-      <section className="py-12 bg-gradient-to-r from-green-100 via-white to-sky-100 dark:from-green-900/30 dark:via-gray-900 dark:to-sky-900/30 relative overflow-hidden">
+      <section className="py-8 bg-gradient-to-r from-green-100 via-white to-sky-100 dark:from-green-900/30 dark:via-gray-900 dark:to-sky-900/30 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-green-400/15 to-green-500/10 rounded-full blur-3xl"></div>
@@ -305,8 +305,8 @@ export default function Landing() {
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-green-300/5 to-sky-300/5 rounded-full blur-3xl"></div>
         </div>
 
-        <div className="container px-6 py-8 mx-auto relative z-10">
-          <div className="text-center mb-12">
+        <div className="container px-6 py-6 mx-auto relative z-10">
+          <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               Explore nossos{' '}
               <span className="bg-gradient-to-r from-green-600 to-green-600 bg-clip-text text-transparent">
@@ -360,10 +360,10 @@ export default function Landing() {
               }
             ].map((feature, index) => (
               <div key={index} className="group">
-                <div className="relative p-6 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:bg-white/90 dark:hover:bg-gray-800/90 transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                <div className="relative p-6 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:bg-white/90 dark:hover:bg-gray-800/90 transition-all duration-300 hover:scale-105 hover:">
                   <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-transparent dark:from-gray-800/50 rounded-xl"></div>
                   <div className="relative z-10">
-                    <div className={`w-12 h-12 bg-gradient-to-r ${feature.gradient} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                    <div className={`w-12 h-12 bg-gradient-to-r ${feature.gradient} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 `}>
                       <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={feature.icon} />
                       </svg>
@@ -385,7 +385,7 @@ export default function Landing() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-16 bg-gradient-to-t from-sky-50 to-white dark:from-sky-900/20 dark:to-gray-900 relative overflow-hidden">
+      <section className="py-10 bg-gradient-to-t from-sky-50 to-white dark:from-sky-900/20 dark:to-gray-900 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-10 right-10 w-64 h-64 bg-gradient-to-r from-sky-400/20 to-sky-500/15 rounded-full blur-3xl"></div>
@@ -394,7 +394,7 @@ export default function Landing() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               O que Nossos{' '}
               <span className="bg-gradient-to-r from-sky-600 to-sky-600 bg-clip-text text-transparent">
@@ -432,7 +432,7 @@ export default function Landing() {
               }
             ].map((testimonial, index) => (
               <div key={index} className="group">
-                <div className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-gray-200/50 dark:border-gray-700/50 hover:bg-white/90 dark:hover:bg-gray-800/90 transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                <div className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-6 rounded-xl  border border-gray-200/50 dark:border-gray-700/50 hover:bg-white/90 dark:hover:bg-gray-800/90 transition-all duration-300 hover:scale-105 hover:">
                   <div className="absolute top-3 right-3">
                     <svg className="w-6 h-6 text-yellow-400 opacity-20" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
@@ -454,7 +454,7 @@ export default function Landing() {
                   </blockquote>
 
                   <div className="flex items-center">
-                    <div className={`w-10 h-10 bg-gradient-to-r ${testimonial.gradient} rounded-lg flex items-center justify-center text-white font-bold text-sm shadow-lg`}>
+                    <div className={`w-10 h-10 bg-gradient-to-r ${testimonial.gradient} rounded-lg flex items-center justify-center text-white font-bold text-sm `}>
                       {testimonial.initials}
                     </div>
                     <div className="ml-3">
@@ -470,7 +470,7 @@ export default function Landing() {
       </section>
 
       {/* Benefits/ROI Section */}
-      <section className="py-16 bg-gradient-to-l from-orange-100 via-green-100 to-sky-100 dark:from-orange-900/40 dark:via-green-900/40 dark:to-sky-900/40 relative overflow-hidden">
+      <section className="py-10 bg-gradient-to-l from-orange-100 via-green-100 to-sky-100 dark:from-orange-900/40 dark:via-green-900/40 dark:to-sky-900/40 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-r from-orange-400/10 to-orange-500/5 rounded-full blur-3xl animate-pulse"></div>
@@ -479,7 +479,7 @@ export default function Landing() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               Por que Escolher o{' '}
               <span className="bg-gradient-to-r from-green-600 to-green-600 bg-clip-text text-transparent">
@@ -524,10 +524,10 @@ export default function Landing() {
               }
             ].map((benefit, index) => (
               <div key={index} className="group text-center">
-                <div className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-gray-200/50 dark:border-gray-700/50 hover:bg-white/90 dark:hover:bg-gray-800/90 transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                <div className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-6 rounded-xl  border border-gray-200/50 dark:border-gray-700/50 hover:bg-white/90 dark:hover:bg-gray-800/90 transition-all duration-300 hover:scale-105 hover:">
                   <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-transparent dark:from-gray-800/50 rounded-xl"></div>
                   <div className="relative z-10">
-                    <div className={`w-16 h-16 bg-gradient-to-r ${benefit.gradient} rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg animate-float`}>
+                    <div className={`w-16 h-16 bg-gradient-to-r ${benefit.gradient} rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300  animate-float`}>
                       <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={benefit.icon} />
                       </svg>
@@ -554,7 +554,7 @@ export default function Landing() {
 
 
       {/* Success Stories Section */}
-      <section className="py-20 bg-gradient-to-b from-stone-100 to-white dark:from-stone-800 dark:to-gray-900 relative overflow-hidden">
+      <section className="py-12 bg-gradient-to-b from-stone-100 to-white dark:from-stone-800 dark:to-gray-900 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-10 left-10 w-64 h-64 bg-gradient-to-r from-stone-400/15 to-stone-500/10 rounded-full blur-3xl"></div>
@@ -562,7 +562,7 @@ export default function Landing() {
           <div className="absolute top-1/2 right-1/4 w-48 h-48 bg-gradient-to-r from-stone-300/8 to-green-300/8 rounded-full blur-2xl"></div>
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               Casos de Sucesso
             </h2>
@@ -572,7 +572,7 @@ export default function Landing() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div className="bg-gradient-to-br from-green-50 to-blue-50 dark:from-gray-800 dark:to-gray-700 p-8 rounded-2xl shadow-lg">
+            <div className="bg-gradient-to-br from-green-50 to-blue-50 dark:from-gray-800 dark:to-gray-700 p-8 rounded-2xl ">
               <div className="mb-6">
                 <img
                   src="https://s2-g1.glbimg.com/6EI9awPSG2qTLoyZibLD4NB_IgY=/0x0:4921x3483/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2025/2/T/5raQyHSQi8a8IytpKx3Q/microsoftteams-image-49-.png"
@@ -617,7 +617,7 @@ export default function Landing() {
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 p-8 rounded-2xl shadow-lg">
+            <div className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 p-8 rounded-2xl ">
               <div className="mb-6">
                 <img
                   src="https://nutricaoesaudeanimal.com.br/wp-content/uploads/2021/11/GettyImages-936361154-1-780x450.jpg"
@@ -666,7 +666,7 @@ export default function Landing() {
       </section>
 
       {/* Technology & Integrations Section */}
-      <section className="py-16 bg-gradient-to-tr from-sky-100 via-white to-green-100 dark:from-sky-900/30 dark:via-gray-900 dark:to-green-900/30 relative overflow-hidden">
+      <section className="py-10 bg-gradient-to-tr from-sky-100 via-white to-green-100 dark:from-sky-900/30 dark:via-gray-900 dark:to-green-900/30 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-10 left-10 w-80 h-80 bg-gradient-to-r from-sky-400/20 to-sky-500/15 rounded-full blur-3xl"></div>
@@ -676,7 +676,7 @@ export default function Landing() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               Tecnologia de{' '}
               <span className="bg-gradient-to-r from-sky-600 to-sky-600 bg-clip-text text-transparent">
@@ -689,7 +689,7 @@ export default function Landing() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             {[
               {
                 icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
@@ -711,11 +711,11 @@ export default function Landing() {
               }
             ].map((tech, index) => (
               <div key={index} className="group">
-                <div className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-gray-200/50 dark:border-gray-700/50 hover:bg-white/90 dark:hover:bg-gray-800/90 transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                <div className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-6 rounded-xl  border border-gray-200/50 dark:border-gray-700/50 hover:bg-white/90 dark:hover:bg-gray-800/90 transition-all duration-300 hover:scale-105 hover:">
                   <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-transparent dark:from-gray-800/50 rounded-xl"></div>
                   <div className="relative z-10">
                     <div className="flex items-center mb-4">
-                      <div className={`w-12 h-12 bg-gradient-to-r ${tech.gradient} rounded-xl flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                      <div className={`w-12 h-12 bg-gradient-to-r ${tech.gradient} rounded-xl flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300 `}>
                         <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={tech.icon} />
                         </svg>
@@ -748,7 +748,7 @@ export default function Landing() {
                 { name: 'AWS', color: 'from-orange-500 to-orange-700' }
               ].map((tech, index) => (
                 <div key={index} className="text-center group">
-                  <div className={`w-12 h-12 bg-gradient-to-r ${tech.color} rounded-lg flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                  <div className={`w-12 h-12 bg-gradient-to-r ${tech.color} rounded-lg flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition-transform duration-300 `}>
                     <span className="text-white font-bold text-xs">{tech.name}</span>
                   </div>
                   <div className="text-xs font-medium text-gray-600 dark:text-gray-300">{tech.name}</div>
@@ -760,7 +760,7 @@ export default function Landing() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-br from-green-600 via-green-600 to-sky-600 relative overflow-hidden">
+      <section className="py-10 bg-gradient-to-br from-green-600 via-green-600 to-sky-600 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-10 left-10 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
@@ -787,7 +787,7 @@ export default function Landing() {
                   variant: 'ghost',
                   size: 'xl',
                 }}
-                className="bg-white text-green-600 border-2 border-white hover:bg-green-50 hover:border-green-100 font-bold py-3 px-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-105 backdrop-blur-sm"
+                className="bg-white text-green-600 border-2 border-white hover:bg-green-50 hover:border-green-100 font-bold py-3 px-6 rounded-lg  hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-105 backdrop-blur-sm"
               >
                 <span className="flex items-center">
                   <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -803,7 +803,7 @@ export default function Landing() {
                   variant: 'primary',
                   size: 'xl',
                 }}
-                className="bg-green-600 text-white border-2 border-green-500 hover:bg-green-700 hover:border-green-600 font-bold py-3 px-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-105"
+                className="bg-green-600 text-white border-2 border-green-500 hover:bg-green-700 hover:border-green-600 font-bold py-3 px-6 rounded-lg  hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-105"
               >
                 <span className="flex items-center">
                   <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -839,7 +839,7 @@ export default function Landing() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 bg-gradient-to-br from-stone-50 via-white to-green-50 dark:from-stone-800 dark:via-stone-900 dark:to-stone-800 relative overflow-hidden">
+      <section className="py-10 bg-gradient-to-br from-stone-50 via-white to-green-50 dark:from-stone-800 dark:via-stone-900 dark:to-stone-800 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-r from-green-400/10 to-green-400/10 rounded-full blur-3xl"></div>
@@ -847,7 +847,7 @@ export default function Landing() {
         </div>
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               Perguntas{' '}
               <span className="bg-gradient-to-r from-green-600 to-green-600 bg-clip-text text-transparent">
@@ -887,7 +887,7 @@ export default function Landing() {
               }
             ].map((faq, index) => (
               <div key={index} className="group">
-                <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-gray-200/50 dark:border-gray-700/50 hover:bg-white/90 dark:hover:bg-gray-800/90 transition-all duration-300 hover:shadow-xl">
+                <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-6  border border-gray-200/50 dark:border-gray-700/50 hover:bg-white/90 dark:hover:bg-gray-800/90 transition-all duration-300 hover:">
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">
                     {faq.question}
                   </h3>
@@ -909,7 +909,7 @@ export default function Landing() {
           <div className="absolute bottom-10 right-10 w-64 h-64 bg-gradient-to-r from-sky-400/10 to-sky-400/10 rounded-full blur-3xl"></div>
         </div>
 
-        <div className="container p-6 mx-auto relative z-10">
+        <div className="container p-4 mx-auto relative z-10">
           <div className="lg:flex">
             <div className="w-full -mx-6 lg:w-2/5">
               <div className="px-6">
@@ -918,7 +918,7 @@ export default function Landing() {
                     <img
                       src="/assets/logo.png"
                       alt="Boi na Nuvem Logo"
-                      className="w-14 h-14 rounded-xl object-contain shadow-lg"
+                      className="w-14 h-14 rounded-xl object-contain "
                     />
                   </div>
                   <h4 className="text-2xl font-bold bg-gradient-to-r from-white to-green-100 bg-clip-text text-transparent">

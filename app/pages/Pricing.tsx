@@ -27,6 +27,7 @@ export default function Pricing() {
   const [plans, setPlans] = useState<Plan[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
 
   useEffect(() => {
     let mounted = true;
@@ -53,18 +54,22 @@ export default function Pricing() {
     window.location.href = '/cadastro';
   };
 
+  const toggleFAQ = (index: number) => {
+    setOpenFAQ(openFAQ === index ? null : index);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-sky-50 to-green-50 dark:from-stone-900 dark:via-stone-800 dark:to-stone-900">
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-stone-900/90 backdrop-blur-md border-b border-stone-200/50 dark:border-stone-700/50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
+          <div className="flex justify-between items-center py-0  ">
             <Link to="/" className="flex items-center space-x-3">
               <div className="relative">
                 <img
                   src="/assets/logo.png"
                   alt="Boi na Nuvem Logo"
-                  className="w-14 h-14 rounded-xl object-contain shadow-lg"
+                  className="w-14 h-14 rounded-xl object-contain"
                 />
               </div>
               <h1 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-sky-600 bg-clip-text text-transparent">
@@ -100,7 +105,7 @@ export default function Pricing() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-24">
+      <section className="relative overflow-hidden pt-20">
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-green-400/20 to-green-500/20 rounded-full blur-3xl animate-pulse"></div>
@@ -108,7 +113,7 @@ export default function Pricing() {
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-sky-400/10 to-green-400/10 rounded-full blur-3xl animate-pulse delay-500"></div>
         </div>
 
-        <div className="container relative z-10 flex flex-col px-6 py-12 mx-auto space-y-4 lg:py-16">
+        <div className="container relative z-10 flex flex-col px-6 py-4 mx-auto space-y-3">
           <div className="w-full">
             <div className="text-center">
               <div className="inline-flex items-center px-3 py-1.5 mb-4 bg-gradient-to-r from-green-100 to-green-100 dark:from-green-900/50 dark:to-green-900/50 rounded-full text-green-800 dark:text-green-200 text-sm font-medium shadow-lg backdrop-blur-sm border border-green-200/50 dark:border-green-700/50">
@@ -119,7 +124,7 @@ export default function Pricing() {
                 Planos transparentes e sem surpresas
               </div>
 
-              <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white lg:text-5xl mb-4 leading-tight">
+              <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white lg:text-4xl mb-3 leading-tight">
                 Conheça nossos{' '}
                 <span className="bg-gradient-to-r from-green-600 via-green-600 to-sky-600 bg-clip-text text-transparent animate-gradient">
                   Planos
@@ -127,10 +132,41 @@ export default function Pricing() {
                 e comece grátis
               </h1>
 
-              <p className="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed max-w-3xl mx-auto">
+              <p className="text-base text-gray-600 dark:text-gray-300 mb-4 leading-relaxed max-w-3xl mx-auto">
                 Todos os novos usuários recebem 14 dias grátis do plano Enterprise.
                 <span className="font-semibold text-green-600 dark:text-green-400"> Sem compromisso</span>, sem cartão de crédito.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action - Teste Gratuito */}
+      <section className="py-8 bg-gradient-to-br from-green-50 via-white to-emerald-50 dark:from-green-900/20 dark:via-stone-900 dark:to-emerald-900/20 relative overflow-hidden">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center">
+            <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-6 border border-green-200 dark:border-green-700">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                Comece seu teste gratuito hoje!
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-4 max-w-2xl mx-auto">
+                Experimente o plano Enterprise por 14 dias grátis. Sem compromisso, sem cartão de crédito.
+              </p>
+              <Button
+                config={{
+                  variant: 'primary',
+                  size: 'xl',
+                }}
+                onClick={() => handlePlanSelect('enterprise-trial')}
+                className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
+              >
+                <span className="flex items-center">
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                  Começar Teste Gratuito - 14 dias
+                </span>
+              </Button>
             </div>
           </div>
         </div>
@@ -143,7 +179,7 @@ export default function Pricing() {
       <PricingPlans plans={plans} onPlanSelect={handlePlanSelect} />
 
       {/* FAQ Section */}
-      <section className="py-16 bg-gradient-to-br from-stone-50 via-white to-green-50 dark:from-stone-800 dark:via-stone-900 dark:to-stone-800 relative overflow-hidden">
+      <section className="py-10 bg-gradient-to-br from-stone-50 via-white to-green-50 dark:from-stone-800 dark:via-stone-900 dark:to-stone-800 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-r from-green-400/10 to-green-400/10 rounded-full blur-3xl"></div>
@@ -151,19 +187,19 @@ export default function Pricing() {
         </div>
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
               Perguntas{' '}
               <span className="bg-gradient-to-r from-green-600 to-green-600 bg-clip-text text-transparent">
                 Frequentes
               </span>
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            <p className="text-base text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               Tire suas dúvidas sobre nossos planos e descubra como podemos ajudar sua fazenda
             </p>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
             {[
               {
                 question: 'Posso cancelar a qualquer momento?',
@@ -183,13 +219,36 @@ export default function Pricing() {
               }
             ].map((faq, index) => (
               <div key={index} className="group">
-                <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-gray-200/50 dark:border-gray-700/50 hover:bg-white/90 dark:hover:bg-gray-800/90 transition-all duration-300 hover:shadow-xl">
-                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">
-                    {faq.question}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-                    {faq.answer}
-                  </p>
+                <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl shadow-lg hover:bg-white/90 dark:hover:bg-gray-800/90 transition-all duration-300 hover:shadow-xl overflow-hidden">
+                  <button
+                    onClick={() => toggleFAQ(index)}
+                    className="w-full p-4 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 rounded-xl"
+                  >
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">
+                      {faq.question}
+                    </h3>
+                    <svg
+                      className={`w-5 h-5 text-gray-500 dark:text-gray-400 transition-transform duration-300 ${openFAQ === index ? 'rotate-180' : ''
+                        }`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  <div
+                    className={`transition-all duration-300 ease-in-out ${openFAQ === index
+                      ? 'max-h-96 opacity-100'
+                      : 'max-h-0 opacity-0'
+                      } overflow-hidden`}
+                  >
+                    <div className="px-4 pb-4">
+                      <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
@@ -198,7 +257,7 @@ export default function Pricing() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-br from-green-600 via-green-600 to-sky-600 relative overflow-hidden">
+      <section className="py-10 bg-gradient-to-br from-green-600 via-green-600 to-sky-600 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-10 left-10 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
@@ -207,13 +266,13 @@ export default function Pricing() {
         </div>
 
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10">
-          <h3 className="text-4xl font-bold text-white mb-4 leading-tight">
+          <h3 className="text-3xl font-bold text-white mb-3 leading-tight">
             Ainda tem{' '}
             <span className="bg-gradient-to-r from-white to-green-100 bg-clip-text text-transparent">
               Dúvidas
             </span>?
           </h3>
-          <p className="text-lg text-green-100 mb-8 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base text-green-100 mb-6 max-w-2xl mx-auto leading-relaxed">
             Nossa equipe está pronta para ajudar você a escolher o plano ideal para sua propriedade.
             Fale conosco e tire todas as suas dúvidas.
           </p>

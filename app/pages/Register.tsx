@@ -387,7 +387,7 @@ export default function Register() {
                                 <img
                                     src="/assets/logo.png"
                                     alt="Boi na Nuvem Logo"
-                                    className="w-14 h-14 rounded-xl object-contain shadow-lg"
+                                    className="w-14 h-14 rounded-xl object-contain"
                                 />
                             </div>
                             <h1 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent">
@@ -472,7 +472,7 @@ export default function Register() {
                                                     value={formData.name}
                                                     onChange={handleInputChange}
                                                     required
-                                                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors"
+                                                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white transition-colors"
                                                     placeholder="João Silva"
                                                 />
                                             </div>
@@ -488,7 +488,7 @@ export default function Register() {
                                                     value={formData.email}
                                                     onChange={handleInputChange}
                                                     required
-                                                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors"
+                                                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white transition-colors"
                                                     placeholder="joao.silva@email.com"
                                                 />
                                             </div>
@@ -504,7 +504,7 @@ export default function Register() {
                                                     value={formData.phone}
                                                     onChange={handleInputChange}
                                                     required
-                                                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors"
+                                                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white transition-colors"
                                                     placeholder="(11) 99999-9999"
                                                 />
                                             </div>
@@ -520,7 +520,7 @@ export default function Register() {
                                                     value={formData.document}
                                                     onChange={handleInputChange}
                                                     required
-                                                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors"
+                                                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white transition-colors"
                                                     placeholder="123.456.789-00 ou 12.345.678/0001-90"
                                                 />
                                             </div>
@@ -560,7 +560,7 @@ export default function Register() {
                                                         setTimeout(() => setShowSuggestions(false), 200);
                                                     }}
                                                     required
-                                                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors"
+                                                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white transition-colors"
                                                     placeholder="Digite o nome da rua..."
                                                     autoComplete="off"
                                                 />
@@ -613,7 +613,7 @@ export default function Register() {
                                                         name="number"
                                                         value={formData.number}
                                                         onChange={handleInputChange}
-                                                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors"
+                                                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white transition-colors"
                                                         placeholder="123"
                                                     />
                                                 </div>
@@ -628,7 +628,7 @@ export default function Register() {
                                                         name="complement"
                                                         value={formData.complement}
                                                         onChange={handleInputChange}
-                                                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors"
+                                                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white transition-colors"
                                                         placeholder="Apto 45"
                                                     />
                                                 </div>
@@ -645,7 +645,7 @@ export default function Register() {
                                                         name="neighborhood"
                                                         value={formData.neighborhood}
                                                         onChange={handleInputChange}
-                                                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors"
+                                                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white transition-colors"
                                                         placeholder="Centro"
                                                     />
                                                 </div>
@@ -661,7 +661,7 @@ export default function Register() {
                                                         value={formData.city}
                                                         onChange={handleInputChange}
                                                         required
-                                                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors"
+                                                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white transition-colors"
                                                         placeholder="São Paulo"
                                                     />
                                                 </div>
@@ -677,7 +677,7 @@ export default function Register() {
                                                         value={formData.state}
                                                         onChange={handleInputChange}
                                                         required
-                                                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors"
+                                                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white transition-colors"
                                                         placeholder="SP"
                                                     />
                                                 </div>
@@ -695,7 +695,7 @@ export default function Register() {
                                                         value={formData.zipCode}
                                                         onChange={handleInputChange}
                                                         required
-                                                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors"
+                                                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white transition-colors"
                                                         placeholder="01234-567"
                                                     />
                                                 </div>
@@ -711,7 +711,7 @@ export default function Register() {
                                                         value={formData.country}
                                                         onChange={handleInputChange}
                                                         required
-                                                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors"
+                                                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white transition-colors"
                                                         placeholder="Brasil"
                                                     />
                                                 </div>
@@ -721,8 +721,8 @@ export default function Register() {
                                 </div>
                             </div>
 
-                            {/* Senha - Seção centralizada */}
-                            <div className="max-w-2xl mx-auto">
+                            {/* Senha - Seção com largura completa */}
+                            <div>
                                 <div className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl p-6 border border-purple-200 dark:border-purple-700">
                                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
                                         <svg className="w-5 h-5 mr-2 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -743,7 +743,7 @@ export default function Register() {
                                                 value={formData.password}
                                                 onChange={handleInputChange}
                                                 required
-                                                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors"
+                                                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white transition-colors"
                                                 placeholder="Mínimo 8 caracteres"
                                             />
                                         </div>
@@ -759,7 +759,7 @@ export default function Register() {
                                                 value={formData.confirmPassword}
                                                 onChange={handleInputChange}
                                                 required
-                                                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors"
+                                                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white transition-colors"
                                                 placeholder="Digite a senha novamente"
                                             />
                                         </div>
@@ -812,13 +812,13 @@ export default function Register() {
                                 <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
                                     <p className="text-xs text-gray-500 dark:text-gray-500">
                                         Ao criar uma conta, você concorda com nossos{' '}
-                                        <a href="#" className="text-green-600 dark:text-green-400 hover:underline transition-colors">
+                                        <Link to="/termos-de-uso" className="text-green-600 dark:text-green-400 hover:underline transition-colors">
                                             Termos de Uso
-                                        </a>{' '}
+                                        </Link>{' '}
                                         e{' '}
-                                        <a href="#" className="text-green-600 dark:text-green-400 hover:underline transition-colors">
+                                        <Link to="/politica-de-privacidade" className="text-green-600 dark:text-green-400 hover:underline transition-colors">
                                             Política de Privacidade
-                                        </a>
+                                        </Link>
                                     </p>
                                 </div>
                             </div>
