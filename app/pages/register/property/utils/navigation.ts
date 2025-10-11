@@ -32,16 +32,16 @@ export const usePropertyNavigation = (cameFromDetails?: boolean, propertyId?: st
         const source = JSON.parse(propertyDetailSource);
         switch (source.type) {
           case 'supplier':
-            navigate(`/cadastros/fornecedores/${source.id}`);
+            navigate(`/sistema/cadastros/fornecedores/${source.id}`);
             break;
           case 'buyer':
-            navigate(`/cadastros/compradores/${source.id}`);
+            navigate(`/sistema/cadastros/compradores/${source.id}`);
             break;
           case 'employee':
-            navigate(`/cadastros/colaboradores/${source.id}`);
+            navigate(`/sistema/cadastros/colaboradores/${source.id}`);
             break;
           case 'service-provider':
-            navigate(`/cadastros/prestadores-servico/${source.id}`);
+            navigate(`/sistema/cadastros/prestadores-servico/${source.id}`);
             break;
           default:
             navigation.handleBack(cameFromDetails, propertyId);

@@ -52,7 +52,7 @@ export function PropertyAnimalsTab({
         sessionStorage.setItem('animalFromProperty', 'true');
         sessionStorage.setItem('animalPropertyId', property.id);
       }
-      navigate(`/cadastros/animais/${animalId}`);
+      navigate(`/sistema/cadastros/animais/${animalId}`);
     },
     [navigate, property.id],
   );
@@ -322,14 +322,14 @@ export function PropertyAnimalsTab({
     },
     ...(hasPagination
       ? {
-          pagination: {
-            currentPage,
-            totalPages,
-            itemsPerPage,
-            totalItems: filteredAndSortedAnimals.length,
-            onPageChange: handlePageChange,
-          },
-        }
+        pagination: {
+          currentPage,
+          totalPages,
+          itemsPerPage,
+          totalItems: filteredAndSortedAnimals.length,
+          onPageChange: handlePageChange,
+        },
+      }
       : {}),
   };
 

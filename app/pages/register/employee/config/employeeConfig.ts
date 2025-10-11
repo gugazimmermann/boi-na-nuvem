@@ -17,7 +17,7 @@ export const EMPLOYEE_CONFIG = createEntityConfig('colaborador', {
 
 export const EMPLOYEE_MESSAGES = getEntityMessages('colaborador');
 
-export const EMPLOYEE_ROUTES = getEntityRoutes('/cadastros/colaboradores');
+export const EMPLOYEE_ROUTES = getEntityRoutes('/sistema/cadastros/colaboradores');
 
 export const EMPLOYEE_ICONS = {
   default: ICONS.BUILDING(),

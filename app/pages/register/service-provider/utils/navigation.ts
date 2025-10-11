@@ -38,7 +38,7 @@ export const useServiceProviderNavigation = (
         sessionStorage.removeItem('propertyId');
         sessionStorage.removeItem('propertyTab');
 
-        navigate(`/cadastros/propriedades/${propertyId}?tab=${propertyTab}`);
+        navigate(`/sistema/cadastros/propriedades/${propertyId}?tab=${propertyTab}`);
         return;
       }
 
@@ -51,7 +51,7 @@ export const useServiceProviderNavigation = (
         sessionStorage.removeItem('locationId');
         sessionStorage.removeItem('locationTab');
 
-        navigate(`/cadastros/localizacoes/${locationId}?tab=${locationTab}`);
+        navigate(`/sistema/cadastros/localizacoes/${locationId}?tab=${locationTab}`);
         return;
       }
     }

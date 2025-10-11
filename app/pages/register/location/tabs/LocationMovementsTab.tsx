@@ -151,12 +151,12 @@ export function LocationMovementsTab({
       sessionStorage.setItem('locationTab', 'movements');
 
       if (movement.responsibleType === ResponsibleType.EMPLOYEE && movement.employeeId) {
-        navigate(`/cadastros/colaboradores/${movement.employeeId}`);
+        navigate(`/sistema/cadastros/colaboradores/${movement.employeeId}`);
       } else if (
         movement.responsibleType === ResponsibleType.SERVICE_PROVIDER &&
         movement.serviceProviderId
       ) {
-        navigate(`/cadastros/prestadores-servico/${movement.serviceProviderId}`);
+        navigate(`/sistema/cadastros/prestadores-servico/${movement.serviceProviderId}`);
       }
     },
     [navigate, location.id],
@@ -413,8 +413,8 @@ export function LocationMovementsTab({
             <div className="text-sm">
               <div
                 className={`font-medium mb-1 ${isClickable
-                    ? 'text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 cursor-pointer transition-colors'
-                    : 'text-gray-900 dark:text-gray-100'
+                  ? 'text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 cursor-pointer transition-colors'
+                  : 'text-gray-900 dark:text-gray-100'
                   }`}
                 onClick={isClickable ? () => handleResponsibleClick(movement) : undefined}
               >

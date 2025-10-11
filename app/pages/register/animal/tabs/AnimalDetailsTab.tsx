@@ -25,7 +25,7 @@ export function AnimalDetailsTab({ animal }: AnimalDetailsTabProps) {
       sessionStorage.setItem('parentAnimalId', animal.id);
       sessionStorage.setItem('parentAnimalTab', 'details');
     }
-    navigate(`/cadastros/animais/${parentId}?tab=dashboard`);
+    navigate(`/sistema/cadastros/animais/${parentId}?tab=dashboard`);
   };
 
   const father = findParent(animal.fatherId);

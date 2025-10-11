@@ -85,7 +85,7 @@ export function PropertyLocationsTab({
       sessionStorage.setItem('locationFromProperty', 'true');
       sessionStorage.setItem('propertyId', property.id);
       sessionStorage.setItem('propertyTab', 'locations');
-      navigate(`/cadastros/localizacoes/${locationId}`);
+      navigate(`/sistema/cadastros/localizacoes/${locationId}`);
     },
     [navigate, property.id],
   );
@@ -407,14 +407,14 @@ export function PropertyLocationsTab({
     },
     ...(hasPagination
       ? {
-          pagination: {
-            currentPage,
-            totalPages,
-            itemsPerPage,
-            totalItems: sortedPropertyLocations.length,
-            onPageChange: handlePageChange,
-          },
-        }
+        pagination: {
+          currentPage,
+          totalPages,
+          itemsPerPage,
+          totalItems: sortedPropertyLocations.length,
+          onPageChange: handlePageChange,
+        },
+      }
       : {}),
   };
 

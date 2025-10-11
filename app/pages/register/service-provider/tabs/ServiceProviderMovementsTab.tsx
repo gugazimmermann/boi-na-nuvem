@@ -250,7 +250,7 @@ export function ServiceProviderMovementsTab({
       sessionStorage.setItem('serviceProviderTab', 'movements');
 
       if (movement.responsibleType === ResponsibleType.EMPLOYEE && movement.employeeId) {
-        navigate(`/cadastros/colaboradores/${movement.employeeId}`);
+        navigate(`/sistema/cadastros/colaboradores/${movement.employeeId}`);
       }
     },
     [navigate, serviceProvider.id],
@@ -265,7 +265,7 @@ export function ServiceProviderMovementsTab({
         sessionStorage.setItem('serviceProviderId', serviceProvider.id);
         sessionStorage.setItem('serviceProviderTab', 'movements');
 
-        navigate(`/cadastros/localizacoes/${movement.locationId}`);
+        navigate(`/sistema/cadastros/localizacoes/${movement.locationId}`);
       }
     },
     [navigate, serviceProvider.id],
@@ -280,7 +280,7 @@ export function ServiceProviderMovementsTab({
         sessionStorage.setItem('serviceProviderId', serviceProvider.id);
         sessionStorage.setItem('serviceProviderTab', 'movements');
 
-        navigate(`/cadastros/propriedades/${movement.propertyId}`);
+        navigate(`/sistema/cadastros/propriedades/${movement.propertyId}`);
       }
     },
     [navigate, serviceProvider.id],
@@ -480,11 +480,10 @@ export function ServiceProviderMovementsTab({
 
           return (
             <div
-              className={`text-sm ${
-                isClickable
+              className={`text-sm ${isClickable
                   ? 'text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 cursor-pointer transition-colors'
                   : 'text-gray-900 dark:text-gray-100'
-              }`}
+                }`}
               onClick={isClickable ? () => handleLocationClick(movement) : undefined}
             >
               {locationName}
@@ -503,11 +502,10 @@ export function ServiceProviderMovementsTab({
 
           return (
             <div
-              className={`text-sm ${
-                isClickable
+              className={`text-sm ${isClickable
                   ? 'text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 cursor-pointer transition-colors'
                   : 'text-gray-900 dark:text-gray-100'
-              }`}
+                }`}
               onClick={isClickable ? () => handlePropertyClick(movement) : undefined}
             >
               {propertyName}
@@ -535,11 +533,10 @@ export function ServiceProviderMovementsTab({
           return (
             <div className="text-sm">
               <div
-                className={`font-medium mb-1 ${
-                  isClickable
+                className={`font-medium mb-1 ${isClickable
                     ? 'text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 cursor-pointer transition-colors'
                     : 'text-gray-900 dark:text-gray-100'
-                }`}
+                  }`}
                 onClick={isClickable ? () => handleResponsibleClick(movement) : undefined}
               >
                 {responsibleInfo.name}
@@ -564,14 +561,14 @@ export function ServiceProviderMovementsTab({
     },
     ...(hasPagination
       ? {
-          pagination: {
-            currentPage,
-            totalPages,
-            itemsPerPage,
-            totalItems: sortedServiceProviderMovements.length,
-            onPageChange: handlePageChange,
-          },
-        }
+        pagination: {
+          currentPage,
+          totalPages,
+          itemsPerPage,
+          totalItems: sortedServiceProviderMovements.length,
+          onPageChange: handlePageChange,
+        },
+      }
       : {}),
   };
 

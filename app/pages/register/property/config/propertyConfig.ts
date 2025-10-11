@@ -18,7 +18,7 @@ export const PROPERTY_CONFIG = createEntityConfig('propriedade', {
 
 export const PROPERTY_MESSAGES = getEntityMessages('propriedade');
 
-export const PROPERTY_ROUTES = getEntityRoutes('/cadastros/propriedades');
+export const PROPERTY_ROUTES = getEntityRoutes('/sistema/cadastros/propriedades');
 
 export const PROPERTY_ICONS = {
   default: ICONS.BUILDING(),

@@ -40,7 +40,7 @@ export function SupplierPropertiesTab({
           name: supplier.name,
         }),
       );
-      navigate(`/cadastros/propriedades/${propertyId}`);
+      navigate(`/sistema/cadastros/propriedades/${propertyId}`);
     },
     [navigate, supplier.id, supplier.name],
   );
@@ -246,14 +246,14 @@ export function SupplierPropertiesTab({
     },
     ...(hasPagination
       ? {
-          pagination: {
-            currentPage,
-            totalPages,
-            itemsPerPage,
-            totalItems: sortedProperties.length,
-            onPageChange: handlePageChange,
-          },
-        }
+        pagination: {
+          currentPage,
+          totalPages,
+          itemsPerPage,
+          totalItems: sortedProperties.length,
+          onPageChange: handlePageChange,
+        },
+      }
       : {}),
   };
 

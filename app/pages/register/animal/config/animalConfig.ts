@@ -19,7 +19,7 @@ export const ANIMAL_CONFIG = createEntityConfig('animal', {
 
 export const ANIMAL_MESSAGES = getEntityMessages('animal');
 
-export const ANIMAL_ROUTES = getEntityRoutes('/cadastros/animais');
+export const ANIMAL_ROUTES = getEntityRoutes('/sistema/cadastros/animais');
 
 export const ANIMAL_ICONS = {
   default: ICONS.ANIMAL(),

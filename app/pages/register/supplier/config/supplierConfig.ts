@@ -17,7 +17,7 @@ export const SUPPLIER_CONFIG = createEntityConfig('fornecedor', {
 
 export const SUPPLIER_MESSAGES = getEntityMessages('fornecedor');
 
-export const SUPPLIER_ROUTES = getEntityRoutes('/cadastros/fornecedores');
+export const SUPPLIER_ROUTES = getEntityRoutes('/sistema/cadastros/fornecedores');
 
 export const SUPPLIER_ICONS = {
   default: ICONS.BUILDING(),

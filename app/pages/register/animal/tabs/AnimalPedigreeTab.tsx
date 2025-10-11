@@ -22,7 +22,7 @@ export function AnimalPedigreeTab({ animal }: AnimalPedigreeTabProps) {
       sessionStorage.setItem('parentAnimalId', animal.id);
       sessionStorage.setItem('parentAnimalTab', 'pedigree');
     }
-    navigate(`/cadastros/animais/${animalId}?tab=dashboard`);
+    navigate(`/sistema/cadastros/animais/${animalId}?tab=dashboard`);
   };
 
   // Get parents

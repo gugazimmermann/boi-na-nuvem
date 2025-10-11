@@ -171,12 +171,12 @@ export function LocationEntryExitTab({
       sessionStorage.setItem('locationTab', 'entry-exit');
 
       if (movement.responsibleType === ResponsibleType.EMPLOYEE && movement.employeeId) {
-        navigate(`/cadastros/colaboradores/${movement.employeeId}`);
+        navigate(`/sistema/cadastros/colaboradores/${movement.employeeId}`);
       } else if (
         movement.responsibleType === ResponsibleType.SERVICE_PROVIDER &&
         movement.serviceProviderId
       ) {
-        navigate(`/cadastros/prestadores-servico/${movement.serviceProviderId}`);
+        navigate(`/sistema/cadastros/prestadores-servico/${movement.serviceProviderId}`);
       }
     },
     [navigate, location.id],
@@ -462,11 +462,10 @@ export function LocationEntryExitTab({
           return (
             <div className="text-sm">
               <div
-                className={`font-medium mb-1 ${
-                  isClickable
+                className={`font-medium mb-1 ${isClickable
                     ? 'text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 cursor-pointer transition-colors'
                     : 'text-gray-900 dark:text-gray-100'
-                }`}
+                  }`}
                 onClick={isClickable ? () => handleResponsibleClick(movement) : undefined}
               >
                 {responsibleInfo.name}
@@ -504,14 +503,14 @@ export function LocationEntryExitTab({
     },
     ...(hasPagination
       ? {
-          pagination: {
-            currentPage,
-            totalPages,
-            itemsPerPage,
-            totalItems: sortedLocationMovements.length,
-            onPageChange: handlePageChange,
-          },
-        }
+        pagination: {
+          currentPage,
+          totalPages,
+          itemsPerPage,
+          totalItems: sortedLocationMovements.length,
+          onPageChange: handlePageChange,
+        },
+      }
       : {}),
   };
 

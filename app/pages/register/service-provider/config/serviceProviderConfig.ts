@@ -17,7 +17,7 @@ export const SERVICEPROVIDER_CONFIG = createEntityConfig('prestador de serviço'
 
 export const SERVICEPROVIDER_MESSAGES = getEntityMessages('prestador de serviço');
 
-export const SERVICEPROVIDER_ROUTES = getEntityRoutes('/cadastros/prestadores-servico');
+export const SERVICEPROVIDER_ROUTES = getEntityRoutes('/sistema/cadastros/prestadores-servico');
 
 export const SERVICEPROVIDER_ICONS = {
   default: ICONS.BUILDING(),

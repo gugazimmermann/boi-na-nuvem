@@ -42,7 +42,7 @@ export function PropertyMovementsTab({
       sessionStorage.setItem('propertyTab', 'movements');
       // Store the active tab in sessionStorage so the location detail page opens with movements tab
       sessionStorage.setItem('locationDetailActiveTab', 'movements');
-      navigate(`/cadastros/localizacoes/${locationId}`);
+      navigate(`/sistema/cadastros/localizacoes/${locationId}`);
     },
     [navigate, property.id],
   );
@@ -58,12 +58,12 @@ export function PropertyMovementsTab({
       sessionStorage.setItem('propertyTab', 'movements');
 
       if (movement.responsibleType === ResponsibleType.EMPLOYEE && movement.employeeId) {
-        navigate(`/cadastros/colaboradores/${movement.employeeId}`);
+        navigate(`/sistema/cadastros/colaboradores/${movement.employeeId}`);
       } else if (
         movement.responsibleType === ResponsibleType.SERVICE_PROVIDER &&
         movement.serviceProviderId
       ) {
-        navigate(`/cadastros/prestadores-servico/${movement.serviceProviderId}`);
+        navigate(`/sistema/cadastros/prestadores-servico/${movement.serviceProviderId}`);
       }
     },
     [navigate, property.id],
@@ -414,14 +414,14 @@ export function PropertyMovementsTab({
     },
     ...(hasPagination
       ? {
-          pagination: {
-            currentPage,
-            totalPages,
-            itemsPerPage,
-            totalItems: sortedPropertyMovements.length,
-            onPageChange: handlePageChange,
-          },
-        }
+        pagination: {
+          currentPage,
+          totalPages,
+          itemsPerPage,
+          totalItems: sortedPropertyMovements.length,
+          onPageChange: handlePageChange,
+        },
+      }
       : {}),
   };
 

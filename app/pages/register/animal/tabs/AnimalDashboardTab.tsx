@@ -55,7 +55,7 @@ export function AnimalDashboardTab({ animal }: AnimalDashboardTabProps) {
         navigatingTo: parentId,
       });
     }
-    navigate(`/cadastros/animais/${parentId}?tab=dashboard`);
+    navigate(`/sistema/cadastros/animais/${parentId}?tab=dashboard`);
   };
 
   const father = findParent(animal.fatherId);
@@ -115,7 +115,7 @@ export function AnimalDashboardTab({ animal }: AnimalDashboardTabProps) {
               <div className="text-3xl font-bold text-orange-600 dark:text-orange-400 mb-1">
                 {Math.floor(
                   (new Date().getTime() - new Date(animal.acquisitionDate).getTime()) /
-                    (1000 * 60 * 60 * 24 * 30),
+                  (1000 * 60 * 60 * 24 * 30),
                 )}
               </div>
               <div className="text-sm text-gray-600 dark:text-gray-400">meses</div>

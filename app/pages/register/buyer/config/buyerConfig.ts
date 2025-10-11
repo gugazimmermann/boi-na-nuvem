@@ -17,7 +17,7 @@ export const BUYER_CONFIG = createEntityConfig('comprador', {
 
 export const BUYER_MESSAGES = getEntityMessages('comprador');
 
-export const BUYER_ROUTES = getEntityRoutes('/cadastros/compradores');
+export const BUYER_ROUTES = getEntityRoutes('/sistema/cadastros/compradores');
 
 export const BUYER_ICONS = {
   default: ICONS.BUILDING(),

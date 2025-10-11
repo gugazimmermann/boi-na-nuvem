@@ -91,13 +91,13 @@ export const sidebarSections = [
       {
         id: 'animais',
         label: 'Animais',
-        href: '/cadastros/animais',
+        href: '/sistema/cadastros/animais',
         icon: Icons.animal,
       },
       {
         id: 'fornecedores',
         label: 'Fornecedores',
-        href: '/cadastros/fornecedores',
+        href: '/sistema/cadastros/fornecedores',
         icon: Icons.supplier,
       },
       // ... more items

@@ -40,7 +40,7 @@ export function EmployeePropertiesTab({
           name: employee.name,
         }),
       );
-      navigate(`/cadastros/propriedades/${propertyId}`);
+      navigate(`/sistema/cadastros/propriedades/${propertyId}`);
     },
     [navigate, employee.id, employee.name],
   );
@@ -247,14 +247,14 @@ export function EmployeePropertiesTab({
     },
     ...(hasPagination
       ? {
-          pagination: {
-            currentPage,
-            totalPages,
-            itemsPerPage,
-            totalItems: sortedProperties.length,
-            onPageChange: handlePageChange,
-          },
-        }
+        pagination: {
+          currentPage,
+          totalPages,
+          itemsPerPage,
+          totalItems: sortedProperties.length,
+          onPageChange: handlePageChange,
+        },
+      }
       : {}),
   };
 

@@ -35,7 +35,7 @@ export function PropertyObservationsTab({
       sessionStorage.setItem('propertyTab', 'observations');
       // Store the active tab in sessionStorage so the location detail page opens with observations tab
       sessionStorage.setItem('locationDetailActiveTab', 'observations');
-      navigate(`/cadastros/localizacoes/${locationId}`);
+      navigate(`/sistema/cadastros/localizacoes/${locationId}`);
     },
     [navigate, property.id],
   );
@@ -240,14 +240,14 @@ export function PropertyObservationsTab({
     },
     ...(hasPagination
       ? {
-          pagination: {
-            currentPage,
-            totalPages,
-            itemsPerPage,
-            totalItems: sortedPropertyObservations.length,
-            onPageChange: handlePageChange,
-          },
-        }
+        pagination: {
+          currentPage,
+          totalPages,
+          itemsPerPage,
+          totalItems: sortedPropertyObservations.length,
+          onPageChange: handlePageChange,
+        },
+      }
       : {}),
   };
 

@@ -40,7 +40,7 @@ export function ServiceProviderPropertiesTab({
           name: serviceProvider.name,
         }),
       );
-      navigate(`/cadastros/propriedades/${propertyId}`);
+      navigate(`/sistema/cadastros/propriedades/${propertyId}`);
     },
     [navigate, serviceProvider.id, serviceProvider.name],
   );
@@ -251,14 +251,14 @@ export function ServiceProviderPropertiesTab({
     },
     ...(hasPagination
       ? {
-          pagination: {
-            currentPage,
-            totalPages,
-            itemsPerPage,
-            totalItems: sortedProperties.length,
-            onPageChange: handlePageChange,
-          },
-        }
+        pagination: {
+          currentPage,
+          totalPages,
+          itemsPerPage,
+          totalItems: sortedProperties.length,
+          onPageChange: handlePageChange,
+        },
+      }
       : {}),
   };
 

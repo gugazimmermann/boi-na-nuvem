@@ -6,10 +6,10 @@ export const useLocationNavigation = (cameFromDetails?: boolean, locationId?: st
   const navigate = useNavigate();
   const navigation = useEntityNavigation({
     entityType: 'localização',
-    listRoute: '/cadastros/localizacoes',
-    newRoute: '/cadastros/localizacoes/novo',
-    detailRoute: (id: string) => `/cadastros/localizacoes/${id}`,
-    editRoute: (id: string) => `/cadastros/localizacoes/${id}/editar`,
+    listRoute: '/sistema/cadastros/localizacoes',
+    newRoute: '/sistema/cadastros/localizacoes/novo',
+    detailRoute: (id: string) => `/sistema/cadastros/localizacoes/${id}`,
+    editRoute: (id: string) => `/sistema/cadastros/localizacoes/${id}/editar`,
   });
 
   const handleEditLocation = (id: string, fromDetails = false) => {
@@ -34,7 +34,7 @@ export const useLocationNavigation = (cameFromDetails?: boolean, locationId?: st
         sessionStorage.removeItem('propertyId');
         sessionStorage.removeItem('propertyTab');
 
-        navigate(`/cadastros/propriedades/${propertyId}?tab=${propertyTab}`);
+        navigate(`/sistema/cadastros/propriedades/${propertyId}?tab=${propertyTab}`);
         return;
       }
     }

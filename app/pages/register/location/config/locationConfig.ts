@@ -19,7 +19,7 @@ export const LOCATION_CONFIG = createEntityConfig('localização', {
 
 export const LOCATION_MESSAGES = getEntityMessages('localização');
 
-export const LOCATION_ROUTES = getEntityRoutes('/cadastros/localizacoes');
+export const LOCATION_ROUTES = getEntityRoutes('/sistema/cadastros/localizacoes');
 
 export const LOCATION_ICONS = {
   default: ICONS.LOCATION(),

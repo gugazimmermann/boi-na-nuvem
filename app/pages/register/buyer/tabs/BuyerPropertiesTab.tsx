@@ -40,7 +40,7 @@ export function BuyerPropertiesTab({
           name: buyer.name,
         }),
       );
-      navigate(`/cadastros/propriedades/${propertyId}`);
+      navigate(`/sistema/cadastros/propriedades/${propertyId}`);
     },
     [navigate, buyer.id, buyer.name],
   );
@@ -247,14 +247,14 @@ export function BuyerPropertiesTab({
     },
     ...(hasPagination
       ? {
-          pagination: {
-            currentPage,
-            totalPages,
-            itemsPerPage,
-            totalItems: sortedProperties.length,
-            onPageChange: handlePageChange,
-          },
-        }
+        pagination: {
+          currentPage,
+          totalPages,
+          itemsPerPage,
+          totalItems: sortedProperties.length,
+          onPageChange: handlePageChange,
+        },
+      }
       : {}),
   };
 

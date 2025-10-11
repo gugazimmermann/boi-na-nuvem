@@ -52,7 +52,7 @@ export function LocationAnimalsTab({
         sessionStorage.setItem('animalFromLocation', 'true');
         sessionStorage.setItem('animalLocationId', location.id);
       }
-      navigate(`/cadastros/animais/${animalId}`);
+      navigate(`/sistema/cadastros/animais/${animalId}`);
     },
     [navigate, location.id],
   );
@@ -335,14 +335,14 @@ export function LocationAnimalsTab({
     },
     ...(hasPagination
       ? {
-          pagination: {
-            currentPage,
-            totalPages,
-            itemsPerPage,
-            totalItems: filteredAndSortedAnimals.length,
-            onPageChange: handlePageChange,
-          },
-        }
+        pagination: {
+          currentPage,
+          totalPages,
+          itemsPerPage,
+          totalItems: filteredAndSortedAnimals.length,
+          onPageChange: handlePageChange,
+        },
+      }
       : {}),
   };
 
