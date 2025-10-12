@@ -1,9 +1,22 @@
 import { useCallback } from 'react';
 import { useProperties } from '~/hooks/useProperties';
 import { PROPERTIES } from '~/mocks/properties-mock';
-import { useEntityForm } from '../../shared/hooks';
 import { PROPERTY_ROUTES } from '../config/propertyConfig';
 import type { Property } from '~/types/property';
+
+interface AddressSuggestion {
+  place_id: string;
+  display_name: string;
+  address: {
+    city?: string;
+    town?: string;
+    village?: string;
+    state?: string;
+    suburb?: string;
+    neighbourhood?: string;
+    postcode?: string;
+  };
+}
 
 interface UsePropertyFormProps {
   isEdit?: boolean;
@@ -18,21 +31,41 @@ export const usePropertyForm = ({
 }: UsePropertyFormProps) => {
   const { createProperty, updateProperty } = useProperties();
 
-  const entityForm = useEntityForm<Property, Omit<Property, 'id'>>({
-    isEdit,
-    entityId: propertyId,
-    cameFromDetails,
-    createEntity: async (data) => {
-      await createProperty(data);
-    },
-    updateEntity: async (id, data) => {
-      await updateProperty(id, data);
-    },
-    entities: PROPERTIES,
-    entityType: 'propriedade',
-    listRoute: PROPERTY_ROUTES.list,
-    detailRoute: PROPERTY_ROUTES.detail,
-  });
+  // Função para aplicar máscara de CEP
+  const applyZipCodeMask = (value: string) => {
+    const numbers = value.replace(/\D/g, '');
+    return numbers.replace(/(\d{5})(\d)/, '$1-$2');
+  };
+
+  // Função para selecionar endereço do autocomplete
+  const handleAddressSelect = useCallback((address: AddressSuggestion) => {
+    // Esta função não faz nada - o AddressInput vai usar o FormContext diretamente
+  }, []);
+
+  // Função para lidar com mudanças nos campos
+  const handleFieldChange = useCallback((field: string, value: any) => {
+    // Esta função não faz nada - o Form component gerencia seu próprio estado
+  }, []);
+
+  const handleValidationChange = useCallback((field: string, isValid: boolean) => {
+    // Esta função não faz nada
+  }, []);
+
+  const handleSubmit = useCallback(async (values: Omit<Property, 'id'>) => {
+    try {
+      if (isEdit && propertyId) {
+        await updateProperty(propertyId, values);
+      } else {
+        await createProperty(values);
+      }
+    } catch (error) {
+      throw error instanceof Error ? error : new Error('Erro ao salvar propriedade');
+    }
+  }, [isEdit, propertyId, createProperty, updateProperty]);
+
+  const handleReset = useCallback(() => {
+    // Esta função não faz nada - o Form component gerencia seu próprio estado
+  }, []);
 
   const fetchProperty = useCallback(async (id: string) => {
     try {
@@ -51,11 +84,12 @@ export const usePropertyForm = ({
   }, []);
 
   return {
-    handleSubmit: entityForm.handleSubmit as (values: Omit<Property, 'id'>) => Promise<void>,
-    handleReset: entityForm.handleReset,
-    handleChange: entityForm.handleChange,
-    handleValidationChange: entityForm.handleValidationChange,
+    handleSubmit,
+    handleReset,
+    handleChange: handleFieldChange,
+    handleValidationChange,
+    handleAddressSelect,
     fetchProperty,
-    isSubmitting: entityForm.isSubmitting,
+    isSubmitting: false,
   };
 };

@@ -3,10 +3,12 @@ import { Input } from '../input/Input';
 import { Select } from '../select/Select';
 import { Textarea } from '../textarea/Textarea';
 import { Button } from '../button/Button';
+import { AddressInput } from '../input/AddressInput';
+import { CoordinatesInput } from '../input/CoordinatesInput';
 import type { FormProps, FormState, FormContextType, FormFieldProps } from './types';
 import { styles, defaultFormConfig, validationPatterns, validationMessages } from './constants';
 
-const FormContext = createContext<FormContextType | null>(null);
+export const FormContext = createContext<FormContextType | null>(null);
 
 export const useFormContext = () => {
   const context = useContext(FormContext);
@@ -65,6 +67,49 @@ function FormField({ field, value, error, touched, onChange, onBlur, onFocus }: 
             onChange={handleInputChange}
             onBlur={handleBlur}
             onFocus={handleFocus}
+            className={field.className}
+            data-testid={field['data-testid']}
+          />
+        );
+
+      case 'address':
+        return (
+          <AddressInput
+            label={field.label}
+            config={{
+              ...field.inputConfig,
+              value: value || '',
+              required: field.required,
+              disabled: field.disabled,
+            }}
+            value={value || ''}
+            onChange={(newValue) => onChange(field.name, newValue)}
+            onAddressSelect={(address) => {
+              if (field.onAddressSelect) {
+                field.onAddressSelect(address);
+              }
+            }}
+            error={error}
+            helperText={field.helperText}
+            className={field.className}
+            data-testid={field['data-testid']}
+          />
+        );
+
+      case 'coordinates':
+        return (
+          <CoordinatesInput
+            label={field.label}
+            config={{
+              ...field.inputConfig,
+              value: value || '',
+              required: field.required,
+              disabled: field.disabled,
+            }}
+            value={value || ''}
+            onChange={(newValue) => onChange(field.name, newValue)}
+            error={error}
+            helperText={field.helperText}
             className={field.className}
             data-testid={field['data-testid']}
           />

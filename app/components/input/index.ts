@@ -1,4 +1,6 @@
 export { Input } from './Input';
+export { AddressInput } from './AddressInput';
+export { CoordinatesInput } from './CoordinatesInput';
 
 export { styles } from './constants';
 export type {

@@ -11,36 +11,36 @@ export const styles = {
 
   variants: {
     primary: {
-      base: 'bg-sky-600 text-white hover:bg-sky-500 focus:ring-sky-300',
-      disabled: 'bg-sky-300 text-white cursor-not-allowed hover:bg-sky-300',
+      base: 'bg-sky-600 text-white hover:bg-sky-500 focus:ring-sky-300 dark:bg-sky-700 dark:hover:bg-sky-600 dark:focus:ring-sky-400',
+      disabled: 'bg-sky-300 text-white cursor-not-allowed hover:bg-sky-300 dark:bg-sky-800 dark:text-gray-400',
     },
     secondary: {
-      base: 'bg-stone-800 text-white hover:bg-stone-700 focus:ring-stone-300',
-      disabled: 'bg-stone-300 text-white cursor-not-allowed hover:bg-stone-300',
+      base: 'bg-stone-800 text-white hover:bg-stone-700 focus:ring-stone-300 dark:bg-stone-700 dark:hover:bg-stone-600 dark:focus:ring-stone-400',
+      disabled: 'bg-stone-300 text-white cursor-not-allowed hover:bg-stone-300 dark:bg-stone-800 dark:text-gray-400',
     },
     success: {
-      base: 'bg-green-600 text-white hover:bg-green-500 focus:ring-green-300',
-      disabled: 'bg-green-300 text-white cursor-not-allowed hover:bg-green-300',
+      base: 'bg-green-600 text-white hover:bg-green-500 focus:ring-green-300 dark:bg-green-700 dark:hover:bg-green-600 dark:focus:ring-green-400',
+      disabled: 'bg-green-300 text-white cursor-not-allowed hover:bg-green-300 dark:bg-green-800 dark:text-gray-400',
     },
     warning: {
-      base: 'bg-orange-600 text-white hover:bg-orange-500 focus:ring-orange-300',
-      disabled: 'bg-orange-300 text-white cursor-not-allowed hover:bg-orange-300',
+      base: 'bg-orange-600 text-white hover:bg-orange-500 focus:ring-orange-300 dark:bg-orange-700 dark:hover:bg-orange-600 dark:focus:ring-orange-400',
+      disabled: 'bg-orange-300 text-white cursor-not-allowed hover:bg-orange-300 dark:bg-orange-800 dark:text-gray-400',
     },
     error: {
-      base: 'bg-red-600 text-white hover:bg-red-500 focus:ring-red-300',
-      disabled: 'bg-red-300 text-white cursor-not-allowed hover:bg-red-300',
+      base: 'bg-red-600 text-white hover:bg-red-500 focus:ring-red-300 dark:bg-red-700 dark:hover:bg-red-600 dark:focus:ring-red-400',
+      disabled: 'bg-red-300 text-white cursor-not-allowed hover:bg-red-300 dark:bg-red-800 dark:text-gray-400',
     },
     info: {
-      base: 'bg-sky-600 text-white hover:bg-sky-500 focus:ring-sky-300',
-      disabled: 'bg-sky-300 text-white cursor-not-allowed hover:bg-sky-300',
+      base: 'bg-sky-600 text-white hover:bg-sky-500 focus:ring-sky-300 dark:bg-sky-700 dark:hover:bg-sky-600 dark:focus:ring-sky-400',
+      disabled: 'bg-sky-300 text-white cursor-not-allowed hover:bg-sky-300 dark:bg-sky-800 dark:text-gray-400',
     },
     ghost: {
-      base: 'bg-transparent text-gray-700 hover:bg-gray-100 focus:ring-gray-300 dark:text-gray-200 dark:hover:bg-gray-800',
+      base: 'bg-transparent text-gray-700 hover:bg-gray-100 focus:ring-gray-300 dark:text-gray-200 dark:hover:bg-gray-800 dark:focus:ring-gray-600',
       disabled:
         'bg-transparent text-gray-400 cursor-not-allowed hover:bg-transparent dark:text-gray-600',
     },
     outline: {
-      base: 'border-2 border-gray-300 bg-transparent text-gray-700 hover:bg-gray-50 focus:ring-gray-300 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-800',
+      base: 'border-2 border-gray-300 bg-transparent text-gray-700 hover:bg-gray-50 focus:ring-gray-300 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-800 dark:focus:ring-gray-600',
       disabled:
         'border-2 border-gray-200 bg-transparent text-gray-400 cursor-not-allowed hover:bg-transparent dark:border-gray-700 dark:text-gray-600',
     },

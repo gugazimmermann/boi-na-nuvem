@@ -12,7 +12,7 @@ import type { Property } from '~/types/property';
 
 const NewProperty: React.FC = () => {
   const { handleBack } = usePropertyNavigation();
-  const { handleSubmit, handleReset, handleChange, handleValidationChange } = usePropertyForm({
+  const { handleSubmit, handleReset, handleChange, handleValidationChange, handleAddressSelect } = usePropertyForm({
     isEdit: false,
   });
 
@@ -29,6 +29,7 @@ const NewProperty: React.FC = () => {
       handleReset={handleReset}
       handleChange={handleChange}
       handleValidationChange={handleValidationChange}
+      handleAddressSelect={handleAddressSelect}
       handleBack={handleBack}
       title="Nova Propriedade"
       subtitle="Cadastre uma nova propriedade"

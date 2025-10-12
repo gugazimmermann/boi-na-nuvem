@@ -2,8 +2,8 @@ export const styles = {
   form: {
     base: 'w-full',
     wrapper: 'w-full',
-    title: 'text-xl font-bold text-gray-900 mb-1.5',
-    description: 'text-gray-600 mb-6',
+    title: 'text-xl font-bold text-gray-900 dark:text-gray-100 mb-1.5',
+    description: 'text-gray-600 dark:text-gray-400 mb-6',
   },
 
   layout: {
@@ -26,29 +26,29 @@ export const styles = {
   },
 
   section: {
-    container: 'mb-6 p-4 bg-gray-50 rounded-md border border-gray-200',
-    title: 'text-base font-semibold text-gray-800 mb-3 flex items-center',
-    description: 'text-sm text-gray-600 mb-4',
+    container: 'mb-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-md border border-gray-200 dark:border-gray-700',
+    title: 'text-base font-semibold text-gray-800 dark:text-gray-200 mb-3 flex items-center',
+    description: 'text-sm text-gray-600 dark:text-gray-400 mb-4',
     fields: 'space-y-4',
   },
 
   field: {
     container: 'w-full',
     required: 'text-red-500 ml-1',
-    error: 'text-red-500 text-sm mt-1.5 flex items-center',
-    helper: 'text-gray-500 text-sm mt-1.5',
+    error: 'text-red-500 dark:text-red-400 text-sm mt-1.5 flex items-center',
+    helper: 'text-gray-500 dark:text-gray-400 text-sm mt-1.5',
   },
 
   actions: {
-    container: 'flex flex-col sm:flex-row justify-end gap-3 mt-8 pt-6 border-t border-gray-200',
+    container: 'flex flex-col sm:flex-row justify-end gap-3 mt-8 pt-6 border-t border-gray-200 dark:border-gray-700',
     containerCenter:
-      'flex flex-col sm:flex-row justify-center gap-3 mt-8 pt-6 border-t border-gray-200',
+      'flex flex-col sm:flex-row justify-center gap-3 mt-8 pt-6 border-t border-gray-200 dark:border-gray-700',
     containerBetween:
-      'flex flex-col sm:flex-row justify-between gap-3 mt-8 pt-6 border-t border-gray-200',
+      'flex flex-col sm:flex-row justify-between gap-3 mt-8 pt-6 border-t border-gray-200 dark:border-gray-700',
     submitButton:
       'px-6 py-2.5 text-white font-semibold bg-gradient-to-r from-blue-600 to-blue-700 rounded-md hover:from-blue-700 hover:to-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-200 transition-all duration-200 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none',
     resetButton:
-      'px-6 py-2.5 text-gray-700 font-semibold bg-white border-2 border-gray-300 rounded-md hover:bg-gray-50 hover:border-gray-400 focus:outline-none focus:ring-4 focus:ring-gray-200 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed',
+      'px-6 py-2.5 text-gray-700 dark:text-gray-300 font-semibold bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-400 dark:hover:border-gray-500 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-600 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed',
   },
 
   validation: {
@@ -60,7 +60,7 @@ export const styles = {
   states: {
     loading: 'opacity-50 pointer-events-none',
     disabled: 'opacity-50 pointer-events-none',
-    readonly: 'bg-gray-50',
+    readonly: 'bg-gray-50 dark:bg-gray-800',
   },
 };
 

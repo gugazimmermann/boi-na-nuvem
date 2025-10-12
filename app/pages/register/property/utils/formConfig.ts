@@ -88,17 +88,18 @@ export const createPropertyFormFields = (isEdit = false): FormFieldConfig[] => [
 
   {
     name: 'street',
-    type: 'input',
+    type: 'address',
     label: 'Rua',
-    required: false,
+    required: true,
 
     inputConfig: {
       type: 'text',
-      placeholder: 'Nome da rua ou estrada',
+      placeholder: 'Digite o nome da rua...',
       maxLength: 100,
     },
 
     validation: {
+      required: true,
       maxLength: 100,
     },
   },
@@ -134,13 +135,14 @@ export const createPropertyFormFields = (isEdit = false): FormFieldConfig[] => [
     name: 'city',
     type: 'input',
     label: 'Cidade',
-    required: false,
+    required: true,
     inputConfig: {
       type: 'text',
       placeholder: 'Nome da cidade',
       maxLength: 50,
     },
     validation: {
+      required: true,
       maxLength: 50,
     },
   },
@@ -148,17 +150,20 @@ export const createPropertyFormFields = (isEdit = false): FormFieldConfig[] => [
     name: 'state',
     type: 'select',
     label: 'Estado',
-    required: false,
+    required: true,
     options: BRAZILIAN_STATES,
     selectConfig: {
       placeholder: 'Selecione um estado',
+    },
+    validation: {
+      required: true,
     },
   },
   {
     name: 'country',
     type: 'input',
     label: 'País',
-    required: false,
+    required: true,
     inputConfig: {
       type: 'text',
       placeholder: 'País',
@@ -166,15 +171,34 @@ export const createPropertyFormFields = (isEdit = false): FormFieldConfig[] => [
       ...(isEdit ? {} : { defaultValue: 'Brasil' }),
     },
     validation: {
+      required: true,
       maxLength: 50,
     },
+  },
+  {
+    name: 'zipCode',
+    type: 'input',
+    label: 'CEP',
+    required: true,
+    gridColumn: 1,
+    inputConfig: {
+      type: 'text',
+      placeholder: '00000-000',
+      maxLength: 9,
+    },
+    validation: {
+      required: true,
+      maxLength: 9,
+      pattern: /^\d{5}-?\d{3}$/,
+    },
+    helperText: 'Código postal (formato: 00000-000)',
   },
 
   {
     name: 'latitude',
-    type: 'input',
+    type: 'coordinates',
     label: 'Latitude',
-    required: false,
+    required: true,
 
     inputConfig: {
       type: 'number',
@@ -185,17 +209,18 @@ export const createPropertyFormFields = (isEdit = false): FormFieldConfig[] => [
     },
 
     validation: {
+      required: true,
       min: -90,
       max: 90,
     },
 
-    helperText: 'Coordenada de latitude (opcional)',
+    helperText: 'Coordenada de latitude',
   },
   {
     name: 'longitude',
-    type: 'input',
+    type: 'coordinates',
     label: 'Longitude',
-    required: false,
+    required: true,
     inputConfig: {
       type: 'number',
       placeholder: 'Ex: -46.6333',
@@ -204,10 +229,11 @@ export const createPropertyFormFields = (isEdit = false): FormFieldConfig[] => [
       max: 180,
     },
     validation: {
+      required: true,
       min: -180,
       max: 180,
     },
-    helperText: 'Coordenada de longitude (opcional)',
+    helperText: 'Coordenada de longitude',
   },
 ];
 
@@ -226,4 +252,5 @@ export const getInitialValues = (): Omit<Property, 'id'> => ({
   name: '',
   status: PropertyStatus.ACTIVE,
   country: 'Brasil',
+  zipCode: '',
 });

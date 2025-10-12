@@ -2,7 +2,7 @@ import type { InputConfig } from '../input/types';
 import type { SelectConfig, SelectOption } from '../select/types';
 import type { ButtonConfig } from '../button/types';
 
-export type FormFieldType = 'input' | 'select' | 'textarea' | 'checkbox' | 'radio' | 'file';
+export type FormFieldType = 'input' | 'select' | 'textarea' | 'checkbox' | 'radio' | 'file' | 'address' | 'coordinates';
 
 export interface FormValidationRule {
   required?: boolean;
@@ -50,6 +50,9 @@ export interface FormFieldConfig {
   };
 
   buttonConfig?: ButtonConfig;
+
+  // Função para lidar com seleção de endereço
+  onAddressSelect?: (address: any) => void;
 
   gridColumn?: number | string;
   gridRow?: number | string;

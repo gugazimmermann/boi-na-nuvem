@@ -13,6 +13,7 @@ interface NewEntityFormProps<T extends Record<string, any>> {
   handleReset: () => void;
   handleChange: (field: string, value: any) => void;
   handleValidationChange: (field: string, isValid: boolean) => void;
+  handleAddressSelect?: (address: any) => void;
 
   // Navigation
   handleBack: () => void;
@@ -38,6 +39,7 @@ export function NewEntityForm<T extends Record<string, any>>({
   handleReset,
   handleChange,
   handleValidationChange,
+  handleAddressSelect,
   handleBack,
   title,
   subtitle,
@@ -56,7 +58,10 @@ export function NewEntityForm<T extends Record<string, any>>({
       variant={variant}
     >
       <Form
-        fields={formFields}
+        fields={formFields.map(field => ({
+          ...field,
+          onAddressSelect: field.type === 'address' ? handleAddressSelect : undefined
+        }))}
         config={formConfig}
         initialValues={initialValues}
         onSubmit={

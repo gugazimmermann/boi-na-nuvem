@@ -68,12 +68,12 @@ export const EntityFormLayout = memo<EntityFormLayoutProps>(
               </button>
             </div>
 
-            <div className="bg-white shadow-lg rounded-lg p-4">
+            <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-4">
               <div className="flex items-center mb-4">
                 {icon && <div className="flex-shrink-0 mr-4">{icon}</div>}
                 <div>
-                  <h1 className="text-xl font-bold text-gray-900">{resolvedTitle}</h1>
-                  <p className="text-gray-600 text-sm">{resolvedSubtitle}</p>
+                  <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100">{resolvedTitle}</h1>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm">{resolvedSubtitle}</p>
                 </div>
               </div>
               {children}
@@ -86,7 +86,7 @@ export const EntityFormLayout = memo<EntityFormLayoutProps>(
     return (
       <div
         className={
-          containerClasses ?? 'min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-4'
+          containerClasses ?? 'min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-4'
         }
       >
         <div className={contentClasses ?? 'max-w-6xl mx-auto px-4'}>
@@ -112,7 +112,7 @@ export const EntityFormLayout = memo<EntityFormLayoutProps>(
           </button>
 
           {/* Form Container */}
-          <div className="bg-white shadow-xl rounded-lg overflow-hidden">
+          <div className="bg-white dark:bg-gray-800 shadow-xl rounded-lg overflow-hidden">
             {/* Form Header */}
             <div
               className={`px-3 py-2 ${isEdit ? 'bg-gradient-to-r from-yellow-600 to-yellow-700' : 'bg-gradient-to-r from-blue-600 to-blue-700'}`}
@@ -152,10 +152,10 @@ export const EntityFormLayout = memo<EntityFormLayoutProps>(
           {showFooter && (
             <div className="mt-6 text-center">
               <div
-                className={`inline-flex items-center px-3 py-1.5 rounded-full ${isEdit ? 'bg-yellow-50' : 'bg-blue-50'}`}
+                className={`inline-flex items-center px-3 py-1.5 rounded-full ${isEdit ? 'bg-yellow-50 dark:bg-yellow-900/20' : 'bg-blue-50 dark:bg-blue-900/20'}`}
               >
                 <svg
-                  className={`w-5 h-5 mr-2 ${isEdit ? 'text-yellow-600' : 'text-blue-600'}`}
+                  className={`w-5 h-5 mr-2 ${isEdit ? 'text-yellow-600 dark:text-yellow-400' : 'text-blue-600 dark:text-blue-400'}`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -168,7 +168,7 @@ export const EntityFormLayout = memo<EntityFormLayoutProps>(
                   />
                 </svg>
                 <span
-                  className={`text-xs font-medium ${isEdit ? 'text-yellow-700' : 'text-blue-700'}`}
+                  className={`text-xs font-medium ${isEdit ? 'text-yellow-700 dark:text-yellow-300' : 'text-blue-700 dark:text-blue-300'}`}
                 >
                   Todos os campos marcados com * são obrigatórios
                 </span>

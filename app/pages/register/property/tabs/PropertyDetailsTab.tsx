@@ -180,6 +180,29 @@ export function PropertyDetailsTab({ property }: PropertyDetailsTabProps) {
               iconTextColor={INFO_ITEM_CONSTANTS.ICON_TEXT_COLORS.TEAL}
             />
 
+            {property.zipCode && (
+              <InfoItem
+                icon={
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                  </svg>
+                }
+                label="CEP"
+                value={
+                  <span className="font-mono bg-gray-50 dark:bg-gray-700 px-3 py-2 rounded-lg">
+                    {property.zipCode}
+                  </span>
+                }
+                iconBgColor={INFO_ITEM_CONSTANTS.ICON_BG_COLORS.INDIGO}
+                iconTextColor={INFO_ITEM_CONSTANTS.ICON_TEXT_COLORS.INDIGO}
+              />
+            )}
+
             {property.latitude && property.longitude && (
               <InfoItem
                 icon={

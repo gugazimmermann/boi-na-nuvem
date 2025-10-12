@@ -26,6 +26,7 @@ export function useEntityForm<T extends { id: string }, TCreate = T>({
 }: UseEntityFormProps<T, TCreate>) {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState<Partial<T>>({});
 
   const fetchEntity = useCallback(
     async (id: string): Promise<T> => {
@@ -77,11 +78,20 @@ export function useEntityForm<T extends { id: string }, TCreate = T>({
     ],
   );
 
-  const handleReset = useCallback(() => {}, []);
+  const handleReset = useCallback(() => {
+    setFormData({});
+  }, []);
 
-  const handleChange = useCallback((field: string, value: any) => {}, []);
+  const handleChange = useCallback((field: string, value: any) => {
+    setFormData((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  }, []);
 
-  const handleValidationChange = useCallback((field: string, isValid: boolean) => {}, []);
+  const handleValidationChange = useCallback((field: string, isValid: boolean) => {
+    // Implementar validação se necessário
+  }, []);
 
   return {
     handleSubmit: handleSubmit as (values: TCreate) => Promise<void>,
@@ -90,5 +100,6 @@ export function useEntityForm<T extends { id: string }, TCreate = T>({
     handleValidationChange,
     fetchEntity,
     isSubmitting,
+    formData,
   };
 }

@@ -16,6 +16,7 @@ interface EntityFormProps<T> {
   handleReset: () => void;
   handleChange: (field: string, value: any) => void;
   handleValidationChange: (field: string, isValid: boolean) => void;
+  handleAddressSelect?: (address: any) => void;
   fetchEntity: (id: string) => Promise<T>;
 
   // Navigation
@@ -46,6 +47,7 @@ export function EntityForm<T extends { id: string; name: string }>({
   handleReset,
   handleChange,
   handleValidationChange,
+  handleAddressSelect,
   fetchEntity,
   handleBack,
   title,
@@ -115,7 +117,10 @@ export function EntityForm<T extends { id: string; name: string }>({
       isEdit={isEdit}
     >
       <Form
-        fields={formFields}
+        fields={formFields.map(field => ({
+          ...field,
+          onAddressSelect: field.type === 'address' ? handleAddressSelect : undefined
+        }))}
         config={formConfig}
         initialValues={entityData}
         onSubmit={(values, _formState) => handleSubmit(values as T)}

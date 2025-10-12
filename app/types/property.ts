@@ -14,6 +14,7 @@ export interface Property {
   city?: string;
   state?: string;
   country?: string;
+  zipCode?: string;
   latitude?: number;
   longitude?: number;
   status: PropertyStatus;

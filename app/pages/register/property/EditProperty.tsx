@@ -15,7 +15,7 @@ const EditProperty: React.FC = () => {
     sessionStorage.getItem('editPropertyFromDetails') === 'true';
 
   const { handleBack } = usePropertyNavigation(cameFromDetails, id);
-  const { handleSubmit, handleReset, handleChange, handleValidationChange, fetchProperty } =
+  const { handleSubmit, handleReset, handleChange, handleValidationChange, handleAddressSelect, fetchProperty } =
     usePropertyForm({
       isEdit: true,
       propertyId: id,
@@ -34,6 +34,7 @@ const EditProperty: React.FC = () => {
       handleReset={handleReset}
       handleChange={handleChange}
       handleValidationChange={handleValidationChange}
+      handleAddressSelect={handleAddressSelect}
       fetchEntity={fetchProperty}
       handleBack={handleBack}
       title="Editar Propriedade"
