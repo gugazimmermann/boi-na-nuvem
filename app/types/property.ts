@@ -3,6 +3,13 @@ export enum PropertyStatus {
   INACTIVE = 'inactive',
 }
 
+export enum PropertyPhase {
+  CRIA = 'cria',
+  RECRIA = 'recria',
+  ENGORDA = 'engorda',
+  CICLO_COMPLETO = 'ciclo_completo',
+}
+
 export interface PasturePlanning {
   month: string;
   precipitation: number;
@@ -25,6 +32,7 @@ export interface Property {
   latitude?: number;
   longitude?: number;
   status: PropertyStatus;
+  phases: PropertyPhase[];
   createdAt?: string;
   deletedAt?: string | null;
   pasturePlanning?: PasturePlanning[];
@@ -91,6 +99,7 @@ export interface CreatePropertyRequest {
   latitude: number;
   longitude: number;
   status: PropertyStatus;
+  phases: PropertyPhase[];
   description?: string;
 }
 
@@ -107,6 +116,7 @@ export interface UpdatePropertyRequest {
   type?: string;
   mainActivity?: string;
   status?: string;
+  phases?: PropertyPhase[];
   acquisitionDate?: string;
   description?: string;
 }

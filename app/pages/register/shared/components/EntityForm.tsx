@@ -4,6 +4,7 @@ import { Form } from '~/components/form/Form';
 import { LoadingState } from '~/components/loading';
 import { ErrorState } from '~/components/error';
 import { EntityFormLayout } from './EntityFormLayout';
+import { PropertyPhase } from '~/types/property';
 
 interface EntityFormProps<T> {
   // Form configuration
@@ -37,6 +38,47 @@ interface EntityFormProps<T> {
 
   // Test ID
   testId: string;
+}
+
+// Função para processar fases de propriedade (para exibição no formulário)
+function processPropertyPhases(entityData: any): any {
+  if (!entityData || !entityData.phases || !Array.isArray(entityData.phases)) {
+    return entityData;
+  }
+
+  // Check if it has all three phases (Cria, Recria, Engorda)
+  const hasAllThreePhases = entityData.phases.includes(PropertyPhase.CRIA) &&
+                           entityData.phases.includes(PropertyPhase.RECRIA) &&
+                           entityData.phases.includes(PropertyPhase.ENGORDA);
+
+  // If it has all three phases, show "Ciclo Completo"
+  if (hasAllThreePhases) {
+    return {
+      ...entityData,
+      phases: [PropertyPhase.CICLO_COMPLETO]
+    };
+  }
+
+  // Otherwise, return the original phases
+  return entityData;
+}
+
+// Função para processar fases de propriedade (para envio ao backend)
+function processPropertyPhasesForSubmit(values: any): any {
+  if (!values || !values.phases || !Array.isArray(values.phases)) {
+    return values;
+  }
+
+  // If "Ciclo Completo" is selected, convert to individual phases
+  if (values.phases.includes(PropertyPhase.CICLO_COMPLETO)) {
+    return {
+      ...values,
+      phases: [PropertyPhase.CRIA, PropertyPhase.RECRIA, PropertyPhase.ENGORDA]
+    };
+  }
+
+  // Otherwise, return the original phases
+  return values;
 }
 
 export function EntityForm<T extends { id: string; name: string }>({
@@ -83,7 +125,9 @@ export function EntityForm<T extends { id: string; name: string }>({
         setError(null);
 
         const foundEntity = await fetchEntity(id);
-        setEntityData(foundEntity);
+        // Process phases for property entities
+        const processedEntity = processPropertyPhases(foundEntity);
+        setEntityData(processedEntity);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Erro ao carregar dados');
       } finally {
@@ -123,7 +167,11 @@ export function EntityForm<T extends { id: string; name: string }>({
         }))}
         config={formConfig}
         initialValues={entityData}
-        onSubmit={(values, _formState) => handleSubmit(values as T)}
+        onSubmit={(values, _formState) => {
+          // Process phases before submitting
+          const processedValues = processPropertyPhasesForSubmit(values);
+          handleSubmit(processedValues as T);
+        }}
         onReset={(_formState) => handleReset()}
         onChange={(values, _formState) => {
           formFields.forEach((field) => {

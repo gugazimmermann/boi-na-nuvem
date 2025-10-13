@@ -1,5 +1,5 @@
 import type { FormFieldConfig } from '~/components/form/types';
-import { PropertyStatus, type Property } from '~/types/property';
+import { PropertyStatus, PropertyPhase, type Property } from '~/types/property';
 import { BRAZILIAN_STATES } from '~/utils/constants/location';
 
 export const createPropertyFormFields = (isEdit = false): FormFieldConfig[] => [
@@ -64,6 +64,25 @@ export const createPropertyFormFields = (isEdit = false): FormFieldConfig[] => [
       required: true,
     },
     helperText: 'Status da propriedade no sistema',
+  },
+
+  {
+    name: 'phases',
+    type: 'checkbox',
+    label: 'Fases',
+    required: true,
+    gridColumn: 2,
+    options: [
+      { value: PropertyPhase.CRIA, label: 'Cria' },
+      { value: PropertyPhase.RECRIA, label: 'Recria' },
+      { value: PropertyPhase.ENGORDA, label: 'Engorda' },
+      { value: PropertyPhase.CICLO_COMPLETO, label: 'Ciclo Completo' },
+    ],
+    validation: {
+      required: true,
+      minLength: 1,
+    },
+    helperText: 'Selecione uma ou mais fases da propriedade',
   },
 
   {
@@ -251,6 +270,7 @@ export const getInitialValues = (): Omit<Property, 'id'> => ({
   code: '',
   name: '',
   status: PropertyStatus.ACTIVE,
+  phases: [],
   country: 'Brasil',
   zipCode: '',
 });

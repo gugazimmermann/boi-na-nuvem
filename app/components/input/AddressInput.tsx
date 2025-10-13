@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useContext } from 'react';
+import React, { useState, useEffect, useCallback, useContext, useRef } from 'react';
 import { Input } from './Input';
 import { FormContext } from '../form/Form';
 import { BRAZILIAN_STATES } from '~/utils/constants/location';
@@ -70,6 +70,8 @@ export function AddressInput({
     const [addressSuggestions, setAddressSuggestions] = useState<AddressSuggestion[]>([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [hasUserTyped, setHasUserTyped] = useState(false);
+    const initialValueRef = useRef(value);
     const formContext = useContext(FormContext);
 
     // Debounce simples
@@ -110,7 +112,10 @@ export function AddressInput({
                         .slice(0, 5);
 
                     setAddressSuggestions(processedResults);
-                    setShowSuggestions(true);
+                    // Only show suggestions if user has typed something
+                    if (hasUserTyped) {
+                        setShowSuggestions(true);
+                    }
                 }
             } catch (error) {
                 console.warn('Erro na busca de endereços:', error);
@@ -120,7 +125,7 @@ export function AddressInput({
         }, 300);
 
         return () => clearTimeout(timeoutId);
-    }, [value]);
+    }, [value, hasUserTyped]);
 
     const selectAddress = useCallback((address: AddressSuggestion) => {
         const addressDetails = address.address;
@@ -159,11 +164,17 @@ export function AddressInput({
     }, [formContext]);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        onChange(event.target.value);
+        const newValue = event.target.value;
+        // Only mark as user typed if value is different from initial value
+        if (newValue !== initialValueRef.current) {
+            setHasUserTyped(true);
+        }
+        onChange(newValue);
     };
 
     const handleFocus = () => {
-        if (addressSuggestions.length > 0) {
+        // Only show suggestions if user has typed something (not just focused on existing value)
+        if (addressSuggestions.length > 0 && value.length >= 3 && hasUserTyped) {
             setShowSuggestions(true);
         }
     };

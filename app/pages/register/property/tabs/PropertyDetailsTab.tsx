@@ -3,12 +3,34 @@ import { InfoItem, INFO_ITEM_CONSTANTS } from '~/components/info-item';
 import { MapWithFallback } from '~/components/map';
 import { PropertyStatusBadge } from '../components/PropertyStatusBadge';
 import type { Property } from '~/types/property';
+import { PropertyPhase } from '~/types/property';
+import { PHASE_LABELS } from '../constants/propertyConstants';
 
 interface PropertyDetailsTabProps {
   property: Property;
 }
 
 export function PropertyDetailsTab({ property }: PropertyDetailsTabProps) {
+  // Determine phases to display
+  const phasesToDisplay = (() => {
+    if (!property.phases || property.phases.length === 0) {
+      return [];
+    }
+
+    // Check if it has all three phases (Cria, Recria, Engorda)
+    const hasAllThreePhases = property.phases.includes(PropertyPhase.CRIA) &&
+                             property.phases.includes(PropertyPhase.RECRIA) &&
+                             property.phases.includes(PropertyPhase.ENGORDA);
+
+    // If it has all three phases, show "Ciclo Completo"
+    if (hasAllThreePhases) {
+      return [PropertyPhase.CICLO_COMPLETO];
+    }
+
+    // Otherwise, show the specific phases
+    return property.phases;
+  })();
+
   return (
     <div className="space-y-4">
       {/* Basic Information */}
@@ -82,6 +104,38 @@ export function PropertyDetailsTab({ property }: PropertyDetailsTabProps) {
           </div>
 
           <div className="space-y-3">
+            <InfoItem
+              icon={
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                  />
+                </svg>
+              }
+              label="Fases"
+              value={
+                phasesToDisplay.length > 0 ? (
+                  <div className="space-y-1">
+                    {phasesToDisplay.map((phase) => (
+                      <div
+                        key={phase}
+                        className="text-sm font-medium text-emerald-700 dark:text-emerald-300"
+                      >
+                        {PHASE_LABELS[phase]}
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <span className="text-gray-500 dark:text-gray-400">Nenhuma fase definida</span>
+                )
+              }
+              iconBgColor={INFO_ITEM_CONSTANTS.ICON_BG_COLORS.EMERALD}
+              iconTextColor={INFO_ITEM_CONSTANTS.ICON_TEXT_COLORS.EMERALD}
+            />
+
             {property.description && (
               <InfoItem
                 icon={

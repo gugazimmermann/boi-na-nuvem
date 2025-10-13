@@ -1,6 +1,5 @@
 import { useCallback } from 'react';
-import { useProperties } from '~/hooks/useProperties';
-import { PROPERTIES } from '~/mocks/properties-mock';
+import { usePropertyCrud } from '~/hooks/usePropertyCrud';
 import { PROPERTY_ROUTES } from '../config/propertyConfig';
 import type { Property } from '~/types/property';
 
@@ -29,7 +28,7 @@ export const usePropertyForm = ({
   propertyId,
   cameFromDetails,
 }: UsePropertyFormProps) => {
-  const { createProperty, updateProperty } = useProperties();
+  const { createProperty, updateProperty, getPropertyById } = usePropertyCrud();
 
   // Função para aplicar máscara de CEP
   const applyZipCodeMask = (value: string) => {
@@ -69,19 +68,12 @@ export const usePropertyForm = ({
 
   const fetchProperty = useCallback(async (id: string) => {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 200));
-
-      const foundProperty = PROPERTIES.find((p) => p.id === id);
-
-      if (!foundProperty) {
-        throw new Error('Propriedade não encontrada');
-      }
-
-      return foundProperty;
+      const property = await getPropertyById(id);
+      return property;
     } catch (error) {
       throw error instanceof Error ? error : new Error('Erro ao carregar propriedade');
     }
-  }, []);
+  }, [getPropertyById]);
 
   return {
     handleSubmit,

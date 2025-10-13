@@ -5,6 +5,7 @@ import { Textarea } from '../textarea/Textarea';
 import { Button } from '../button/Button';
 import { AddressInput } from '../input/AddressInput';
 import { CoordinatesInput } from '../input/CoordinatesInput';
+import { CheckboxGroup } from '../checkbox/CheckboxGroup';
 import type { FormProps, FormState, FormContextType, FormFieldProps } from './types';
 import { styles, defaultFormConfig, validationPatterns, validationMessages } from './constants';
 
@@ -149,6 +150,26 @@ function FormField({ field, value, error, touched, onChange, onBlur, onFocus }: 
             error={error}
             helperText={field.helperText}
             onChange={handleTextareaChange}
+            onBlur={handleBlur}
+            onFocus={handleFocus}
+            className={field.className}
+            data-testid={field['data-testid']}
+          />
+        );
+
+      case 'checkbox':
+        return (
+          <CheckboxGroup
+            label={field.label}
+            options={field.options || []}
+            value={Array.isArray(value) ? value : []}
+            config={{
+              direction: 'horizontal',
+              spacing: 'md',
+            }}
+            error={error}
+            helperText={field.helperText}
+            onChange={(values) => onChange(field.name, values)}
             onBlur={handleBlur}
             onFocus={handleFocus}
             className={field.className}

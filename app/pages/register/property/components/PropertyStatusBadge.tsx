@@ -1,6 +1,6 @@
-import { STATUS_INDICATORS, STATUS_LABELS } from '~/mocks/properties-mock';
 import { PropertyStatus } from '~/types/property';
 import { UI_CONSTANTS } from '../../shared/constants';
+import { STATUS_INDICATORS, STATUS_LABELS } from '../constants/propertyConstants';
 
 interface PropertyStatusBadgeProps {
   status: PropertyStatus;
