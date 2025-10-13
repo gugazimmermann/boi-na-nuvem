@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { useParams, useSearchParams } from 'react-router';
-import { useProperties } from '~/hooks/useProperties';
+import { usePropertyCrud } from '~/hooks/usePropertyCrud';
 import { LoadingState } from '~/components/loading';
 import { ErrorState } from '~/components/error';
 import { Tab } from '~/components/tab';
@@ -22,8 +22,13 @@ import {
 export default function PropertyDetailPage() {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
-  const { properties, loading, error, refetch, deleteProperty } = useProperties();
+  const { getPropertyById, deleteProperty, loading, error, clearError } = usePropertyCrud();
   const { handleBack, handleEditProperty } = usePropertyNavigation();
+  
+  // Estado para armazenar a propriedade carregada
+  const [property, setProperty] = useState<any>(null);
+  const [isLoadingProperty, setIsLoadingProperty] = useState(true);
+  const [propertyError, setPropertyError] = useState<string | null>(null);
 
   // Get the back button label based on navigation source
   const getBackButtonLabel = useCallback(() => {
@@ -104,8 +109,29 @@ export default function PropertyDetailPage() {
   const observationsSearchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const animalsSearchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Find the property by ID
-  const property = properties?.find((p) => p.id === id);
+  // Carregar propriedade usando a API
+  useEffect(() => {
+    const loadProperty = async () => {
+      if (!id) return;
+      
+      try {
+        setIsLoadingProperty(true);
+        setPropertyError(null);
+        clearError();
+        
+        const propertyData = await getPropertyById(id);
+        setProperty(propertyData);
+      } catch (err) {
+        const errorMessage = err instanceof Error ? err.message : 'Erro ao carregar propriedade';
+        setPropertyError(errorMessage);
+        console.error('Erro ao carregar propriedade:', err);
+      } finally {
+        setIsLoadingProperty(false);
+      }
+    };
+
+    loadProperty();
+  }, [id, getPropertyById, clearError]);
 
   // Update active tab when URL parameters change
   useEffect(() => {
@@ -223,7 +249,7 @@ export default function PropertyDetailPage() {
       handleBack();
     } catch (error) {
       console.error('Erro ao excluir propriedade:', error);
-      // O erro já é tratado pelo hook useProperties
+      // O erro já é tratado pelo hook usePropertyCrud
     } finally {
       setIsDeleting(false);
     }
@@ -337,7 +363,7 @@ export default function PropertyDetailPage() {
     onTabChange: setActiveTab,
   };
 
-  if (loading) {
+  if (isLoadingProperty || loading) {
     return (
       <LoadingState
         message="Carregando detalhes da propriedade..."
@@ -346,11 +372,19 @@ export default function PropertyDetailPage() {
     );
   }
 
-  if (error) {
+  if (propertyError || error) {
     return (
       <ErrorState
-        error={error}
-        onRetry={refetch}
+        error={propertyError || error}
+        onRetry={() => {
+          if (id) {
+            setPropertyError(null);
+            clearError();
+            getPropertyById(id).then(setProperty).catch((err) => {
+              setPropertyError(err instanceof Error ? err.message : 'Erro ao carregar propriedade');
+            });
+          }
+        }}
         title="Erro ao carregar propriedade"
         className={LAYOUT_CONSTANTS.CONTAINER_CLASSES}
       />

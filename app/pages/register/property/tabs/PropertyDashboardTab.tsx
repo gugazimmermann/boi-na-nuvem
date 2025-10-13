@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 import { InfoCard, INFO_CARD_CONSTANTS } from '~/components/info-card';
-import { LOCATIONS, LOCATION_MOVEMENTS } from '~/mocks/locations-mock';
-import { ANIMAL_LOCATIONS } from '~/mocks/animals-mock';
+import { PropertyClimateChartV2 } from '~/components/chart';
 import { LocationStatus, LocationMovimentType } from '~/types/location';
 import type { Property } from '~/types/property';
 
@@ -10,62 +9,16 @@ interface PropertyDashboardTabProps {
 }
 
 export function PropertyDashboardTab({ property }: PropertyDashboardTabProps) {
-  // Get property statistics
+  // Use data from API instead of mock data
   const propertyLocations = useMemo(
-    () => LOCATIONS.filter((location) => location.propertyId === property.id),
-    [property.id],
+    () => property.locations || [],
+    [property.locations],
   );
 
   const totalAnimals = useMemo(() => {
-    // Get all ENTRY and EXIT movements for property locations
-    const propertyLocationIds = propertyLocations.map((loc) => loc.id);
-    const entryExitMovements = LOCATION_MOVEMENTS.filter(
-      (movement) =>
-        propertyLocationIds.includes(movement.locationId) &&
-        (movement.type === LocationMovimentType.ENTRY ||
-          movement.type === LocationMovimentType.EXIT),
-    );
-
-    // Group animal movements by animal ID and location
-    const animalLocationMap = new Map<string, Map<string, string[]>>(); // animalId -> locationId -> movementIds
-
-    ANIMAL_LOCATIONS.forEach((animalLocation) => {
-      const movement = entryExitMovements.find((m) => m.id === animalLocation.locationMovimentId);
-      if (movement) {
-        if (!animalLocationMap.has(animalLocation.animalId)) {
-          animalLocationMap.set(animalLocation.animalId, new Map());
-        }
-        const locationMap = animalLocationMap.get(animalLocation.animalId)!;
-        if (!locationMap.has(movement.locationId)) {
-          locationMap.set(movement.locationId, []);
-        }
-        locationMap.get(movement.locationId)!.push(movement.id);
-      }
-    });
-
-    // Count animals currently in any property location
-    let totalCount = 0;
-    animalLocationMap.forEach((locationMap, animalId) => {
-      locationMap.forEach((movementIds, locationId) => {
-        const movements = movementIds
-          .map((id) => entryExitMovements.find((m) => m.id === id))
-          .filter(Boolean);
-
-        // Sort by creation date to get chronological order
-        movements.sort(
-          (a, b) => new Date(a!.createdAt).getTime() - new Date(b!.createdAt).getTime(),
-        );
-
-        // Check if the last movement is an ENTRY (animal is currently in location)
-        const lastMovement = movements[movements.length - 1];
-        if (lastMovement && lastMovement.type === LocationMovimentType.ENTRY) {
-          totalCount++;
-        }
-      });
-    });
-
-    return totalCount;
-  }, [propertyLocations]);
+    // Use statistics from API
+    return property.statistics?.totalAnimals || 0;
+  }, [property.statistics]);
 
   const activeLocations = useMemo(
     () => propertyLocations.filter((loc) => loc.status === LocationStatus.ACTIVE).length,
@@ -222,6 +175,31 @@ export function PropertyDashboardTab({ property }: PropertyDashboardTabProps) {
           </div>
         </InfoCard>
       </div>
+
+      {/* Climate Chart */}
+      {property.pasturePlanning && property.pasturePlanning.length > 0 && (
+        <div className="mt-6">
+          <InfoCard
+            title="Dados Climáticos e Qualidade da Pastagem"
+            icon={
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                />
+              </svg>
+            }
+            gradientFrom={INFO_CARD_CONSTANTS.GRADIENTS.VIOLET.from}
+            gradientTo={INFO_CARD_CONSTANTS.GRADIENTS.VIOLET.to}
+          >
+            <div className="p-4">
+              <PropertyClimateChartV2 pasturePlanning={property.pasturePlanning} />
+            </div>
+          </InfoCard>
+        </div>
+      )}
     </div>
   );
 }

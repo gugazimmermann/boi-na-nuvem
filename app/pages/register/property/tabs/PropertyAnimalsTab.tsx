@@ -5,8 +5,7 @@ import { Tooltip } from '~/components/tooltip';
 import type { TableConfig } from '~/components/table/types';
 import { usePropertyTabPagination } from './hooks/usePropertyTabPagination';
 import { formatAgeFromBirthDate } from '~/utils/ageFormatter';
-import { ANIMALS, ANIMAL_LOCATIONS } from '~/mocks/animals-mock';
-import { LOCATION_MOVEMENTS, LOCATIONS } from '~/mocks/locations-mock';
+// Removed mock imports - now using data from API
 import { LocationMovimentType } from '~/types/location';
 import { AnimalBreed } from '~/types/animal';
 import type { Property } from '~/types/property';
@@ -59,32 +58,9 @@ export function PropertyAnimalsTab({
 
   // Get animals in all locations of this property
   const animalsInProperty = useMemo(() => {
-    // Get all locations for this property
-    const propertyLocations = LOCATIONS.filter((location) => location.propertyId === property.id);
-
-    // Get all movements for locations in this property
-    const propertyLocationMovements = LOCATION_MOVEMENTS.filter(
-      (movement) =>
-        propertyLocations.some((location) => location.id === movement.locationId) &&
-        (movement.type === LocationMovimentType.ENTRY ||
-          movement.type === LocationMovimentType.EXIT),
-    );
-
-    // Get all animal locations that reference these movements
-    const animalLocations = ANIMAL_LOCATIONS.filter((al) =>
-      propertyLocationMovements.some((movement) => movement.id === al.locationMovimentId),
-    );
-
-    // For now, let's show all animals that have any movement in this property
-    // This is a simplified approach to get the feature working
-    const animalsInPropertyIds = new Set<string>();
-    animalLocations.forEach((al) => {
-      animalsInPropertyIds.add(al.animalId);
-    });
-
-    // Get the actual animal objects
-    return ANIMALS.filter((animal) => animalsInPropertyIds.has(animal.id));
-  }, [property.id]);
+    // Use animals from API data
+    return property.animals || [];
+  }, [property.animals]);
 
   // Apply search filter with debounced search
   const searchAnimals = useCallback((animals: any[], searchTerm: string) => {

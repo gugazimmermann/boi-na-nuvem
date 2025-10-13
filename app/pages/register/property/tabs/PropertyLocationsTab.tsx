@@ -4,8 +4,7 @@ import { Table } from '~/components/table';
 import type { TableConfig } from '~/components/table/types';
 import { Drawer, DrawerHeader, DrawerBody, DrawerFooter } from '~/components/drawer';
 import { usePropertyTabPagination } from './hooks/usePropertyTabPagination';
-import { LOCATIONS, LOCATION_QUALITIES, LOCATION_MOVEMENTS } from '~/mocks/locations-mock';
-import { ANIMAL_LOCATIONS } from '~/mocks/animals-mock';
+// Removed mock imports - now using data from API
 import {
   LocationType,
   LocationStatus,
@@ -110,12 +109,12 @@ export function PropertyLocationsTab({
 
   // Helper function to get last quality for a location
   const getLastLocationQuality = useCallback((locationId: string): LocationQuality | null => {
-    const locationQualities = LOCATION_QUALITIES.filter(
+    const locationQualities = (property.locationQualities || []).filter(
       (quality) => quality.locationId === locationId && !quality.deletedAt,
     ).sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
     return locationQualities.length > 0 ? locationQualities[0] : null;
-  }, []);
+  }, [property.locationQualities]);
 
   // Helper function to get location status label (for search)
   const getLocationStatusInfo = useCallback((status: LocationStatus) => {
@@ -133,16 +132,16 @@ export function PropertyLocationsTab({
 
   // Helper function to get animal count for a specific location
   const getAnimalCountByLocation = useCallback((locationId: string) => {
-    // Get all movements for this location
-    const locationMovements = LOCATION_MOVEMENTS.filter(
+    // Get all movements for this location from API data
+    const locationMovements = (property.locationMovements || []).filter(
       (movement) =>
         movement.locationId === locationId &&
         (movement.type === LocationMovimentType.ENTRY ||
           movement.type === LocationMovimentType.EXIT),
     );
 
-    // Get all animal locations that reference these movements
-    const animalLocations = ANIMAL_LOCATIONS.filter((al) =>
+    // Get all animal locations that reference these movements from API data
+    const animalLocations = (property.animalLocations || []).filter((al) =>
       locationMovements.some((movement) => movement.id === al.locationMovimentId),
     );
 
@@ -177,10 +176,10 @@ export function PropertyLocationsTab({
     return currentCount;
   }, []);
 
-  // Filter locations for this property
+  // Use locations from API data
   const basePropertyLocations = useMemo(
-    () => LOCATIONS.filter((location) => location.propertyId === property.id),
-    [property.id],
+    () => property.locations || [],
+    [property.locations],
   );
 
   // Apply search filter with debounced search

@@ -3,9 +3,7 @@ import { useNavigate } from 'react-router';
 import { Table } from '~/components/table';
 import type { TableConfig } from '~/components/table/types';
 import { usePropertyTabPagination } from './hooks/usePropertyTabPagination';
-import { LOCATIONS, LOCATION_MOVEMENTS } from '~/mocks/locations-mock';
-import { EMPLOYESS } from '~/mocks/employee-mock';
-import { SERVICEPROVIDERS } from '~/mocks/service-provider-mock';
+// Removed mock imports - now using data from API
 import {
   LocationMovimentType,
   ResponsibleType,
@@ -118,7 +116,7 @@ export function PropertyMovementsTab({
 
   const getResponsibleInfo = useCallback((movement: LocationMoviment) => {
     if (movement.responsibleType === ResponsibleType.EMPLOYEE && movement.employeeId) {
-      const employee = EMPLOYESS.find((emp) => emp.id === movement.employeeId);
+      const employee = (property.employees || []).find((emp) => emp.id === movement.employeeId);
       return {
         type: 'Colaborador',
         name: employee ? employee.name : 'Colaborador não encontrado',
@@ -128,10 +126,11 @@ export function PropertyMovementsTab({
       movement.responsibleType === ResponsibleType.SERVICE_PROVIDER &&
       movement.serviceProviderId
     ) {
-      const serviceProvider = SERVICEPROVIDERS.find((sp) => sp.id === movement.serviceProviderId);
+      // Note: Service providers are not included in property data yet
+      // This would need to be added to the backend response
       return {
         type: 'Prestador de Serviços',
-        name: serviceProvider ? serviceProvider.name : 'Prestador não encontrado',
+        name: 'Prestador não encontrado',
         color: 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400',
       };
     }
@@ -142,10 +141,10 @@ export function PropertyMovementsTab({
     };
   }, []);
 
-  // Get property locations
+  // Use locations from API data
   const propertyLocations = useMemo(
-    () => LOCATIONS.filter((location) => location.propertyId === property.id),
-    [property.id],
+    () => property.locations || [],
+    [property.locations],
   );
   const propertyLocationIds = useMemo(
     () => propertyLocations.map((loc) => loc.id),
@@ -155,7 +154,7 @@ export function PropertyMovementsTab({
   // Filter movements for this property's locations, excluding ENTRY and EXIT, and get only the latest movement per location
   const basePropertyMovements = useMemo(() => {
     // First, filter movements for this property's locations, exclude ENTRY/EXIT, and exclude deleted ones
-    const propertyMovements = LOCATION_MOVEMENTS.filter(
+    const propertyMovements = (property.locationMovements || []).filter(
       (movement) =>
         propertyLocationIds.includes(movement.locationId) &&
         movement.type !== LocationMovimentType.ENTRY &&

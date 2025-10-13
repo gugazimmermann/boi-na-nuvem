@@ -1,10 +1,10 @@
 import { memo, useCallback } from 'react';
-import type { Property } from '~/types/property';
+import type { PropertySummary } from '~/types/property';
 
 interface PropertyActionsProps {
-  property: Property;
-  onEdit?: (property: Property) => void;
-  onDelete?: (property: Property) => void;
+  property: PropertySummary;
+  onEdit?: (property: PropertySummary) => void;
+  onDelete?: (property: PropertySummary) => void;
 }
 
 export const PropertyActions = memo<PropertyActionsProps>(({ property, onEdit, onDelete }) => {
@@ -22,7 +22,7 @@ export const PropertyActions = memo<PropertyActionsProps>(({ property, onEdit, o
         onClick={handleEdit}
         className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none cursor-pointer"
         title="Editar"
-        aria-label={`Editar propriedade ${property.name}`}
+        aria-label={`Editar propriedade ${property.nome}`}
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
@@ -37,7 +37,7 @@ export const PropertyActions = memo<PropertyActionsProps>(({ property, onEdit, o
         onClick={handleDelete}
         className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none cursor-pointer"
         title="Excluir"
-        aria-label={`Excluir propriedade ${property.name}`}
+        aria-label={`Excluir propriedade ${property.nome}`}
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path

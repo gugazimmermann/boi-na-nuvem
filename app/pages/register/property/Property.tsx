@@ -1,13 +1,9 @@
 import { useMemo } from 'react';
 import { useProperties } from '~/hooks/useProperties';
-import type { Property } from '~/types/property';
+import type { PropertySummary } from '~/types/property';
 import {
   usePropertyFilters,
   usePropertyPagination,
-  useLocationCount,
-  useAnimalCount,
-  useCapacity,
-  useEmployeeCount,
 } from './hooks';
 import { usePropertyNavigation } from './utils/navigation';
 import { createTableConfig } from './config/tableConfig';
@@ -17,12 +13,8 @@ import { LAYOUT_CONSTANTS } from '../shared/constants';
 import { useSelectedProperty } from '~/hooks/useSelectedProperty';
 
 export default function PropertyPage() {
-  const { properties, loading, error, refetch, deleteProperty } = useProperties();
+  const { properties, loading, error, refetch } = useProperties();
   const { selectedPropertyId } = useSelectedProperty();
-  const { getLocationCount } = useLocationCount();
-  const { getAnimalCount } = useAnimalCount();
-  const { getCapacity } = useCapacity();
-  const { getEmployeeCount } = useEmployeeCount();
   const { handleEditProperty, handleViewProperty, handleAddProperty } = usePropertyNavigation();
 
   const {
@@ -32,7 +24,7 @@ export default function PropertyPage() {
     setStatusFilter,
     handleSort,
     filteredProperties,
-  } = usePropertyFilters({ properties, getLocationCount, getAnimalCount, getEmployeeCount });
+  } = usePropertyFilters({ properties });
 
   const {
     currentPage,
@@ -50,14 +42,10 @@ export default function PropertyPage() {
     statusFilter,
     setStatusFilter,
     handleSort,
-    getLocationCount,
-    getAnimalCount,
-    getCapacity,
-    getEmployeeCount,
-    onEditProperty: (property: Property) => handleEditProperty(property.id),
-    onDeleteProperty: (property: Property) => deleteProperty(property.id),
+    onEditProperty: (property: PropertySummary) => handleEditProperty(property.id),
+    onDeleteProperty: (property: PropertySummary) => console.log('Delete not implemented', property.id),
     onAddProperty: handleAddProperty,
-    onViewProperty: (property: Property) => handleViewProperty(property.id),
+    onViewProperty: (property: PropertySummary) => handleViewProperty(property.id),
     currentPage,
     totalPages,
     itemsPerPage,
@@ -72,7 +60,7 @@ export default function PropertyPage() {
       loading={loading}
       error={error}
       refetch={refetch}
-      deleteEntity={deleteProperty}
+      deleteEntity={() => console.log('Delete not implemented')}
       filteredEntities={filteredProperties || []}
       searchTerm={searchTerm}
       setSearchTerm={setSearchTerm}

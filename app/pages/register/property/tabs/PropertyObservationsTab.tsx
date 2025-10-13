@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 import { Table } from '~/components/table';
 import type { TableConfig } from '~/components/table/types';
 import { usePropertyTabPagination } from './hooks/usePropertyTabPagination';
-import { LOCATIONS, LOCATION_OBSERVATIONS } from '~/mocks/locations-mock';
+// Removed mock imports - now using data from API
 import type { Location, LocationObservation } from '~/types/location';
 import type { Property } from '~/types/property';
 
@@ -50,10 +50,10 @@ export function PropertyObservationsTab({
     return location ? location.code : 'N/A';
   }, []);
 
-  // Get property locations
+  // Use locations from API data
   const propertyLocations = useMemo(
-    () => LOCATIONS.filter((location) => location.propertyId === property.id),
-    [property.id],
+    () => property.locations || [],
+    [property.locations],
   );
   const propertyLocationIds = useMemo(
     () => propertyLocations.map((loc) => loc.id),
@@ -63,7 +63,7 @@ export function PropertyObservationsTab({
   // Filter observations for this property's locations and get only the latest observation per location
   const basePropertyObservations = useMemo(() => {
     // First, filter observations for this property's locations and exclude deleted ones
-    const propertyObservations = LOCATION_OBSERVATIONS.filter(
+    const propertyObservations = (property.observations || []).filter(
       (observation) =>
         propertyLocationIds.includes(observation.locationId) && !observation.deletedAt,
     );

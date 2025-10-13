@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { type Property } from '../../types/property';
+import { useState, useEffect, useMemo } from 'react';
+import { type PropertySummary } from '../../types/property';
 import { useProperties } from '../../hooks/useProperties';
 import { SelectedPropertyService } from '~/services/selectedPropertyService';
 
@@ -8,29 +8,51 @@ interface PropertySelectorProps {
 }
 
 export function PropertySelector({ className = '' }: PropertySelectorProps) {
-  const { activeProperties, loading, error } = useProperties();
-  const [selectedProperty, setSelectedProperty] = useState<Property | null>(null);
+  const { properties, loading, error } = useProperties();
+  const [selectedProperty, setSelectedProperty] = useState<PropertySummary | null>(null);
   const [isOpen, setIsOpen] = useState(false);
 
+  // Filtrar apenas propriedades ativas
+  const activeProperties = useMemo(() => 
+    properties.filter(property => property.status === 'active'), 
+    [properties]
+  );
+  
+  // Adicionar opção "ALL" no início da lista
+  const allPropertiesOption = useMemo(() => ({
+    id: 'ALL',
+    codigo: 'ALL',
+    nome: 'Todas as Propriedades',
+    endereco: {},
+    quantidadeLocalizacoes: 0,
+    capacidade: { total: 0, totalAnimais: 0, porcentagemOcupacao: 0 },
+    totalColaboradores: 0,
+    status: 'active' as const
+  }), []);
+  
+  const propertiesWithAll = useMemo(() => 
+    [allPropertiesOption, ...activeProperties], 
+    [allPropertiesOption, activeProperties]
+  );
+
   useEffect(() => {
-    if (activeProperties.length === 0) return;
+    if (propertiesWithAll.length === 0) return;
 
     const storedId = SelectedPropertyService.getSelectedPropertyId();
     if (storedId) {
-      const found = activeProperties.find((p) => p.id === storedId);
+      const found = propertiesWithAll.find((p) => p.id === storedId);
       if (found) {
         setSelectedProperty(found);
         return;
       }
     }
 
-    if (!selectedProperty) {
-      setSelectedProperty(activeProperties[0]);
-      SelectedPropertyService.setSelectedPropertyId(activeProperties[0].id);
-    }
-  }, [activeProperties, selectedProperty]);
+    // Se não há propriedade selecionada, seleciona a primeira
+    setSelectedProperty(propertiesWithAll[0]);
+    SelectedPropertyService.setSelectedPropertyId(propertiesWithAll[0].id);
+  }, [propertiesWithAll]);
 
-  const handlePropertyChange = (property: Property) => {
+  const handlePropertyChange = (property: PropertySummary) => {
     setSelectedProperty(property);
     setIsOpen(false);
     SelectedPropertyService.setSelectedPropertyId(property.id);
@@ -57,7 +79,7 @@ export function PropertySelector({ className = '' }: PropertySelectorProps) {
     );
   }
 
-  if (!selectedProperty || activeProperties.length === 0) {
+  if (!selectedProperty || propertiesWithAll.length === 0) {
     return null;
   }
 
@@ -72,9 +94,9 @@ export function PropertySelector({ className = '' }: PropertySelectorProps) {
         <div className="flex items-center space-x-2 min-w-0 flex-1">
           <div className="flex flex-col items-start min-w-0">
             <span className="text-xs text-gray-500 dark:text-gray-400 truncate">
-              {selectedProperty.code}
+              {selectedProperty.codigo}
             </span>
-            <span className="text-sm font-medium truncate max-w-32">{selectedProperty.name}</span>
+            <span className="text-sm font-medium truncate max-w-32">{selectedProperty.nome}</span>
           </div>
         </div>
         <svg
@@ -93,22 +115,24 @@ export function PropertySelector({ className = '' }: PropertySelectorProps) {
 
           <div className="absolute right-0 z-20 mt-2 w-64 bg-white dark:bg-gray-800 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
             <div className="py-1" role="menu" aria-orientation="vertical">
-              {activeProperties.map((property) => (
+              {propertiesWithAll.map((property) => (
                 <button
                   key={property.id}
                   onClick={() => handlePropertyChange(property)}
                   className={`w-full flex items-center space-x-3 px-4 py-3 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 cursor-pointer ${
                     selectedProperty.id === property.id
                       ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300'
+                      : property.id === 'ALL'
+                      ? 'text-gray-800 dark:text-gray-100 font-semibold border-b border-gray-200 dark:border-gray-600'
                       : 'text-gray-700 dark:text-gray-200'
                   }`}
                   role="menuitem"
                 >
                   <div className="flex flex-col items-start min-w-0 flex-1">
                     <span className="text-xs text-gray-500 dark:text-gray-400">
-                      {property.code}
+                      {property.codigo}
                     </span>
-                    <span className="font-medium truncate w-full">{property.name}</span>
+                    <span className="font-medium truncate w-full">{property.nome}</span>
                   </div>
                   {selectedProperty.id === property.id && (
                     <svg

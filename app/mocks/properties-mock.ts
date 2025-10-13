@@ -23,6 +23,20 @@ export const PROPERTIES: Property[] = [
     longitude: -48.7587542,
     status: PropertyStatus.ACTIVE,
     createdAt: '2024-01-15T10:00:00Z',
+    pasturePlanning: [
+      { month: 'January', precipitation: 4894.2, temperature: 24.9, state: 'Good' },
+      { month: 'February', precipitation: 4270.2, temperature: 24.9, state: 'Good' },
+      { month: 'March', precipitation: 3485.4, temperature: 24.1, state: 'Good' },
+      { month: 'April', precipitation: 2395.9, temperature: 22.1, state: 'Medium' },
+      { month: 'May', precipitation: 2449.4, temperature: 19.2, state: 'Medium' },
+      { month: 'June', precipitation: 2493.3, temperature: 17.6, state: 'Medium' },
+      { month: 'July', precipitation: 1916.7, temperature: 16.6, state: 'Medium' },
+      { month: 'August', precipitation: 2125.5, temperature: 17.4, state: 'Medium' },
+      { month: 'September', precipitation: 2844.4, temperature: 18.7, state: 'Medium' },
+      { month: 'October', precipitation: 3150.9, temperature: 20.5, state: 'Medium' },
+      { month: 'November', precipitation: 3277.4, temperature: 22.0, state: 'Good' },
+      { month: 'December', precipitation: 3396.1, temperature: 23.8, state: 'Good' }
+    ]
   },
   {
     id: '550e8400-e29b-41d4-a716-446655440002',
@@ -40,6 +54,20 @@ export const PROPERTIES: Property[] = [
     longitude: -54.8058,
     status: PropertyStatus.ACTIVE,
     createdAt: '2024-02-20T14:30:00Z',
+    pasturePlanning: [
+      { month: 'January', precipitation: 185.2, temperature: 26.8, state: 'Poor' },
+      { month: 'February', precipitation: 165.4, temperature: 26.5, state: 'Poor' },
+      { month: 'March', precipitation: 142.8, temperature: 25.9, state: 'Poor' },
+      { month: 'April', precipitation: 98.6, temperature: 23.4, state: 'Poor' },
+      { month: 'May', precipitation: 67.3, temperature: 20.1, state: 'Poor' },
+      { month: 'June', precipitation: 45.2, temperature: 18.7, state: 'Poor' },
+      { month: 'July', precipitation: 38.9, temperature: 18.2, state: 'Poor' },
+      { month: 'August', precipitation: 52.1, temperature: 20.8, state: 'Poor' },
+      { month: 'September', precipitation: 89.4, temperature: 23.1, state: 'Poor' },
+      { month: 'October', precipitation: 124.7, temperature: 25.3, state: 'Poor' },
+      { month: 'November', precipitation: 156.8, temperature: 26.2, state: 'Poor' },
+      { month: 'December', precipitation: 178.3, temperature: 26.6, state: 'Poor' }
+    ]
   },
   {
     id: '550e8400-e29b-41d4-a716-446655440003',

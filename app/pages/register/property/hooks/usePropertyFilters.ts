@@ -1,5 +1,5 @@
 import { useState, useMemo, useCallback } from 'react';
-import type { Property } from '~/types/property';
+import type { PropertySummary } from '~/types/property';
 import { PropertyStatus } from '~/types/property';
 import { SORT_DIRECTIONS } from '../../shared/constants';
 import { PROPERTY_CONFIG } from '../config/propertyConfig';
@@ -11,17 +11,11 @@ type SortConfig = {
 };
 
 interface UsePropertyFiltersProps {
-  properties: Property[];
-  getLocationCount?: (propertyId: string) => number;
-  getAnimalCount?: (propertyId: string) => number;
-  getEmployeeCount?: (propertyId: string) => number;
+  properties: PropertySummary[];
 }
 
 export function usePropertyFilters({
   properties,
-  getLocationCount,
-  getAnimalCount,
-  getEmployeeCount,
 }: UsePropertyFiltersProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState<PropertyStatus | 'all'>('all');
@@ -39,11 +33,15 @@ export function usePropertyFilters({
   }, []);
 
   const matchesSearchTerm = useCallback(
-    (property: Property, term: string) => {
+    (property: PropertySummary, term: string) => {
       const normalizedTerm = normalizeText(term);
-      const searchFields = PROPERTY_CONFIG.searchFields.map(
-        (field) => property[field as keyof Property] || '',
-      );
+      const searchFields = [
+        property.codigo,
+        property.nome,
+        property.endereco.city,
+        property.endereco.state,
+        property.endereco.country,
+      ].filter(Boolean);
 
       return searchFields.some((field) => {
         const normalizedField = normalizeText(String(field));
@@ -93,32 +91,36 @@ export function usePropertyFilters({
 
         switch (sortConfig.key) {
           case 'code':
-            aValue = a.code;
-            bValue = b.code;
+            aValue = a.codigo;
+            bValue = b.codigo;
             break;
           case 'name':
-            aValue = a.name;
-            bValue = b.name;
+            aValue = a.nome;
+            bValue = b.nome;
             break;
           case 'status':
             aValue = a.status;
             bValue = b.status;
             break;
           case 'locationCount':
-            aValue = getLocationCount?.(a.id) || 0;
-            bValue = getLocationCount?.(b.id) || 0;
+            aValue = a.quantidadeLocalizacoes;
+            bValue = b.quantidadeLocalizacoes;
             break;
           case 'animalCount':
-            aValue = getAnimalCount?.(a.id) || 0;
-            bValue = getAnimalCount?.(b.id) || 0;
+            aValue = a.capacidade.totalAnimais;
+            bValue = b.capacidade.totalAnimais;
             break;
           case 'employeeCount':
-            aValue = getEmployeeCount?.(a.id) || 0;
-            bValue = getEmployeeCount?.(b.id) || 0;
+            aValue = a.totalColaboradores;
+            bValue = b.totalColaboradores;
             break;
-          case 'createdAt':
-            aValue = new Date(a.createdAt || 0).getTime();
-            bValue = new Date(b.createdAt || 0).getTime();
+          case 'capacity':
+            aValue = a.capacidade.total;
+            bValue = b.capacidade.total;
+            break;
+          case 'occupancy':
+            aValue = a.capacidade.porcentagemOcupacao;
+            bValue = b.capacidade.porcentagemOcupacao;
             break;
           default:
             return 0;
